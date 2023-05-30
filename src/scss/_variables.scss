@@ -1,0 +1,39 @@
+//colors
+$primary: hsl(275, 57%, 39%);
+$secondary: hsl(275, 100%, 3%);
+$light100: hsl(0, 0%, 100%);
+$dark100: hsl(0, 0%, 0%);
+$dark200: hsl(0, 0%, 18%);
+$bottleGreen: hsl(196, 61%, 7%);
+$light200: hsl(0, 0%, 97%);
+$yellow100: hsl(31, 100%, 50%);
+$yellow200: hsl(31, 100%, 58%);
+$red100: hsl(0, 79%, 63%);
+$green100: hsl(166, 100%, 35%);
+$green200: hsl(146, 64%, 36%);
+
+//font weights
+$font-weights: (
+    "thin": 300,
+    "normal": 400,
+    "big": 500,
+    "semibold": 600,
+    "bold": 700,
+    "heavy": 800
+);
+
+// flex basis
+
+$base300: 300px;
+$base350: 350px;
+$base400: 400px;
+
+//border radius
+$radius-8: 8px;
+$radius-4: 8px;
+
+//fonts-size
+$base: 1rem;
+
+// layout
+$padding-x: clamp(1rem, 5vw, 20rem);

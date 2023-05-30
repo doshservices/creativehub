@@ -1,0 +1,35 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+header {
+    background-color: $primary;
+    padding: 1rem $padding-x;
+
+    a {
+        color: $light100;
+        font-size: $base;
+        font-weight: map-get($font-weights, big);
+    }
+
+    & nav {
+        @include flex-center;
+        column-gap: 2rem;
+
+        div {
+            @include flex-center;
+            column-gap: 5rem;
+
+            ul {
+                @include flex-center;
+                gap: 2rem;
+            }
+
+        }
+    }
+
+    .sign__in {
+        border: 2px solid $light200;
+        border-radius: $radius-8;
+        padding: .5rem 1.5rem;
+    }
+}

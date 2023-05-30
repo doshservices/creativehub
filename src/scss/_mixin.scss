@@ -1,0 +1,12 @@
+//mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
