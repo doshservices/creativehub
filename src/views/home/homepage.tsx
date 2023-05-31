@@ -1,6 +1,7 @@
 import './home.scss';
 import { FC } from 'react'
 import { Search } from './components/search';
+import Creative from './components/creative';
 
 const Home: FC = () => {
     return (
@@ -12,6 +13,7 @@ const Home: FC = () => {
                     <Search />
                 </div>
             </section>
+            <Creative />
         </div>
     )
 }

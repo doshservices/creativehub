@@ -1,0 +1,47 @@
+@import '../../../scss/mixin';
+@import '../../../scss/variables';
+
+#home__creatives {
+    padding: 2rem $padding-x;
+
+    h2 {
+        color: $third;
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    .creatives {
+        @include flex-wrap;
+        justify-content: space-between;
+        gap: 2rem;
+        margin: 2rem 0;
+
+        figure {
+            background-color: rgb(125, 123, 123);
+            height: 200px;
+            flex-grow: 1;
+            flex-basis: 250px;
+            position: relative;
+
+            figcaption {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 1.25rem;
+                text-align: center;
+                color: $light200;
+            }
+        }
+    }
+
+    button {
+        margin: auto;
+        display: block;
+        font-size: $base;
+        color: $primary;
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid $primary;
+    }
+}
