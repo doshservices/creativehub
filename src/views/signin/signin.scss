@@ -1,0 +1,94 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+#signin {
+    padding: 1rem $padding-x 4rem $padding-x;
+    color: $dark200;
+
+    >p {
+        margin-left: auto;
+        max-width: fit-content;
+        color: $primary;
+        font-size: $meduim;
+    }
+
+    >h2 {
+        text-align: center;
+        max-width: 650px;
+        margin: 2rem auto;
+        line-height: 2.5rem;
+        font-weight: map-get($font-weights, semibold);
+    }
+
+    >div {
+        max-width: 430px;
+        margin: auto;
+
+        form {
+
+            label {
+                font-size: calc($meduim + 1px);
+                margin-bottom: .5rem;
+                display: inline-block;
+            }
+
+            input {
+                border: 0.6px solid hsl(0, 0%, 61%);
+                border-radius: $radius-4;
+                display: block;
+                width: 100%;
+                background-color: transparent;
+                padding: .7rem;
+                color: rgba(45, 45, 45, 0.8);
+                font-size: $meduim;
+                margin-bottom: 1.2rem;
+
+                &:focus {
+                    outline: none;
+                    border: 1px solid $dark200;
+                }
+            }
+
+            .password {
+                position: relative;
+
+                input {
+                    padding-right: 2.2rem;
+                }
+
+                span {
+                    position: absolute;
+                    top: .7rem;
+                    right: .7rem;
+                    cursor: pointer;
+                }
+            }
+
+            #purple {
+                width: 100% !important;
+                margin-top: 2rem;
+            }
+        }
+
+        .or {
+            text-align: center;
+            color: $dark200;
+            font-weight: map-get($font-weights, semibold);
+            margin: .5rem 0;
+        }
+
+        >button {
+            width: 100% !important;
+        }
+
+        .account {
+            text-align: center;
+            font-size: $small;
+            margin: 1rem 0;
+
+            a {
+                color: $primary;
+            }
+        }
+    }
+}

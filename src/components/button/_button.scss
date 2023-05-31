@@ -19,6 +19,18 @@
     border: none;
 }
 
+.google-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $radius-4;
+    border: 1px solid $primary;
+    background-color: $light200;
+    color: $primary;
+    font-size: $meduim;
+    font-weight: map-get($font-weights, semibold);
+}
+
 #yellow {
     background-color: $yellow100;
 }

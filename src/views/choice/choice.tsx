@@ -22,7 +22,7 @@ const Chioce: FC = () => {
                 <p>
                     Hire professional sound engineers, producers, dancers etc to work on your next project
                 </p>
-                <LinkBtn id='purple' content='SIGN IN' to='/' />
+                <LinkBtn id='purple' content='SIGN IN' to='/signin' />
             </div>
             <div id="choice__creatives">
                 <img className="tr" src={ptr} alt="" />
@@ -31,7 +31,7 @@ const Chioce: FC = () => {
                 <img className="br" src={pbr} alt="" />
                 <h3>FOR CREATIVES</h3>
                 <p>Get listed as a professional sound engineer, producer, dancer etc and get hired for work</p>
-                <LinkBtn id='yellow' content='SIGN IN' to='/' />
+                <LinkBtn id='yellow' content='SIGN IN' to='/signin' />
             </div>
         </section>
     )
