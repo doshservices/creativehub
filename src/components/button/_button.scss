@@ -29,6 +29,7 @@
     color: $primary;
     font-size: $meduim;
     font-weight: map-get($font-weights, semibold);
+    padding: 0 1rem;
 }
 
 #yellow {

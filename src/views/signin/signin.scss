@@ -26,44 +26,6 @@
 
         form {
 
-            label {
-                font-size: calc($meduim + 1px);
-                margin-bottom: .5rem;
-                display: inline-block;
-            }
-
-            input {
-                border: 0.6px solid hsl(0, 0%, 61%);
-                border-radius: $radius-4;
-                display: block;
-                width: 100%;
-                background-color: transparent;
-                padding: .7rem;
-                color: rgba(45, 45, 45, 0.8);
-                font-size: $meduim;
-                margin-bottom: 1.2rem;
-
-                &:focus {
-                    outline: none;
-                    border: 1px solid $dark200;
-                }
-            }
-
-            .password {
-                position: relative;
-
-                input {
-                    padding-right: 2.2rem;
-                }
-
-                span {
-                    position: absolute;
-                    top: .7rem;
-                    right: .7rem;
-                    cursor: pointer;
-                }
-            }
-
             #purple {
                 width: 100% !important;
                 margin-top: 2rem;
@@ -83,7 +45,7 @@
 
         .account {
             text-align: center;
-            font-size: $small;
+            font-size: $meduim;
             margin: 1rem 0;
 
             a {

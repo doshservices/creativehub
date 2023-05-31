@@ -1,0 +1,83 @@
+@import '../../scss/variables';
+
+.comp__label {
+    font-size: calc($meduim + 1px);
+    margin-bottom: .5rem;
+    display: block;
+}
+
+.comp__input {
+    border: 0.6px solid hsl(0, 0%, 61%);
+    border-radius: $radius-4;
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    padding: .7rem;
+    color: rgba(45, 45, 45, 0.8);
+    font-size: $meduim;
+    margin-bottom: 1.2rem;
+
+    &:focus {
+        outline: none;
+        border: 1px solid $dark200;
+    }
+}
+
+
+.password {
+    position: relative;
+
+    .comp__input {
+        padding-right: 2.2rem;
+    }
+
+    span {
+        position: absolute;
+        top: .7rem;
+        right: .7rem;
+        cursor: pointer;
+    }
+}
+
+.form-select {
+    margin-bottom: 1.2rem;
+    border: 0.6px solid hsl(0, 0%, 61%);
+    border-radius: $radius-4;
+    position: relative;
+
+    img {
+        position: absolute;
+        pointer-events: none;
+        right: 1rem;
+        top: 1.1rem;
+    }
+
+    select {
+        border: none;
+        display: block;
+        width: 100%;
+        background-color: transparent;
+        padding: .7rem;
+        color: rgba(45, 45, 45, 0.8);
+        font-size: $meduim;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
+
+        &::-ms-expand {
+            display: none;
+        }
+
+        &:focus {
+            outline: none;
+            border: none;
+        }
+
+        option {
+            padding: 1rem;
+            color: rgba(45, 45, 45, 0.8);
+        }
+
+    }
+}

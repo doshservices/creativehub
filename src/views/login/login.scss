@@ -1,0 +1,50 @@
+@import '../../scss/variables';
+
+#login {
+    color: $dark200;
+    max-width: 430px;
+    margin: auto;
+
+    >p {
+        margin-left: auto;
+        max-width: fit-content;
+        font-size: $meduim;
+    }
+
+    >h2 {
+        text-align: center;
+        margin: 2rem 0;
+        line-height: 2.5rem;
+        font-weight: map-get($font-weights, semibold);
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .forgot {
+        margin: -.7rem 0 0 auto;
+        width: fit-content;
+        font-size: $meduim;
+        color: $primary;
+    }
+
+    .or {
+        color: $dark200;
+        font-weight: map-get($font-weights, semibold);
+        margin: .5rem auto;
+    }
+
+    #purple {
+        margin-top: 1rem;
+    }
+
+    .account {
+        font-size: $meduim;
+        margin: 1rem auto;
+
+        a {
+            color: $primary;
+        }
+    }
+}
