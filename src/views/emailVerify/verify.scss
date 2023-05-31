@@ -1,0 +1,37 @@
+@import '../../scss/_variables.scss';
+
+#verify__email {
+    padding: 2rem $base;
+    color: $dark200;
+    max-width: 650px;
+    margin: auto;
+    text-align: center;
+
+    >img {
+        height: 80px;
+    }
+
+    h2 {
+        margin: 1rem 0;
+        line-height: 2.5rem;
+        font-weight: map-get($font-weights, semibold);
+    }
+
+    >p {
+        font-size: $meduim;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .email-btn {
+        margin: 2rem 0;
+    }
+
+    &__change {
+        font-size: $meduim;
+        margin: 1.8rem 0;
+        display: block;
+    }
+}

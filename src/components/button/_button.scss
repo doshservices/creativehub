@@ -39,3 +39,22 @@
 #purple {
     background-color: $primary;
 }
+
+.email-btn {
+    color: $light200;
+    display: block;
+    background-color: $primary;
+    font-size: $meduim;
+    border-radius: $radius-4;
+    padding: .7rem 2rem;
+}
+
+.resend-btn {
+    color: $primary;
+    display: block;
+    background-color: $light200;
+    font-size: $meduim;
+    border-radius: $radius-4;
+    padding: .7rem 2rem;
+    border: 1px solid $primary;
+}

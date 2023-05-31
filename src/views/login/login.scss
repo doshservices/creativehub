@@ -2,7 +2,8 @@
 
 #login {
     color: $dark200;
-    max-width: 430px;
+    max-width: calc(430px + 2rem);
+    padding: 3rem 1rem;
     margin: auto;
 
     >p {
@@ -13,7 +14,7 @@
 
     >h2 {
         text-align: center;
-        margin: 2rem 0;
+        margin-bottom: 2rem;
         line-height: 2.5rem;
         font-weight: map-get($font-weights, semibold);
     }

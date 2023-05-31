@@ -19,6 +19,15 @@ interface googleBtn {
     content: string;
 }
 
+interface mailBtn {
+    href: string;
+    content: string;
+}
+interface resendBtn {
+    type?: any;
+    content: string;
+}
+
 export const LinkBtn = (props: link) => {
     return (
         <Link className='signin-link' id={props.id} to={props.to}>
@@ -38,5 +47,17 @@ export const SignBtn = (props: signin) => {
 export const GoogleBtn = (props: googleBtn) => {
     return (
         <button className='google-btn'> <img src={google} alt="google" /> <span>{props.content}</span></button>
+    )
+}
+
+export const MailBtn = (props: mailBtn) => {
+    return (
+        <a className='email-btn' href={props.href} target='_blank'>{props.content}</a>
+    )
+}
+
+export const ResendBtn = (props: resendBtn) => {
+    return (
+        <button className='resend-btn' type={props.type}>{props.content}</button>
     )
 }

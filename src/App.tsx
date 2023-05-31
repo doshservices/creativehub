@@ -5,6 +5,7 @@ import Footer from './components/navigation/footer';
 import SignIn from './views/signin/signIn';
 import HeaderNav from './components/navigation/headerNav';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Verify from './views/emailVerify/verify';
 
 const App = () => {
 
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='/choice' element={<Chioce />} />
         <Route path='/signup' element={<SignIn />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/verifyemail' element={<Verify />} />
       </Routes>
       <Footer />
     </BrowserRouter>
