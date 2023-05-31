@@ -1,0 +1,96 @@
+@import '../../../scss/mixin';
+@import '../../../scss/variables';
+
+#home__search {
+    margin-top: 2.5rem;
+
+    &__bar {
+
+        background-color: blue;
+        max-width: fit-content;
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        border-radius: $radius-4;
+        overflow: hidden;
+
+        input {
+            background: $light200;
+            font-size: $meduim;
+            color: $dark200;
+            font-weight: map-get($font-weights, big);
+            flex-grow: 1;
+            border: none;
+            padding: .9rem 1rem .9rem 3.5rem;
+
+            &:focus {
+                outline: none;
+            }
+
+        }
+
+        /* clears the ‘X’ from Internet Explorer */
+        input[type=search]::-ms-clear {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        input[type=search]::-ms-reveal {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        /* clears the ‘X’ from Chrome */
+        input[type="search"]::-webkit-search-decoration,
+        input[type="search"]::-webkit-search-cancel-button,
+        input[type="search"]::-webkit-search-results-button,
+        input[type="search"]::-webkit-search-results-decoration {
+            display: none;
+        }
+
+        img {
+            position: absolute;
+            left: 1.5rem;
+            top: .9rem;
+        }
+
+        button {
+            font-size: $meduim;
+            font-weight: map-get($font-weights, semibold);
+            color: $light200;
+            border: none;
+            background-color: $primary;
+            padding: .9rem 2.3rem;
+        }
+
+    }
+
+    .top__searched {
+        display: flex;
+        margin-top: 1.3rem;
+
+        p {
+            margin: 0 .3rem 0 0;
+            border-radius: $radius-8;
+            font-size: $meduim;
+        }
+
+        div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+
+            button {
+                background-color: transparent;
+                border: 1px solid $light200;
+                border-radius: $radius-8;
+                font-size: $meduim;
+                color: inherit;
+                padding: .4rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+#home {
+    &__hero {
+        padding: 13rem $padding-x 6rem $padding-x;
+        background-color: rgb(180, 174, 174);
+        color: $light200;
+
+        >div {
+            margin-left: 17%;
+
+            h1 {
+                font-size: clamp(2rem, 3.8vw, 3rem);
+                font-weight: map-get($font-weights, semibold);
+            }
+
+            p {
+                max-width: 350px;
+                line-height: 1.8rem;
+                margin: 1rem 0;
+            }
+
+        }
+
+        @media(max-width: 950px) {
+            >div {
+                margin-left: 10%;
+            }
+        }
+
+        @media(max-width: 650px) {
+            >div {
+                margin-left: 0;
+            }
+        }
+    }
+}

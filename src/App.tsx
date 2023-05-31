@@ -1,4 +1,5 @@
 import './App.scss'
+import Home from './views/home/homepage';
 import Reset from './views/passreset/reset';
 import Login from './views/login/login';
 import Chioce from './views/choice/choice';
@@ -15,6 +16,7 @@ const App = () => {
     <BrowserRouter>
       <HeaderNav />
       <Routes>
+        <Route path='/' element={<Home />} />
         <Route path='/choice' element={<Chioce />} />
         <Route path='/signup' element={<SignIn />} />
         <Route path='/login' element={<Login />} />
