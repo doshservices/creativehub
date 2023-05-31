@@ -1,4 +1,3 @@
-import './header.scss';
 import logo from '../../assets/creative hub logo.svg';
 import { NavLink, Link } from 'react-router-dom';
 

@@ -1,6 +1,7 @@
 import './App.scss'
 import HeaderNav from './components/navigation/headerNav';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Chioce from './views/choice/choice';
 
 const App = () => {
 
@@ -8,7 +9,7 @@ const App = () => {
     <BrowserRouter>
       <HeaderNav />
       <Routes>
-        <Route />
+        <Route path='/choice' element={<Chioce />} />
       </Routes>
     </BrowserRouter>
   )

@@ -1,0 +1,60 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+#choice {
+    @include flex-wrap;
+    justify-content: center;
+    padding: 5rem $padding-x;
+    column-gap: 5rem;
+    row-gap: 2rem;
+
+    div {
+        flex-basis: $base300;
+        flex-grow: 1;
+        max-width: 450px;
+        text-align: center;
+        color: $dark200;
+        padding: 3rem $base;
+        position: relative;
+
+        img {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .tr {
+            top: 0;
+            right: 0;
+        }
+
+        .tl {
+            top: 0;
+            left: 0;
+        }
+
+        .br {
+            bottom: 0;
+            right: 0;
+        }
+
+        .bl {
+            bottom: 0;
+            left: 0;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: map-get($font-weights, semibold);
+        }
+
+        p {
+            font-size: $base;
+            margin: 2rem 0;
+            font-weight: map-get($font-weights, big);
+        }
+
+        a {
+            margin: auto;
+        }
+    }
+}

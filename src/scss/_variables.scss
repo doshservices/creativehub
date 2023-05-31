@@ -24,6 +24,7 @@ $font-weights: (
 
 // flex basis
 
+$base250: 250px;
 $base300: 300px;
 $base350: 350px;
 $base400: 400px;
@@ -34,6 +35,8 @@ $radius-4: 8px;
 
 //fonts-size
 $base: 1rem;
+$meduim: .9rem;
+$small: .8rem;
 
 // layout
 $padding-x: clamp(1rem, 5vw, 20rem);
