@@ -1,7 +1,9 @@
+import './_header.scss';
 import logo from '../../assets/creative hub logo.svg';
+import { FC } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
-const HeaderNav = () => {
+const HeaderNav: FC = () => {
     return (
         <header>
             <nav>

@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,500;0,600;0,700;0,800;1,300&display=swap');
 @import './scss/mixin';
 @import './scss/variables';
-@import './views/choice/choice';
-@import './components/navigation/header';
 
 * {
   margin: 0;
@@ -14,16 +12,40 @@
 html {
   scroll-behavior: smooth;
   background: $light200;
+
+  ul {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    line-height: 1.6rem;
+  }
+
+  button {
+    cursor: pointer;
+  }
 }
 
-ul {
-  list-style: none;
+
+$scroll-bar-color: #c5c5c5;
+$scroll-bar-bg-color: #f6f6f6;
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 12px;
 }
 
-a {
-  text-decoration: none;
+*::-webkit-scrollbar-track {
+  background: $scroll-bar-bg-color;
 }
 
-p {
-  line-height: 1.6rem;
+*::-webkit-scrollbar-thumb {
+  background-color: $scroll-bar-color;
+  border-radius: 20px;
+  border: 1px solid $scroll-bar-bg-color;
 }

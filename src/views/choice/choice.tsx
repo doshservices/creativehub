@@ -1,4 +1,4 @@
-import { SignInBtn } from "../../components/button/button";
+import './choice.scss';
 import ytr from './assets/top right.svg';
 import ytl from './assets/top left.svg';
 import ybl from './assets/bottom left.svg';
@@ -7,8 +7,10 @@ import ptr from './assets/ptr.svg';
 import ptl from './assets/ptl.svg';
 import pbl from './assets/pbl.svg';
 import pbr from './assets/pbr.svg';
+import { FC } from 'react';
+import { LinkBtn } from '../../components/button/button';
 
-const Chioce = () => {
+const Chioce: FC = () => {
     return (
         <section id="choice">
             <div id="choice__users">
@@ -20,7 +22,7 @@ const Chioce = () => {
                 <p>
                     Hire professional sound engineers, producers, dancers etc to work on your next project
                 </p>
-                <SignInBtn id='purple' content='Sign In' to='/' />
+                <LinkBtn id='purple' content='SIGN IN' to='/' />
             </div>
             <div id="choice__creatives">
                 <img className="tr" src={ptr} alt="" />
@@ -29,7 +31,7 @@ const Chioce = () => {
                 <img className="br" src={pbr} alt="" />
                 <h3>FOR CREATIVES</h3>
                 <p>Get listed as a professional sound engineer, producer, dancer etc and get hired for work</p>
-                <SignInBtn id='yellow' content='Sign In' to='/' />
+                <LinkBtn id='yellow' content='SIGN IN' to='/' />
             </div>
         </section>
     )

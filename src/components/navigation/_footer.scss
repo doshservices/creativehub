@@ -1,0 +1,143 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+footer {
+    border-top: 1px solid $dark200;
+
+    .main_section {
+        padding: 3rem $padding-x;
+        @include flex-wrap;
+        justify-content: space-between;
+        column-gap: 8rem;
+        row-gap: 4rem;
+
+        nav {
+            @include flex-wrap;
+            justify-content: space-between;
+            flex-basis: $base450;
+            flex-grow: 1;
+            gap: 2rem;
+            max-width: 700px;
+
+            .social__links {
+                div {
+                    margin-top: 1.2rem;
+
+                    img {
+                        margin-right: 1.2rem;
+                    }
+                }
+            }
+
+            .links {
+                @include flex-wrap;
+                justify-content: space-between;
+                column-gap: 4rem;
+                row-gap: 2rem;
+
+                section {
+
+                    h3 {
+                        color: rgba(45, 45, 45, 0.7);
+                        font-size: $meduim;
+                        font-weight: map-get($font-weights, semibold);
+                    }
+
+                    ul {
+                        margin-top: 1.8rem;
+
+                        li {
+                            font-size: $meduim;
+                            color: $dark200;
+                            font-weight: map-get($font-weights, big);
+                            margin-bottom: 1.2rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer__contact {
+            flex-basis: $base300;
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 auto;
+
+            h3 {
+                color: $dark200;
+                font-size: $meduim;
+                font-weight: map-get($font-weights, semibold);
+
+                img {
+                    height: 13px;
+                    margin-right: 5px;
+                }
+
+            }
+
+            form {
+                @include flex-wrap;
+                column-gap: 3rem;
+                margin-top: 1rem;
+
+                input {
+                    color: rgba(45, 45, 45, 0.7);
+                    flex-grow: 1;
+                    font-size: $meduim;
+                    display: block;
+                    flex-basis: 1000px;
+                    border: none;
+                    border-bottom: 1px solid $dark200;
+                    padding: .7rem 2px;
+                    margin-top: .7rem;
+                    background-color: transparent;
+
+                    &[type="text"] {
+                        flex-basis: 200px;
+                        flex-grow: 1;
+                    }
+
+                    &:focus {
+                        outline: none;
+                        border-bottom: 1.5px solid $dark200;
+                    }
+                }
+
+                label {
+                    border-bottom: 1px solid $dark200;
+                    padding: .7rem 2px;
+                    margin-top: .3rem;
+                    background-color: transparent;
+                    color: $dark200;
+                    flex-basis: 1000px;
+                    flex-grow: 1;
+                    font-size: $meduim;
+
+                    input {
+                        display: inline;
+                        margin-right: 5px;
+                    }
+                }
+
+                button {
+                    margin-top: 1.5rem;
+                }
+
+            }
+        }
+    }
+
+    .copyright {
+        background-color: $secondary;
+        color: $light200;
+        font-size: $meduim;
+        padding: 1.5rem $padding-x;
+        @include flex-center;
+        justify-content: space-between;
+
+        ul {
+            @include flex-wrap;
+            gap: 2rem;
+        }
+    }
+}
