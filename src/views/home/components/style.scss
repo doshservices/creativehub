@@ -112,3 +112,106 @@
         }
     }
 }
+
+.user {
+    padding: 1.5rem $padding-x;
+    color: $light200;
+    background-color: rgb(175, 168, 168);
+
+    button {
+        color: inherit;
+        border: none;
+        background-color: transparent;
+        font-size: 1.25rem;
+        position: relative;
+        padding: .6rem .7rem;
+
+        .bt {
+            position: absolute;
+            top: 0;
+            right: 0;
+            pointer-events: none;
+        }
+
+        .bb {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            pointer-events: none;
+        }
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: map-get($font-weights, big);
+        line-height: 4rem;
+        letter-spacing: -0.7500001192092896px;
+        margin: 2.3rem 0;
+    }
+
+    >div {
+        @include flex-center;
+        max-width: 900px;
+        margin: 2rem auto;
+
+        button {
+            font-size: 1.3rem;
+            font-weight: map-get($font-weights, bold);
+            color: inherit;
+            background-color: transparent;
+            border: 4px solid $light200;
+            border-radius: 50%;
+            height: 64px;
+            width: 64px;
+            font-family: 'Inter';
+            padding: 0;
+        }
+
+        span {
+            display: block;
+            height: 4px;
+            width: 23%;
+            background-color: $light200;
+            border-radius: $radius-8;
+        }
+    }
+}
+
+.clients {
+    h2 {
+        max-width: 450px;
+    }
+}
+
+.creatives {
+    h2 {
+        max-width: 700px;
+    }
+}
+
+@media(max-width: 600px) {
+    .user {
+
+        h2 {
+            text-align: center;
+            margin: 2rem auto;
+            font-size: 1.5rem;
+            font-weight: map-get($font-weights, big);
+            line-height: 2.5rem;
+        }
+
+        >div {
+            >button {
+                height: 40px;
+                width: 40px;
+                border: 2.5px solid $light200;
+                font-weight: map-get($font-weights, big);
+            }
+
+            span {
+                width: 15%;
+                height: 3px;
+            }
+        }
+    }
+}
