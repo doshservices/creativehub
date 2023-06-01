@@ -5,8 +5,6 @@
     margin-top: 2.5rem;
 
     &__bar {
-
-        background-color: blue;
         max-width: fit-content;
         position: relative;
         width: 100%;
@@ -64,24 +62,44 @@
             border: none;
             background-color: $primary;
             padding: .9rem 2.3rem;
+            display: block;
         }
 
     }
 
+    @media(max-width: 450px) {
+        &__bar {
+            flex-direction: column;
+
+            input {
+                border-radius: $radius-4;
+                margin-bottom: 1rem;
+            }
+
+            button {
+                border-radius: $radius-4;
+            }
+        }
+    }
+
     .top__searched {
         display: flex;
+        flex-wrap: wrap;
         margin-top: 1.3rem;
 
         p {
             margin: 0 .3rem 0 0;
             border-radius: $radius-8;
             font-size: $meduim;
+            flex-shrink: 0;
         }
 
         div {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
+            flex-basis: 200px;
+            flex-grow: 1;
 
             button {
                 background-color: transparent;

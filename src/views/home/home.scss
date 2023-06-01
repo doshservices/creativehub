@@ -29,10 +29,20 @@
             }
         }
 
-        @media(max-width: 650px) {
+    }
+
+    @media(max-width: 650px) {
+        &__hero {
+            text-align: center;
+
             >div {
                 margin-left: 0;
+
+                p {
+                    margin: 1rem auto;
+                }
             }
+
         }
     }
 }

@@ -133,7 +133,9 @@ footer {
         font-size: $meduim;
         padding: 1.5rem $padding-x;
         @include flex-center;
+        flex-wrap: wrap;
         justify-content: space-between;
+        gap: 1rem;
 
         ul {
             @include flex-wrap;

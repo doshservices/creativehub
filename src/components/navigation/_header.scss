@@ -21,7 +21,7 @@ header {
 
             ul {
                 @include flex-center;
-                column-gap: 3rem;
+                column-gap: 2rem;
 
                 .bargain {
                     position: relative;
@@ -38,6 +38,12 @@ header {
                         bottom: 6px;
                         padding: 4px 6px;
                     }
+                }
+            }
+
+            @media(max-width: 1020px) {
+                ul {
+                    display: none;
                 }
             }
 

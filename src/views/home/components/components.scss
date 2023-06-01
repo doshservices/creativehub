@@ -12,16 +12,17 @@
 
     .creatives {
         @include flex-wrap;
-        justify-content: space-between;
+        justify-content: center;
         gap: 2rem;
         margin: 2rem 0;
 
         figure {
             background-color: rgb(125, 123, 123);
-            height: 200px;
+            height: 150px;
             flex-grow: 1;
             flex-basis: 250px;
             position: relative;
+            max-width: 300px;
 
             figcaption {
                 position: absolute;
