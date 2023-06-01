@@ -18,7 +18,7 @@ const HeaderNav: FC = () => {
                         <li>
                             <NavLink to='/'>Recent Jobs</NavLink>
                         </li>
-                        <li>
+                        <li className='bargain'>
                             <NavLink to='/'>Bargain</NavLink>
                         </li>
                         <li>

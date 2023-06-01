@@ -21,7 +21,24 @@ header {
 
             ul {
                 @include flex-center;
-                gap: 2rem;
+                column-gap: 3rem;
+
+                .bargain {
+                    position: relative;
+                    margin-right: 1.5rem;
+
+                    &::after {
+                        position: absolute;
+                        display: inline-block;
+                        content: 'New';
+                        background: $green100;
+                        color: $light100;
+                        border-radius: 20px;
+                        font-size: .75rem;
+                        bottom: 6px;
+                        padding: 4px 6px;
+                    }
+                }
             }
 
         }
