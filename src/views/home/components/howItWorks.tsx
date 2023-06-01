@@ -4,6 +4,9 @@ import ybd from '../assets/yellowbd.svg';
 import lbd from '../assets/lemonbd.svg';
 import search from '../assets/search.png';
 import yellow from '../assets/yellow.png';
+import quality from '../assets/quality.svg';
+import trusted from '../assets/payment.svg';
+import platfrom from '../assets/platform.svg';
 
 export const HowItWorks = () => {
     return (
@@ -49,6 +52,25 @@ export const HowItWorks = () => {
 
 export const WhyChoose = () => {
     return (
-        <section id="hire"></section>
+        <section id="hire">
+            <h2>Why Choose Creatives Hub</h2>
+            <div>
+                <div>
+                    <img src={quality} alt="quality" />
+                    <h3>Quality Service</h3>
+                    <p>Be sure to get high quality services from our pool of experienced talents</p>
+                </div>
+                <div>
+                    <img src={platfrom} alt="platform" />
+                    <h3>Quality Service</h3>
+                    <p>Be sure to get high quality services from our pool of experienced talents</p>
+                </div>
+                <div>
+                    <img src={trusted} alt="trusted" />
+                    <h3>Quality Service</h3>
+                    <p>Be sure to get high quality services from our pool of experienced talents</p>
+                </div>
+            </div>
+        </section>
     )
 }

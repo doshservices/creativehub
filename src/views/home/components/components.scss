@@ -161,3 +161,50 @@
         }
     }
 }
+
+#hire {
+    text-align: center;
+    padding: $padding-x;
+    background-color: $yellow200;
+    color: $light200;
+    margin: 1rem 0;
+    border-width: 1px 0px 1.51px 0px;
+    border-style: solid;
+    border-color: rgba(32, 19, 36, 0.3);
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: map-get($font-weights, big);
+    }
+
+    >div {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 3rem;
+        column-gap: 5rem;
+        row-gap: 2rem;
+
+        div {
+            flex-basis: 200px;
+            flex-grow: 1;
+
+            img {
+                height: 80px;
+            }
+
+            h3 {
+                font-size: calc($base + 3px);
+                font-weight: map-get($font-weights, big);
+                margin: 2rem 0 1rem 0;
+            }
+
+            p {
+                font-size: $base;
+                font-weight: map-get($font-weights, thin);
+                margin: auto;
+                max-width: 300px;
+            }
+        }
+    }
+}
