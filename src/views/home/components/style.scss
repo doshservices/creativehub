@@ -191,9 +191,9 @@
 
 @media(max-width: 600px) {
     .user {
+        text-align: center;
 
         h2 {
-            text-align: center;
             margin: 2rem auto;
             font-size: 1.5rem;
             font-weight: map-get($font-weights, big);
