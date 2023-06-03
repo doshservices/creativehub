@@ -4,6 +4,7 @@
 header {
     background-color: $primary;
     padding: 1rem $padding-x;
+    z-index: 900;
 
     a {
         color: $light100;
@@ -14,6 +15,11 @@ header {
     & nav {
         @include flex-center;
         column-gap: 2rem;
+
+        .menu__icon {
+            cursor: pointer;
+            display: none;
+        }
 
         div {
             @include flex-center;
@@ -41,13 +47,9 @@ header {
                 }
             }
 
-            @media(max-width: 1020px) {
-                ul {
-                    display: none;
-                }
-            }
 
         }
+
     }
 
     .sign__in {
@@ -55,5 +57,85 @@ header {
         border-radius: $radius-8;
         padding: .5rem 1.5rem;
         flex-shrink: 0;
+    }
+
+}
+
+@media(max-width: 1020px) {
+    header {
+
+        & nav {
+            .menu__icon {
+                display: block;
+            }
+
+            div {
+                ul {
+                    position: fixed;
+                    flex-direction: column;
+                    background-color: $light200;
+                    min-height: 100vh;
+                    max-height: 110vh;
+                    overflow-y: scroll;
+                    top: 0;
+                    left: -110%;
+                    z-index: 999;
+                    width: 80%;
+                    max-width: 250px;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    padding: 3rem clamp(1rem, 4vw, 3rem);
+                    transition: all .4s ease;
+
+                    li {
+                        margin-bottom: 2rem;
+
+                        a {
+                            color: $dark200;
+                        }
+                    }
+                }
+
+                .open {
+                    left: 0 !important;
+                }
+            }
+
+        }
+    }
+}
+
+@media(max-width: 480px) {
+    header {
+        padding: .5rem $padding-x;
+
+        & nav {
+            display: grid;
+            grid-template-columns: 80px 1fr 80px;
+            column-gap: 1rem;
+
+            div {
+                .logo {
+                    display: block;
+                    margin: auto;
+                }
+            }
+        }
+
+        .sign__in {
+            font-size: 12px;
+            padding: .3rem 1rem;
+        }
+    }
+
+}
+
+@media(max-width: 320px) {
+    header {
+        & nav {
+            display: grid;
+            grid-template-columns: 80px 60px 80px;
+            column-gap: 5px;
+        }
     }
 }

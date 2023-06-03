@@ -1,9 +1,5 @@
 import './components.scss';
-import green from '../assets/green.png';
-import ybd from '../assets/yellowbd.svg';
-import lbd from '../assets/lemonbd.svg';
-import search from '../assets/search.png';
-import yellow from '../assets/yellow.png';
+import search from '../assets/Frame 3259.png';
 import quality from '../assets/quality.svg';
 import trusted from '../assets/payment.svg';
 import platfrom from '../assets/platform.svg';
@@ -25,7 +21,7 @@ export const HowItWorks = () => {
                     <div className='number'>
                         <div>
                             <button>2</button>
-                            <p>Send and bargain proposals with <br />
+                            <p>Send and bargain proposals with
                                 our top creatives</p>
                         </div>
                         <span></span>
@@ -33,16 +29,12 @@ export const HowItWorks = () => {
                     <div className='number'>
                         <div>
                             <button>3</button>
-                            <p>Hire a pro and get <br />
+                            <p>Hire a pro and get
                                 awesome job done</p>
                         </div>
                     </div>
                 </div>
                 <figure>
-                    <img className='yellow' src={yellow} alt="" />
-                    <img className='green' src={green} alt="" />
-                    <img className='ybd' src={ybd} alt="" />
-                    <img className='lbd' src={lbd} alt="" />
                     <img className='search' src={search} alt="search" />
                 </figure>
             </div>

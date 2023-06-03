@@ -30,10 +30,14 @@ footer {
             }
 
             .links {
-                @include flex-wrap;
+                display: flex;
                 justify-content: space-between;
                 column-gap: 4rem;
                 row-gap: 2rem;
+
+                @media(max-width: 380px) {
+                    flex-wrap: wrap;
+                }
 
                 section {
 
@@ -92,8 +96,9 @@ footer {
                     margin-top: .7rem;
                     background-color: transparent;
 
+
                     &[type="text"] {
-                        flex-basis: 200px;
+                        flex-basis: 100px;
                         flex-grow: 1;
                     }
 
