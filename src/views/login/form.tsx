@@ -6,7 +6,7 @@ const LoginForm = () => {
     return (
         <div>
             <InputLabel label='Email Address' placeholder="Email address here" />
-            <label htmlFor="">Password</label>
+            <label style={{ display: 'block', marginBottom: '.5rem' }} htmlFor="">Password</label>
             <Passowrd placeholder="Password (8 or more characters)" />
             <Link to='/passwordreset' className="forgot">Forgot Password?</Link>
             <SignBtn content='Log In' id='purple' type='submit' />

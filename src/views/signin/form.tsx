@@ -11,7 +11,7 @@ const SigninForm: FC = () => {
             <InputLabel type="text" placeholder="Last name here" label='Last Name' />
             <InputLabel type="email" placeholder="Email address here" label='Email' />
             <Select />
-            <label htmlFor="">Password</label>
+            <label style={{ display: 'block', marginBottom: '.5rem' }} htmlFor="">Password</label>
             <Passowrd placeholder='Password (8 or more characters)' />
             <SignBtn content='Create Account' id='purple' type='submit' />
         </form>

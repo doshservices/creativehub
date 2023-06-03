@@ -3,7 +3,7 @@ import dropdown from '../../assets/select.svg';
 export const Select = () => {
     return (
         <>
-            <label htmlFor="country">Country</label>
+            <label className='comp__label' htmlFor="country">Country</label>
             <div className="form-select">
                 <img src={dropdown} alt="" />
                 <select id="country" name="country">
