@@ -1,9 +1,9 @@
 import './home.scss';
-import { FC } from 'react'
-import { Search } from './components/search';
 import Creative from './components/creative';
-import { HowItWorks, WhyChoose } from './components/howItWorks';
+import { FC } from 'react'
 import { User } from './components/users';
+import { Search } from './components/search';
+import { HowItWorks, WhyChoose } from './components/howItWorks';
 
 const Home: FC = () => {
     return (
@@ -12,7 +12,7 @@ const Home: FC = () => {
                 <div>
                     <h1>Not Creative Right Now</h1>
                     <p>Hire top-notch mixing and mastering engineers, singers, songwriters, producers, studio musicians etc.</p>
-                    <Search />
+                    <Search placeholder="Try ‘Dancers in Accra’" />
                 </div>
             </section>
             <Creative />

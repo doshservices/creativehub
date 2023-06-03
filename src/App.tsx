@@ -8,6 +8,7 @@ import SignIn from './views/signin/signIn';
 import Verify from './views/emailVerify/verify';
 import HeaderNav from './components/navigation/headerNav';
 import NewPassword from './views/newPassword/newPassword';
+import SearchResult from './views/searchResult/searchResult';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
         <Route path='/verifyemail' element={<Verify />} />
         <Route path='/passwordreset' element={<Reset />} />
         <Route path='/newpassword' element={<NewPassword />} />
+        <Route path='/search' element={<SearchResult />} />
       </Routes>
       <Footer />
     </BrowserRouter>

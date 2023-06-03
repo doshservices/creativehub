@@ -1,12 +1,16 @@
 import './style.scss';
 import search from '../assets/search.svg'
 
-export const Search = () => {
+interface attributes {
+    placeholder: string
+}
+
+export const Search = (props: attributes) => {
     return (
         <div id='home__search'>
             <div id="home__search__bar">
                 <img src={search} alt="search" />
-                <input type="search" name="" placeholder='Try ‘Dancers in Accra’' />
+                <input type="search" name="" placeholder={props.placeholder} />
                 <button type="submit">Search</button>
             </div>
             <div className="top__searched">
