@@ -34,8 +34,13 @@ footer {
                 justify-content: space-between;
                 column-gap: 4rem;
                 row-gap: 2rem;
+                font-size: $meduim;
 
                 @media(max-width: 380px) {
+                    font-size: $small;
+                }
+
+                @media(max-width: 360px) {
                     flex-wrap: wrap;
                 }
 
@@ -51,7 +56,7 @@ footer {
                         margin-top: 1.8rem;
 
                         li {
-                            font-size: $meduim;
+                            font-size: inherit;
                             color: $dark200;
                             font-weight: map-get($font-weights, big);
                             margin-bottom: 1.2rem;
