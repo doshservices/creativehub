@@ -10,6 +10,7 @@ import HeaderNav from './components/navigation/headerNav';
 import NewPassword from './views/newPassword/newPassword';
 import SearchResult from './views/searchResult/searchResult';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Explore from './views/explore/explore';
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/passwordreset' element={<Reset />} />
         <Route path='/newpassword' element={<NewPassword />} />
         <Route path='/search' element={<SearchResult />} />
+        <Route path='/explore' element={<Explore />} />
       </Routes>
       <Footer />
     </BrowserRouter>

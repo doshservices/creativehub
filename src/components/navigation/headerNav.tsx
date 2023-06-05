@@ -40,7 +40,7 @@ const HeaderNav: FC = () => {
                     </Link>
                     <ul ref={ref} className={showNav ? 'open' : ''} >
                         <li onClick={closeMenu}>
-                            <NavLink to='/'>Explore</NavLink>
+                            <NavLink to='/explore'>Explore</NavLink>
                         </li>
                         <li onClick={closeMenu}>
                             <NavLink to='/'>Recent Jobs</NavLink>

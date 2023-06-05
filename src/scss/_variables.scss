@@ -6,6 +6,7 @@ $third: hsl(286, 31%, 11%);
 $light100: hsl(0, 0%, 100%);
 $dark100: hsl(0, 0%, 0%);
 $dark200: hsl(0, 0%, 18%);
+$dark300: hsl(0, 0%, 18%, .8);
 $bottleGreen: hsl(196, 61%, 7%);
 $bottleGreen200: hsl(196, 61%, 7%, .8);
 $light200: hsl(0, 0%, 97%);
@@ -27,6 +28,7 @@ $font-weights: (
 
 // flex basis
 
+$base200: 200px;
 $base250: 250px;
 $base300: 300px;
 $base350: 350px;

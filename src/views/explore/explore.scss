@@ -1,0 +1,125 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+#explore {
+
+    &__intro {
+        padding: 2rem $padding-x;
+        text-align: center;
+        color: $light200;
+        background-color: rgb(187, 181, 181);
+
+        h2 {
+            max-width: 550px;
+            margin: 0 auto;
+            font-size: clamp(2rem, 3.8vw, 3rem);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            font-weight: map-get($font-weights, semibold);
+        }
+
+        p {
+            max-width: 400px;
+            margin: 0 auto;
+            font-size: calc($base + 2px);
+            line-height: 1.8;
+        }
+    }
+
+    .why__choose {
+        padding: 3rem 1rem;
+
+        h3 {
+            color: $third;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h4 {
+            color: $dark200;
+            font-size: 2.5rem;
+            font-weight: map-get($font-weights, semibold);
+            margin: 0 auto;
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.4;
+            font-family: 'Inter';
+            font-size: clamp(2rem, 3.8vw, 3rem);
+        }
+
+        h5 {
+            color: $dark200;
+            font-size: 1.25rem;
+            font-weight: map-get($font-weights, big);
+        }
+
+        p {
+            color: $dark300;
+            margin-top: .6rem;
+        }
+
+        .reason {
+            @include flex-wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 2rem auto 0 auto;
+
+            >div {
+                flex-basis: $base250;
+                flex-grow: 1;
+                display: flex;
+                align-items: flex-start;
+                gap: $base;
+                max-width: 300px;
+            }
+        }
+    }
+}
+
+.top__creatives {
+    text-align: center;
+    padding: 2rem $padding-x;
+
+    h3 {
+        font-size: 1.5rem;
+        color: $third;
+    }
+
+    >div {
+        @include flex-wrap;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0;
+
+        figure {
+            position: relative;
+            flex-basis: 250px;
+            max-width: 300px;
+            flex-grow: 1;
+            height: 150px;
+            background-color: rgb(119, 117, 117);
+
+            figcaption {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 1.25rem;
+                text-align: center;
+                color: $light200;
+            }
+        }
+    }
+
+    button {
+        margin: auto;
+        display: block;
+        font-size: $base;
+        color: $primary;
+        background-color: transparent;
+        border: none;
+        font-weight: map-get($font-weights, semibold);
+    }
+}
