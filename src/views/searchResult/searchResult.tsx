@@ -1,9 +1,9 @@
 import './index.scss';
 import { FC } from 'react';
-import { Search } from '../home/components/search';
-import arrowright from './assets/arrow right.svg';
 import arrowup from './assets/arrow up.svg';
+import arrowright from './assets/arrow right.svg';
 import { result } from './components/result';
+import { Search } from '../home/components/search';
 
 const SearchResult: FC = () => {
     return (
