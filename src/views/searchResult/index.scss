@@ -1,2 +1,167 @@
 @import '../../scss/variables';
 @import '../../scss/mixin';
+
+$text: rgba(45, 45, 45, 0.8);
+$top: 1px solid hsl(120, 15%, 86%);
+
+#search {
+    padding: 2rem $padding-x;
+
+    >h2 {
+        color: $text;
+        font-size: $meduim;
+        font-weight: map-get($font-weights, big);
+        display: flex;
+        align-items: center;
+
+        img {
+            margin: 0 $base;
+        }
+    }
+
+    >div {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 3rem;
+
+        .filter__results {
+            margin-top: calc($base * 8);
+
+            h3 {
+                color: hsla(210, 11%, 35%, 1);
+                font-size: 1.25rem;
+                font-weight: map-get($font-weights, big);
+                margin-bottom: 2.5rem;
+            }
+
+            >div {
+                border-top: $top;
+                padding: .8rem 0;
+
+                h4 {
+                    @include flex-center;
+                    font-size: $meduim;
+                    color: $dark200;
+                    font-weight: map-get($font-weights, semibold);
+                    cursor: pointer;
+                }
+
+                input {
+                    &[type="text"] {
+                        border: 1px solid rgba(45, 45, 45, 0.2);
+                        background-color: transparent;
+                        display: block;
+                        color: rgba(45, 45, 45, 0.8);
+                        font-size: $meduim;
+                        width: 100%;
+                        border-radius: $radius-8;
+                        padding: .6rem;
+                        margin: .8rem 0;
+                    }
+                }
+
+                label {
+                    display: flex;
+                    font-size: $meduim;
+                    color: rgba(45, 45, 45, 0.8);
+                    margin: .8rem 0;
+
+                    input {
+                        margin-right: .5rem;
+                    }
+                }
+            }
+        }
+
+        .search__results {
+            .result__bar {
+                border: 1px solid $dark200;
+                border-radius: $radius-8;
+                max-width: 600px;
+                margin: 2rem 2rem 0 0;
+
+                .top__searched {
+                    display: none;
+                }
+            }
+
+            .items {
+                @include flex-wrap;
+                margin: 3rem 0;
+                gap: 1.5rem;
+
+                .results {
+                    flex-basis: 250px;
+                    flex-grow: 1;
+                    background-color: $light100;
+                    border-radius: 0px 0px 4px 4px;
+                    overflow: hidden;
+                    margin: 0 auto;
+                    max-width: 450px;
+
+                    >img {
+                        width: 100%;
+                    }
+
+                    >div {
+                        padding: 1rem;
+
+                        h5 {
+                            color: $bottleGreen;
+                            font-size: $base;
+                            font-weight: map-get($font-weights, semibold);
+                            margin-bottom: 1rem;
+                        }
+
+                        .name {
+                            @include flex-center;
+
+                            p {
+                                color: $bottleGreen200;
+                                font-size: $small;
+                                font-weight: map-get($font-weights, semibold);
+
+                                span {
+                                    font-size: $tiny;
+                                }
+                            }
+                        }
+
+                        .stars {
+                            @include flex-center;
+                            margin: .3rem 0;
+
+                            >div {
+                                @include flex-center;
+                                color: hsla(196, 61%, 7%, 0.5);
+                                font-size: $small;
+                                font-weight: map-get($font-weights, semibold);
+                            }
+
+                            >p {
+                                font-size: $small;
+                                font-weight: map-get($font-weights, semibold);
+                            }
+
+                            .online {
+                                color: $green200;
+                            }
+
+                            .offline {
+                                color: $red100;
+                            }
+                        }
+
+                        >p {
+                            text-align: justify;
+                            font-size: $small;
+                            color: $text;
+                            font-weight: map-get($font-weights, big);
+                            line-height: 1.8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
