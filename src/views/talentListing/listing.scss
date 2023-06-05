@@ -1,0 +1,156 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+$text: rgba(45, 45, 45, 0.8);
+
+#listing {
+    &__intro {
+        text-align: center;
+        padding: 3rem $padding-x;
+        color: $light200;
+        background: rgb(144, 143, 143);
+
+        h2 {
+            font-weight: map-get($font-weights, semibold);
+            font-size: clamp(2rem, 3.8vw, 3rem);
+        }
+
+        & p {
+            margin: 1rem auto;
+            max-width: 400px;
+            line-height: 1.8;
+            font-size: calc($base + 2px);
+        }
+    }
+
+    .search {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 120px;
+        max-width: 500px;
+        margin: 0 auto;
+        border-radius: $radius-4;
+        overflow: hidden;
+
+        img {
+            position: absolute;
+            left: 1rem;
+            top: .8rem;
+        }
+
+        input {
+            color: hsla(0, 0%, 49%, 1);
+            font-size: $small;
+            padding: .8rem 1rem .8rem 2.5rem;
+            border: 2px solid $primary;
+            background-color: $light200;
+            border-radius: 8px 0px 0px 8px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        button {
+            color: $light200;
+            font-size: $small;
+            border: none;
+            background: $primary;
+            padding: .8rem 1rem;
+        }
+    }
+
+    &__dancers {
+        padding: 2rem $padding-x;
+
+        .dancers {
+            @include flex-wrap;
+            margin: 3rem 0;
+            gap: 1.5rem;
+
+            .dancer {
+                flex-basis: 250px;
+                flex-grow: 1;
+                background-color: $light100;
+                border-radius: 0px 0px 4px 4px;
+                overflow: hidden;
+                margin: 0 auto;
+                max-width: 450px;
+
+                >img {
+                    width: 100%;
+                }
+
+                >div {
+                    padding: 1rem;
+
+                    h5 {
+                        color: $bottleGreen;
+                        font-size: $base;
+                        font-weight: map-get($font-weights, semibold);
+                        margin-bottom: 1rem;
+                    }
+
+                    .name {
+                        @include flex-center;
+
+                        p {
+                            color: $bottleGreen200;
+                            font-size: $small;
+                            font-weight: map-get($font-weights, semibold);
+
+                            span {
+                                font-size: $tiny;
+                            }
+                        }
+                    }
+
+                    .stars {
+                        @include flex-center;
+                        margin: .3rem 0;
+
+                        >div {
+                            @include flex-center;
+                            color: hsla(196, 61%, 7%, 0.5);
+                            font-size: $small;
+                            font-weight: map-get($font-weights, semibold);
+                        }
+
+                        >p {
+                            font-size: $small;
+                            font-weight: map-get($font-weights, semibold);
+                        }
+
+                        .online {
+                            color: $green200;
+                        }
+
+                        .offline {
+                            color: $red100;
+                        }
+                    }
+
+                    >p {
+                        text-align: justify;
+                        font-size: $small;
+                        color: $text;
+                        font-weight: map-get($font-weights, big);
+                        line-height: 1.8;
+                    }
+                }
+            }
+        }
+
+        .showmore {
+            margin: auto;
+            display: block;
+            font-size: $base;
+            color: $primary;
+            background-color: transparent;
+            border: none;
+            font-weight: map-get($font-weights, semibold);
+            border: 2px solid $primary;
+            border-radius: $radius-4;
+            padding: .8rem 2rem;
+        }
+    }
+}

@@ -49,7 +49,7 @@ const HeaderNav: FC = () => {
                             <NavLink to='/'>Bargain</NavLink>
                         </li>
                         <li onClick={closeMenu}>
-                            <NavLink to='/'>Find Talent</NavLink>
+                            <NavLink to='/talentlisting'>Find Talent</NavLink>
                         </li>
                         <li onClick={closeMenu}>
                             <NavLink to='/'>Find Work</NavLink>
