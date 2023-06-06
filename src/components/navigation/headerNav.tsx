@@ -31,7 +31,7 @@ const HeaderNav: FC = () => {
     }
 
     return (
-        <header>
+        <header className='main__header'>
             <nav>
                 <img onClick={closeMenu} ref={ref} className='menu__icon' src={menuIcon} alt="menu icon" />
                 <div className='links'>

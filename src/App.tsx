@@ -9,6 +9,7 @@ import SignIn from './views/signin/signIn';
 import Explore from './views/explore/explore';
 import Listing from './views/talentListing/listing';
 import HeaderNav from './components/navigation/headerNav';
+import TalentInfo from './views/talentInfo/talentInfo';
 import NewPassword from './views/newPassword/newPassword';
 import SearchResult from './views/searchResult/searchResult';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -29,6 +30,7 @@ const App = () => {
         <Route path='/search' element={<SearchResult />} />
         <Route path='/explore' element={<Explore />} />
         <Route path='/talentlisting' element={<Listing />} />
+        <Route path='/talentinfo' element={<TalentInfo />} />
       </Routes>
       <Footer />
     </BrowserRouter>

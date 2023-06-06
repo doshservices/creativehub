@@ -1,7 +1,7 @@
 @import '../../scss/mixin';
 @import '../../scss/variables';
 
-header {
+.main__header {
     background-color: $primary;
     padding: 1rem $padding-x;
     z-index: 900;
@@ -62,7 +62,7 @@ header {
 }
 
 @media(max-width: 1020px) {
-    header {
+    .main__header {
 
         & nav {
             .menu__icon {
@@ -106,7 +106,7 @@ header {
 }
 
 @media(max-width: 480px) {
-    header {
+    .amin__header {
         padding: .5rem $padding-x;
 
         & nav {
@@ -131,7 +131,7 @@ header {
 }
 
 @media(max-width: 320px) {
-    header {
+    .main__header {
         & nav {
             display: grid;
             grid-template-columns: 80px 60px 80px;

@@ -1,0 +1,250 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+$text: rgba(45, 45, 45, 0.8);
+
+#talent__info {
+
+    &__intro {
+        padding: 3rem $padding-x;
+        color: $light200;
+        background-color: rgb(147, 144, 144);
+
+        h2 {
+            font-weight: map-get($font-weights, semibold);
+            font-size: clamp(2rem, 3.8vw, 3rem);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: map-get($font-weights, big);
+            margin: .5rem 0;
+        }
+
+        p {
+            font-size: $meduim;
+        }
+
+        .stars {
+            display: flex;
+            margin: .5rem 0;
+
+            p {
+                margin-left: .3rem;
+            }
+        }
+    }
+
+    &__profile {
+        header {
+            @include flex-center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(45, 45, 45, 0.4);
+            padding: .7rem $padding-x;
+
+            >div {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+
+                button {
+                    color: hsla(0, 0%, 59%, 1);
+                    font-size: $meduim;
+                    border: none;
+                    background-color: $light200;
+                    font-weight: map-get($font-weights, semibold);
+                    border-bottom: 2px solid transparent;
+                    padding-bottom: .3rem;
+                }
+
+                .profile__active {
+                    color: $dark200;
+                    border-bottom: 2px solid $primary;
+                    padding-bottom: .3rem;
+                }
+            }
+
+            a {
+                display: block;
+                font-size: $meduim;
+                color: $light200;
+                background-color: $primary;
+                border-radius: $radius-4;
+                padding: .8rem 1.1rem;
+            }
+        }
+
+        .talent__info__grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            padding: 3rem $padding-x;
+            column-gap: 7vw;
+            row-gap: 2rem;
+
+            @media(max-width: 900px) {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @media(max-width: 700px) {
+                grid-template-columns: 1fr;
+            }
+
+            #talent__info__about {
+
+                >p {
+                    font-size: $meduim;
+                    line-height: 2;
+                    color: $dark200;
+                    text-align: justify;
+                }
+
+                .reviews {
+                    margin: 2rem 0;
+
+                    h4 {
+                        color: $dark200;
+                        opacity: .5;
+                        font-size: calc($base + 2px);
+                        font-weight: map-get($font-weights, semibold);
+                    }
+
+                    >div {
+                        background-color: $light100;
+                        margin: 1rem 0;
+                        padding: 1rem;
+                        border: 1px solid rgba(45, 45, 45, 0.1);
+                        border-radius: $radius-4;
+                        overflow: hidden;
+
+                        .flex {
+                            display: flex;
+                            gap: .5rem;
+
+                            >img {
+                                height: 40px;
+                            }
+
+                            p {
+                                color: $dark200;
+                                opacity: .7;
+                                font-size: $meduim;
+                            }
+                        }
+
+                        >p {
+                            font-size: $meduim;
+                            margin-top: .5rem;
+                            color: $text;
+                        }
+                    }
+
+                    >button {
+                        color: $primary;
+                        font-size: $meduim;
+                        font-weight: map-get($font-weights, semibold);
+                        display: block;
+                        margin: auto;
+                        border: 1px solid $primary;
+                        background-color: $light200;
+                        border-radius: $radius-4;
+                        padding: .7rem 2rem;
+                        margin-top: 3rem;
+                    }
+                }
+
+            }
+
+            .talent__services {
+
+                .bt {
+                    border-top: 1px solid rgba(45, 45, 45, 0.1);
+                    padding-top: .9rem;
+                }
+
+                >div {
+                    background-color: $light100;
+                    margin: 0 0 1rem 0;
+                    border: 1px solid rgba(45, 45, 45, 0.1);
+                    border-radius: $radius-4;
+                    overflow: hidden;
+                    padding: $base;
+                }
+
+                h5 {
+                    color: $text;
+                    font-size: $small;
+                    font-weight: map-get($font-weights, semibold);
+                }
+
+                p {
+                    color: $dark200;
+                    font-size: $meduim;
+                    font-weight: map-get($font-weights, semibold);
+                    line-height: 2;
+                }
+
+                .short__clip {
+                    padding: $base;
+
+                    img {
+                        width: 90%;
+                        display: block;
+                        margin: 1rem auto 0 auto;
+                    }
+                }
+
+                .short__bookings {
+                    padding: 1rem 0;
+
+                    h5 {
+                        margin: 0 1rem .5rem 1rem;
+                    }
+
+                    p {
+                        margin: 0 1rem;
+                    }
+
+                    .line {
+                        background: rgba(45, 45, 45, 0.1);
+                        margin: .6rem 0 .9rem 0;
+                        height: 1px;
+                        width: 100%;
+                    }
+                }
+
+                .terms,
+                .past__performance,
+                .creative__note,
+                .photo__gallery,
+                .urls {
+                    h5 {
+                        margin-bottom: .5rem;
+                    }
+
+                    p {
+                        color: $text;
+                        font-size: $meduim;
+                        font-weight: map-get($font-weights, big);
+                        line-height: 2;
+                    }
+                }
+
+                .photo__gallery {
+                    >div {
+                        @include flex-center;
+                        gap: 10px;
+                        flex-wrap: wrap;
+                    }
+                }
+
+                .urls {
+                    >div {
+                        display: flex;
+                        align-items: center;
+                        gap: calc($base + 10px);
+                    }
+                }
+            }
+        }
+    }
+}
