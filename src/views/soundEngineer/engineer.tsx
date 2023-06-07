@@ -9,12 +9,14 @@ import twitter from './assets/twitter.svg';
 import instagram from './assets/instagram.svg';
 import facebook from './assets/facebook.svg';
 import { FC } from 'react';
-import { Toggler } from '../../components/profile';
 import { reviews } from '../talentInfo/info';
+import { Toggler } from '../../components/profile';
+import { ProjectModal } from '../../components/modal/projectModal';
 
 const SoundEngineerInfo: FC = () => {
     return (
         <section id='sound__info'>
+            <ProjectModal />
             <section id="sound__info__intro">
                 <h2>Shazam Fred</h2>
                 <h3>Producer / Sound</h3>

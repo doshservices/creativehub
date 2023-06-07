@@ -1,0 +1,118 @@
+@import '../../scss/variables';
+
+.project__modal {
+    position: fixed;
+    background: rgba(45, 45, 45, 0.4);
+    inset: 0;
+    transition: all .2s ease;
+    overflow-y: scroll;
+
+    .close {
+        cursor: pointer;
+        width: fit-content;
+        max-width: 40px;
+        height: 50px;
+        width: 50px;
+        top: 3rem;
+        right: 20%;
+        position: fixed;
+
+        span {
+            height: 2px;
+            width: 30px;
+            display: block;
+            background-color: #ffffff;
+            position: absolute;
+            top: 1rem;
+        }
+
+        & span:nth-child(1) {
+            transform: rotate(-45deg);
+        }
+
+        & span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+    }
+
+    &__content {
+        background: $light200;
+        padding: 3rem 2rem;
+        max-width: 700px;
+        margin: 5rem auto 3rem auto;
+        border-radius: $radius-4;
+
+        * {
+            color: $dark200;
+            font-weight: map-get($font-weights, big);
+            font-size: $base;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        form {
+
+            input,
+            textarea {
+                display: block;
+                width: 100% !important;
+                border: 1px solid rgba(45, 45, 45, 0.6);
+                border-radius: $radius-4;
+                background: inherit;
+                padding: 1rem .5rem;
+                resize: none;
+
+                &:focus {
+                    outline: 1px solid transparent;
+                    border: 2px solid rgba(45, 45, 45, 0.4);
+                }
+            }
+
+            textarea {
+                height: 120px !important;
+                margin-bottom: 4rem;
+            }
+
+            label {
+                margin: 2.5rem 0 .5rem 0;
+                display: block;
+            }
+
+            button {
+                border: none;
+                width: 100%;
+                display: block;
+                border-radius: $radius-4;
+                padding: .8rem;
+                margin: 2rem 0;
+            }
+
+            .upload {
+                background: #E5E5E5;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    margin-right: 1rem;
+                    height: 25px;
+                }
+            }
+
+            button {
+                &[type="submit"] {
+                    color: $light200;
+                    font-size: $meduim;
+                    background-color: $primary;
+                }
+            }
+        }
+    }
+}
+
+.modal__show__false {
+    pointer-events: none;
+    opacity: 0;
+}
