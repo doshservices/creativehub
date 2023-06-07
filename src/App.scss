@@ -53,3 +53,14 @@ $scroll-bar-bg-color: #f6f6f6;
   border-radius: 20px;
   border: 1px solid $scroll-bar-bg-color;
 }
+
+@media(max-width: 500px) {
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}

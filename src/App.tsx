@@ -12,6 +12,7 @@ import HeaderNav from './components/navigation/headerNav';
 import TalentInfo from './views/talentInfo/talentInfo';
 import NewPassword from './views/newPassword/newPassword';
 import SearchResult from './views/searchResult/searchResult';
+import SoundEngineerInfo from './views/soundEngineer/engineer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='/explore' element={<Explore />} />
         <Route path='/talentlisting' element={<Listing />} />
         <Route path='/talentinfo' element={<TalentInfo />} />
+        <Route path='/soundengineer' element={<SoundEngineerInfo />} />
       </Routes>
       <Footer />
     </BrowserRouter>
