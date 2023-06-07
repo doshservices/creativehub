@@ -1,0 +1,41 @@
+@import '../../scss/mixin';
+@import '../../scss/variables';
+
+.toggler {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(45, 45, 45, 0.4);
+    padding: .7rem $padding-x;
+
+    >div {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+
+        button {
+            color: hsla(0, 0%, 59%, 1);
+            font-size: $meduim;
+            border: none;
+            background-color: $light200;
+            font-weight: map-get($font-weights, semibold);
+            border-bottom: 2px solid transparent;
+            padding-bottom: .3rem;
+        }
+
+        .profile__active {
+            color: $dark200;
+            border-bottom: 2px solid $primary;
+            padding-bottom: .3rem;
+        }
+    }
+
+    a {
+        display: block;
+        font-size: $meduim;
+        color: $light200;
+        background-color: $primary;
+        border-radius: $radius-4;
+        padding: .8rem 1.1rem;
+    }
+}

@@ -7,13 +7,11 @@ import youtube from './assets/youtube.svg';
 import twitter from './assets/twitter.svg';
 import instagram from './assets/instagram.svg';
 import facebook from './assets/facebook.svg';
-import { Link } from 'react-router-dom';
 import { reviews } from './info';
-import { useState } from 'react';
+import { Toggler } from '../../components/profile';
 
 const TalentInfo = () => {
 
-    const [activeTab, setActivetab] = useState<number>(1)
 
     return (
         <section id="talent__info">
@@ -30,15 +28,7 @@ const TalentInfo = () => {
                 <p>Ibadan, Nigeria</p>
             </section>
             <div id="talent__info__profile">
-                <header>
-                    <div>
-                        <button className={activeTab === 1 ? 'profile__active' : ''} onClick={() => setActivetab(1)}>Profile</button>
-                        <button className={activeTab === 2 ? 'profile__active' : ''} onClick={() => setActivetab(2)}>Reviews(10)</button>
-                    </div>
-                    <Link to='/'>
-                        Book Shai Hulud
-                    </Link>
-                </header>
+                <Toggler />
                 <div className='talent__info__grid'>
                     <div id="talent__info__about">
                         <p>As a ballet dancer, I have dedicated my life to the art of classical dance. With over [X years/months] of training and performing experience, I have honed my skills and developed a deep understanding of the technique, artistry, and discipline required to excel in this demanding dance form. <br />
