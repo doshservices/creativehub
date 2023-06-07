@@ -1,13 +1,14 @@
 import './modal.scss';
 import upload from '../../assets/Vector.svg';
+import { FaTimes } from 'react-icons/fa';
 import { useState, useRef, useEffect } from 'react';
 
 export const ProjectModal = () => {
 
-    const [open, setOpen] = useState<boolean>(false)
+    const [open, setOpen] = useState<boolean>(true)
+    const closeModal = () => setOpen(!open)
 
     const modalRef = useRef<HTMLDivElement>(null);
-
 
     const useOnClickOutside = (modalRef: any, handler: any) => {
         useEffect(() => {
@@ -29,11 +30,10 @@ export const ProjectModal = () => {
 
     return (
         <div className={open ? "project__modal" : 'project__modal modal__show__false'}>
-            <div className="close">
-                <span></span>
-                <span></span>
-            </div>
             <div ref={modalRef} className="project__modal__content">
+                <div ref={modalRef} onClick={closeModal} className="close">
+                    <FaTimes size={20} color='#2d2d2d' />
+                </div>
                 <h3>Describe your project and Shazam Fred will reply to your message</h3>
                 <form onSubmit={(e) => e.preventDefault()}>
                     <label htmlFor="">What can I help you with?</label>
