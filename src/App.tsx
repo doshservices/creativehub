@@ -13,6 +13,7 @@ import TalentInfo from './views/talentInfo/talentInfo';
 import NewPassword from './views/newPassword/newPassword';
 import SearchResult from './views/searchResult/searchResult';
 import SoundEngineerInfo from './views/soundEngineer/engineer';
+import { CreativesNotification } from './views/notification/creatives';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const App = () => {
@@ -22,17 +23,18 @@ const App = () => {
       <HeaderNav />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/choice' element={<Chioce />} />
         <Route path='/signup' element={<SignIn />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/verifyemail' element={<Verify />} />
-        <Route path='/passwordreset' element={<Reset />} />
-        <Route path='/newpassword' element={<NewPassword />} />
         <Route path='/search' element={<SearchResult />} />
         <Route path='/explore' element={<Explore />} />
-        <Route path='/talentlisting' element={<Listing />} />
         <Route path='/talentinfo' element={<TalentInfo />} />
+        <Route path='/newpassword' element={<NewPassword />} />
+        <Route path='/verifyemail' element={<Verify />} />
+        <Route path='/passwordreset' element={<Reset />} />
+        <Route path='/talentlisting' element={<Listing />} />
         <Route path='/soundengineer' element={<SoundEngineerInfo />} />
+        <Route path='/notifications' element={<CreativesNotification />} />
       </Routes>
       <Footer />
     </BrowserRouter>

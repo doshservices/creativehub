@@ -1,0 +1,119 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+
+#notification {
+    padding: 2rem $padding-x;
+    color: $dark200;
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: map-get($font-weights, semibold);
+        margin-bottom: 2rem;
+    }
+
+    .purple {
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            background: $primary300;
+            width: 8px;
+            height: 100%;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+    >div {
+        background-color: $light100;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: $radius-4;
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: $base calc($base * 2);
+        margin: $base 0;
+        position: relative;
+        overflow: hidden;
+
+        @media(max-width: 530px) {
+            // grid-template-columns: 1fr;
+        }
+
+        h3 {
+            font-size: $base;
+            font-weight: map-get($font-weights, big);
+
+            em {
+                font-weight: map-get($font-weights, semibold);
+                font-style: normal;
+            }
+        }
+
+        p {
+            font-size: $meduim;
+        }
+
+        .headline {
+            margin-top: $base;
+        }
+
+        h4 {
+            font-size: $base;
+            font-weight: map-get($font-weights, semibold);
+            color: hsla(0, 0%, 18%, 0.6);
+            margin-bottom: .7rem;
+        }
+
+        >div {
+            >div {
+                margin-top: $base;
+            }
+        }
+
+        .actions {
+            @include flex-center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+
+            @media(max-width: 530px) {}
+
+            >div {
+                display: flex;
+            }
+
+            button {
+                font-size: $meduim;
+                display: block;
+                border-radius: $radius-4;
+            }
+
+            .read__more {
+                width: fit-content;
+                background: $light100;
+                color: $primary;
+                border: none;
+            }
+
+            .accept {
+                width: fit-content;
+                color: $light100;
+                background-color: $primary;
+                border: none;
+                margin-right: 1.5rem;
+                padding: .6rem $base;
+            }
+
+            .reject {
+                width: fit-content;
+                background: $light100;
+                color: $red200;
+                border: 1px solid $red200;
+                padding: .6rem $base;
+            }
+        }
+    }
+}
