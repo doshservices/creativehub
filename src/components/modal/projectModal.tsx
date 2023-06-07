@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 
 export const ProjectModal = () => {
 
-    const [open, setOpen] = useState<boolean>(true)
+    const [open, setOpen] = useState<boolean>(false)
     const closeModal = () => setOpen(!open)
 
     const modalRef = useRef<HTMLDivElement>(null);
