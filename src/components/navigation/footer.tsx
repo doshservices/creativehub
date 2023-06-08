@@ -1,14 +1,18 @@
 import './_footer.scss';
-import { FC } from "react";
+import { FC, useState } from "react";
 import logo from '../../assets/creative hub logo white.svg';
 import mail from './icons/mail.svg';
 import facebook from './icons/facebook.svg';
 import instagram from './icons/instagram.svg';
 import twitter from './icons/Twitter.svg';
 import youtube from './icons/youtube.svg';
+import toggler from './icons/toggler.svg';
 import { Form } from './form';
 
 const Footer: FC = () => {
+    const [showMenu, setShowMenu] = useState<boolean>(false);
+    const [showLink, setShowLink] = useState<boolean>(false);
+
     return (
         <footer>
             <div className='main_section'>
@@ -24,8 +28,8 @@ const Footer: FC = () => {
                     </div>
                     <div className='links'>
                         <section>
-                            <h3>Popular Services</h3>
-                            <ul>
+                            <h3 onClick={() => setShowMenu(!showMenu)}><span>Popular Services</span><img className={showMenu ? 'rotate' : ''} src={toggler} alt="" /></h3>
+                            <ul className={showMenu ? 'show' : ''}>
                                 <li>Ballet Dancer</li>
                                 <li>Sound Engineer</li>
                                 <li>Art Designer</li>
@@ -35,8 +39,9 @@ const Footer: FC = () => {
                             </ul>
                         </section>
                         <section>
-                            <h3>Support</h3>
-                            <ul>
+                            <h3 onClick={() => setShowLink(!showLink)}><span>Support</span> <img className={showLink ? 'rotate' : ''} src={toggler} alt="" /> </h3>
+                            { }
+                            <ul className={showLink ? 'show' : ''}>
                                 <li>Contact Us</li>
                                 <li>FAQ</li>
                                 <li>Saved</li>
