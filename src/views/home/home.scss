@@ -36,11 +36,14 @@
         &__hero {
             text-align: center;
 
-            >div {
-                margin-left: 0;
+            &__overlay {
 
-                p {
-                    margin: 1rem auto;
+                &__content {
+                    margin-left: 0;
+
+                    p {
+                        margin: 1rem auto;
+                    }
                 }
             }
 

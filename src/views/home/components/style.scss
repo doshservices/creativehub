@@ -201,24 +201,26 @@
     .user {
         text-align: center;
 
-        h2 {
-            margin: 2rem auto;
-            font-size: 1.5rem;
-            font-weight: map-get($font-weights, big);
-            line-height: 2.5rem;
-        }
-
-        >div {
-            >button {
-                height: 40px;
-                width: 40px;
-                border: 2.5px solid $light200;
+        .overlay {
+            h2 {
+                margin: 2rem auto;
+                font-size: 1.5rem;
                 font-weight: map-get($font-weights, big);
+                line-height: 2.5rem;
             }
 
-            span {
-                width: 15%;
-                height: 3px;
+            >div {
+                >button {
+                    height: 40px;
+                    width: 40px;
+                    border: 2.5px solid $light200;
+                    font-weight: map-get($font-weights, big);
+                }
+
+                span {
+                    width: 15%;
+                    height: 3px;
+                }
             }
         }
     }
