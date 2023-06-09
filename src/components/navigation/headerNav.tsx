@@ -30,8 +30,6 @@ const HeaderNav: FC = () => {
         }, [ref, handler]);
     }
 
-    // const [className, setClassName] = useState<string>('/');
-
     return (
         <header className={"main__header"}>
             <nav>
@@ -40,6 +38,7 @@ const HeaderNav: FC = () => {
                     <Link className='logo' to='/'>
                         <img src={logo} alt="logo" />
                     </Link>
+                    <div className={showNav ? "overlay" : 'overlay overlay__fade'}></div>
                     <ul ref={ref} className={showNav ? 'open' : ''} >
                         <li onClick={closeMenu}>
                             <NavLink to='/explore'>Explore</NavLink>

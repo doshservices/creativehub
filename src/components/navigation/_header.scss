@@ -28,6 +28,10 @@
             @include flex-center;
             column-gap: 5rem;
 
+            .overlay {
+                display: none;
+            }
+
             ul {
                 @include flex-center;
                 column-gap: 2rem;
@@ -75,6 +79,22 @@
             }
 
             div {
+
+                .overlay {
+                    display: block;
+                    position: fixed;
+                    inset: 0;
+                    z-index: 800;
+                    background: rgba(45, 45, 45, 0.6);
+                    transition: all .4s ease;
+                    pointer-events: all;
+                }
+
+                .overlay__fade {
+                    pointer-events: none;
+                    opacity: 0;
+                }
+
                 ul {
                     position: fixed;
                     flex-direction: column;
