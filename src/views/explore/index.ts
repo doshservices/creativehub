@@ -1,69 +1,72 @@
 import marker from './assets/marker.svg';
+import blackdancer from '../../assets/Black Dancer.jpg';
+import soundengineer from '../../assets/IMG_38791-640x426.jpg';
+import djs from '../../assets/nikolai-chernichenko-QOLyehGXRyA-unsplash.jpg';
 
 export const creatives: Array<Object> = [
     {
-        img: '',
+        img: blackdancer,
         type: 'Dancers'
     },
     {
-        img: '',
+        img: soundengineer,
         type: 'Sound Engineer'
     },
     {
-        img: '',
+        img: blackdancer,
         type: 'Male Singer'
     },
     {
-        img: '',
+        img: djs,
         type: 'DJs'
     },
     {
-        img: '',
+        img: soundengineer,
         type: 'Sound Engineer'
     },
     {
-        img: '',
+        img: djs,
         type: 'DJs'
     },
     {
-        img: '',
+        img: blackdancer,
         type: 'Male Singer'
     },
     {
-        img: '',
+        img: soundengineer,
         type: 'Sound Engineer'
     },
     {
-        img: '',
+        img: blackdancer,
         type: 'Male Singer'
     },
     {
-        img: '',
+        img: djs,
         type: 'DJs'
     },
     {
-        img: '',
+        img: soundengineer,
         type: 'Sound Engineer'
     },
     {
-        img: '',
+        img: djs,
         type: 'DJs'
     },
     {
-        img: '',
+        img: blackdancer,
         type: 'Dancers'
     },
     {
-        img: '',
-        type: 'Male  Singer'
+        img: djs,
+        type: 'DJs'
     },
     {
-        img: '',
-        type: 'Male  Singer'
+        img: blackdancer,
+        type: 'Dancers'
     },
     {
-        img: '',
-        type: 'Male  Singer'
+        img: djs,
+        type: 'Male Singer'
     },
 ]
 

@@ -5,9 +5,11 @@ $text: rgba(45, 45, 45, 0.8);
 #listing {
     &__intro {
         text-align: center;
-        padding: 3rem $padding-x;
+        padding: 16rem $padding-x 9rem $padding-x;
         color: $light200;
-        background: rgb(144, 143, 143);
+        background: url('../../assets/Black\ Dancer.jpg');
+        @include background1;
+        background-position: 0 35%;
 
         h2 {
             font-weight: map-get($font-weights, semibold);

@@ -30,8 +30,10 @@ const HeaderNav: FC = () => {
         }, [ref, handler]);
     }
 
+    // const [className, setClassName] = useState<string>('/');
+
     return (
-        <header className='main__header'>
+        <header className={"main__header"}>
             <nav>
                 <img onClick={closeMenu} ref={ref} className='menu__icon' src={menuIcon} alt="menu icon" />
                 <div className='links'>

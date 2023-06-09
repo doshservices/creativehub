@@ -5,9 +5,11 @@ $text: rgba(45, 45, 45, 0.8);
 #sound__info {
 
     &__intro {
-        padding: 3rem $padding-x;
+        padding: 10rem $padding-x 6rem $padding-x;
         color: $light200;
-        background-color: rgb(147, 144, 144);
+        background: url('../../assets/austin-wilcox-tWbn0j8c0ic-unsplash.jpg');
+        @include background1;
+        background-position: 0 40%;
 
         h2 {
             font-weight: map-get($font-weights, semibold);

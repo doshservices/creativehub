@@ -9,3 +9,8 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+@mixin background1 {
+    background-repeat: no-repeat;
+    background-size: cover;
+}

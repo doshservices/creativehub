@@ -19,7 +19,7 @@ const Home: FC = () => {
             <HowItWorks />
             <User className='clients' btnContent='For Clients' heading='Hire The Best Hands For Your Next Project' />
             <WhyChoose />
-            <User className='creatives' btnContent='For Creatives' heading='Find The Best Opportunity to Showcase Your Creative Experience' />
+            <User className='creative' btnContent='For Creatives' heading='Find The Best Opportunity to Showcase Your Creative Experience' />
         </div>
     )
 }

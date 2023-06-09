@@ -114,9 +114,8 @@
 }
 
 .user {
-    padding: 1.5rem $padding-x;
+    padding: 3rem $padding-x 5rem $padding-x;
     color: $light200;
-    background-color: rgb(175, 168, 168);
 
     button {
         color: inherit;
@@ -152,7 +151,7 @@
     >div {
         @include flex-center;
         max-width: 900px;
-        margin: 2rem auto;
+        margin: 6rem auto;
 
         button {
             font-size: 1.3rem;
@@ -178,12 +177,18 @@
 }
 
 .clients {
+    background: url('../../../assets/african-american-man-customer-support-operator-with-hands-free-headset-working-office.jpg');
+    @include background1;
+
     h2 {
         max-width: 450px;
     }
 }
 
-.creatives {
+.creative {
+    background: url('../../../assets/woman-with-mobile-phone-lady-with-documents.jpg');
+    @include background1;
+
     h2 {
         max-width: 700px;
     }

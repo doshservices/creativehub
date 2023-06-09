@@ -5,6 +5,9 @@
     background-color: $primary;
     padding: 1rem $padding-x;
     z-index: 900;
+    position: absolute;
+    width: 100%;
+    top: 0;
 
     a {
         color: $light100;

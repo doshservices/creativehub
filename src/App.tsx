@@ -23,7 +23,7 @@ const App = () => {
       <HeaderNav />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/signin' element={<Login />} />
         <Route path='/choice' element={<Chioce />} />
         <Route path='/signup' element={<SignIn />} />
         <Route path='/search' element={<SearchResult />} />

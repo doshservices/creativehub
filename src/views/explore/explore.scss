@@ -4,10 +4,11 @@
 #explore {
 
     &__intro {
-        padding: 2rem $padding-x;
+        padding: 10rem $padding-x 6rem $padding-x;
         text-align: center;
         color: $light200;
-        background-color: rgb(187, 181, 181);
+        background: url('../../assets/nikolai-chernichenko-QOLyehGXRyA-unsplash.jpg');
+        @include background1;
 
         h2 {
             max-width: 550px;
@@ -94,12 +95,18 @@
         margin: 2rem 0;
 
         figure {
-            position: relative;
-            flex-basis: 250px;
-            max-width: 300px;
             flex-grow: 1;
-            height: 150px;
-            background-color: rgb(119, 117, 117);
+            flex-basis: 250px;
+            position: relative;
+            max-width: 300px;
+            border-radius: $radius-8;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+                border-radius: $radius-8;
+            }
 
             figcaption {
                 position: absolute;
