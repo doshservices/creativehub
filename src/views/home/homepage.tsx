@@ -9,10 +9,12 @@ const Home: FC = () => {
     return (
         <div id="home">
             <section id="home__hero">
-                <div>
-                    <h1>Not Creative Right Now</h1>
-                    <p>Hire top-notch mixing and mastering engineers, singers, songwriters, producers, studio musicians etc.</p>
-                    <Search placeholder="Try ‘Dancers in Accra’" className='' />
+                <div id='home__hero__overlay'>
+                    <div id='home__hero__overlay__content'>
+                        <h1>Not Creative Right Now</h1>
+                        <p>Hire top-notch mixing and mastering engineers, singers, songwriters, producers, studio musicians etc.</p>
+                        <Search placeholder="Try ‘Dancers in Accra’" className='' />
+                    </div>
                 </div>
             </section>
             <Creative />
