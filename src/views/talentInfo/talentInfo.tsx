@@ -16,16 +16,18 @@ const TalentInfo = () => {
     return (
         <section id="talent__info">
             <section id="talent__info__intro">
-                <h2>Shai Hulud</h2>
-                <h3>Ballet Dancer</h3>
-                <div className="stars">
-                    <img src={star} alt="" />
-                    <img src={star} alt="" />
-                    <img src={star} alt="" />
-                    <img src={star} alt="" />
-                    <img src={star} alt="" /> <p>(452)</p>
+                <div>
+                    <h2>Shai Hulud</h2>
+                    <h3>Ballet Dancer</h3>
+                    <div className="stars">
+                        <img src={star} alt="" />
+                        <img src={star} alt="" />
+                        <img src={star} alt="" />
+                        <img src={star} alt="" />
+                        <img src={star} alt="" /> <p>(452)</p>
+                    </div>
+                    <p>Ibadan, Nigeria</p>
                 </div>
-                <p>Ibadan, Nigeria</p>
             </section>
             <div id="talent__info__profile">
                 <Toggler />

@@ -9,6 +9,8 @@ export const TopCreatives = () => {
                 {creatives.map((creative: object | any, index: number) => {
                     return (
                         <figure key={index}>
+                            <div className="overlay">
+                            </div>
                             <img src={creative.img} alt="" />
                             <figcaption>{creative.type}</figcaption>
                         </figure>
@@ -24,10 +26,12 @@ const Explore = () => {
     return (
         <section id="explore">
             <div id="explore__intro">
-                <h2>
-                    Explore Our Pool of Talented Creatives
-                </h2>
-                <p>Hire top-notch mixing and mastering engineers, singers, songwriters, producers, studio musicians etc.</p>
+                <div>
+                    <h2>
+                        Explore Our Pool of Talented Creatives
+                    </h2>
+                    <p>Hire top-notch mixing and mastering engineers, singers, songwriters, producers, studio musicians etc.</p>
+                </div>
             </div>
             <TopCreatives />
             <section className="why__choose">

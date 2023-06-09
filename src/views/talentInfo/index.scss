@@ -5,11 +5,15 @@ $text: rgba(45, 45, 45, 0.8);
 #talent__info {
 
     &__intro {
-        padding: 10rem $padding-x 6rem $padding-x;
         color: $light200;
         background: url('../../assets/brooke-cagle-Nm70URdtf3c-unsplash.jpg');
         background-position: 0 35%;
         @include background1;
+
+        >div {
+            padding: 10rem $padding-x 6rem $padding-x;
+            background: rgba(45, 45, 45, 0.5);
+        }
 
         h2 {
             font-weight: map-get($font-weights, semibold);

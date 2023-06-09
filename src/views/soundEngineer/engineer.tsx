@@ -14,20 +14,23 @@ import { Toggler } from '../../components/profile';
 import { ProjectModal } from '../../components/modal/projectModal';
 
 const SoundEngineerInfo: FC = () => {
+
     return (
         <section id='sound__info'>
             <ProjectModal />
             <section id="sound__info__intro">
-                <h2>Shazam Fred</h2>
-                <h3>Producer / Sound</h3>
-                <div className="stars">
-                    <img src={star} alt="" />
-                    <img src={star} alt="" />
-                    <img src={star} alt="" />
-                    <img src={star} alt="" />
-                    <img src={star} alt="" /> <p>(452)</p>
+                <div>
+                    <h2>Shazam Fred</h2>
+                    <h3>Producer / Sound</h3>
+                    <div className="stars">
+                        <img src={star} alt="" />
+                        <img src={star} alt="" />
+                        <img src={star} alt="" />
+                        <img src={star} alt="" />
+                        <img src={star} alt="" /> <p>(452)</p>
+                    </div>
+                    <p>Mombasa, Kenya</p>
                 </div>
-                <p>Mombasa, Kenya</p>
             </section>
             <div id="sound__info__profile">
                 <Toggler />

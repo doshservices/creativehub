@@ -10,6 +10,8 @@ const Creative = () => {
                 {creatives.slice(0, 8).map((creative: object | any, index: number) => {
                     return (
                         <figure key={index}>
+                            <div className="overlay">
+                            </div>
                             <img src={creative.img} alt={creative.type} />
                             <figcaption>{creative.type}</figcaption>
                         </figure>

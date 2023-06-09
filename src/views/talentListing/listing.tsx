@@ -6,8 +6,10 @@ const Listing = () => {
     return (
         <section id="listing">
             <div id="listing__intro">
-                <h2>Get Top Dancers To Hire</h2>
-                <p>These experienced dancers are available to for hire and are trusted to give in their best.</p>
+                <div>
+                    <h2>Get Top Dancers To Hire</h2>
+                    <p>These experienced dancers are available to for hire and are trusted to give in their best.</p>
+                </div>
             </div>
             <div id='listing__dancers'>
                 <div className="search">

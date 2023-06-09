@@ -23,11 +23,21 @@
             max-width: 300px;
             border-radius: $radius-8;
             overflow: hidden;
+            max-height: fit-content;
+
+            .overlay {
+                background: rgba(45, 45, 45, 0.5);
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+            }
 
             img {
                 width: 100%;
                 object-fit: cover;
+                min-height: 100%;
                 border-radius: $radius-8;
+                transition: all .4s ease;
             }
 
             figcaption {
@@ -38,6 +48,13 @@
                 font-size: 1.25rem;
                 text-align: center;
                 color: $light200;
+                z-index: 2;
+            }
+
+            &:hover {
+                img {
+                    transform: scale(1.2);
+                }
             }
         }
     }
