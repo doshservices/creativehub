@@ -4,7 +4,7 @@
 #choice {
     @include flex-wrap;
     justify-content: center;
-    padding: 5rem $padding-x;
+    padding: 10rem $padding-x 5rem $padding-x;
     column-gap: 5rem;
     row-gap: 2rem;
 

@@ -2,6 +2,7 @@ import marker from './assets/marker.svg';
 import blackdancer from '../../assets/Black Dancer.jpg';
 import soundengineer from '../../assets/IMG_38791-640x426.jpg';
 import djs from '../../assets/nikolai-chernichenko-QOLyehGXRyA-unsplash.jpg';
+import maleSinger from '../../assets/manny-pacheco-IaQo6xPt0Mc-unsplash_0651295.jpg';
 
 export const creatives: Array<Object> = [
     {
@@ -13,7 +14,7 @@ export const creatives: Array<Object> = [
         type: 'Sound Engineer'
     },
     {
-        img: blackdancer,
+        img: maleSinger,
         type: 'Male Singer'
     },
     {
@@ -29,7 +30,7 @@ export const creatives: Array<Object> = [
         type: 'DJs'
     },
     {
-        img: blackdancer,
+        img: maleSinger,
         type: 'Male Singer'
     },
     {
@@ -37,7 +38,7 @@ export const creatives: Array<Object> = [
         type: 'Sound Engineer'
     },
     {
-        img: blackdancer,
+        img: maleSinger,
         type: 'Male Singer'
     },
     {
@@ -65,7 +66,7 @@ export const creatives: Array<Object> = [
         type: 'Dancers'
     },
     {
-        img: djs,
+        img: maleSinger,
         type: 'Male Singer'
     },
 ]
