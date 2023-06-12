@@ -1,0 +1,29 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+
+#recent__jobs {
+
+    &__intro {
+        padding: 8rem $padding-x 3rem $padding-x;
+        background: rgba(16, 0, 28, 0.6);
+        color: $light200;
+
+        >div {
+            margin-left: 17%;
+
+            h2 {
+                font-weight: map-get($font-weights, semibold);
+                font-size: clamp(2rem, 3.8vw, 3rem);
+                margin-bottom: 2rem;
+            }
+
+            p {
+                font-size: calc($base + 2px);
+                line-height: 2;
+                max-width: 400px;
+            }
+        }
+    }
+
+    &__reviews {}
+}

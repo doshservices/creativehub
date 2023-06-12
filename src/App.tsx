@@ -9,6 +9,7 @@ import SignIn from './views/signin/signIn';
 import Explore from './views/explore/explore';
 import Listing from './views/talentListing/listing';
 import HeaderNav from './components/navigation/headerNav';
+import RecentJobs from './views/recentJobs/recentJobs';
 import TalentInfo from './views/talentInfo/talentInfo';
 import NewPassword from './views/newPassword/newPassword';
 import SearchResult from './views/searchResult/searchResult';
@@ -28,6 +29,7 @@ const App = () => {
         <Route path='/signup' element={<SignIn />} />
         <Route path='/search' element={<SearchResult />} />
         <Route path='/explore' element={<Explore />} />
+        <Route path='/recentJobs' element={<RecentJobs />} />
         <Route path='/talentinfo' element={<TalentInfo />} />
         <Route path='/newpassword' element={<NewPassword />} />
         <Route path='/verifyemail' element={<Verify />} />

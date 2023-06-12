@@ -44,7 +44,7 @@ const HeaderNav: FC = () => {
                             <NavLink to='/explore'>Explore</NavLink>
                         </li>
                         <li onClick={closeMenu}>
-                            <NavLink to='/'>Recent Jobs</NavLink>
+                            <NavLink to='/recentJobs'>Recent Jobs</NavLink>
                         </li>
                         <li onClick={closeMenu} className='bargain'>
                             <NavLink to='/'>Bargain</NavLink>
