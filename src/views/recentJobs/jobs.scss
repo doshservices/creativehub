@@ -4,12 +4,16 @@
 #recent__jobs {
 
     &__intro {
-        padding: 8rem $padding-x 3rem $padding-x;
-        background: rgba(16, 0, 28, 0.6);
+        padding: 10rem $padding-x 5rem $padding-x;
+        background: hsl(275, 65%, 19%);
         color: $light200;
 
         >div {
             margin-left: 17%;
+
+            @media(max-width: 550px) {
+                margin-left: 0;
+            }
 
             h2 {
                 font-weight: map-get($font-weights, semibold);
@@ -25,5 +29,57 @@
         }
     }
 
-    // &__reviews {}
+    &__reviews {
+        padding: 3rem $padding-x;
+
+        h3 {
+            color: $dark200;
+            text-align: center;
+            font-size: $meduim;
+            font-weight: map-get($font-weights, semibold);
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            margin-top: $base;
+            margin-bottom: 3rem;
+        }
+
+        .reviews {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            text-align: center;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+
+            >div {
+                flex: 1 0 250px;
+                max-width: 350px;
+                margin: 0 auto;
+                border-bottom: 1px solid rgba(45, 45, 45, 0.1);
+                padding-bottom: $base;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                & p:nth-child(1) {
+                    font-style: italic;
+                    color: hsla(0, 0%, 18%, 0.8);
+                    font-size: $meduim;
+                    font-weight: map-get($font-weights, semibold);
+                    max-width: 320px;
+                    margin: 0 auto $base auto;
+                }
+
+                & p:nth-child(2) {
+                    color: hsla(0, 0%, 18%, 0.8);
+                    font-size: $meduim;
+                    font-weight: map-get($font-weights, semibold);
+                }
+            }
+        }
+    }
 }
