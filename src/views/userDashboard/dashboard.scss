@@ -1,0 +1,135 @@
+@import '../../scss/variables';
+@import '../../scss/mixin';
+
+#users__dashboard {
+    padding: 8rem $padding-x 3rem $padding-x;
+    display: grid;
+    color: $dark200;
+    grid-template-columns: 350px 1fr;
+    column-gap: 4rem;
+    row-gap: 2rem;
+
+    @media(max-width: 800px) {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+    }
+
+    @media(max-width: 650px) {
+        grid-template-columns: 1fr;
+    }
+
+    &__profile {
+        background-color: $light100;
+        padding: calc($base * 2) $base;
+        text-align: center;
+
+        .dp {
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            display: flex;
+            align-items: center;
+            max-width: fit-content;
+            margin: auto;
+            font-size: calc($base + 2px);
+            margin-bottom: .7rem;
+
+            span {
+                margin-right: 10px;
+            }
+        }
+
+        a {
+            font-size: $meduim;
+            font-weight: map-get($font-weights, semibold);
+        }
+
+        address {
+            font-style: normal;
+            font-size: $small;
+            font-weight: map-get($font-weights, semibold);
+            margin: .6rem 0;
+        }
+
+        .status {
+            font-size: $small;
+            font-weight: map-get($font-weights, big);
+            color: $green300;
+        }
+
+        button {
+            font-size: $meduim;
+            font-weight: map-get($font-weights, semibold);
+            background-color: transparent;
+            border: 2px solid $primary;
+            color: $primary;
+            border-radius: $radius-8;
+            width: 100%;
+            max-width: 250px;
+            padding: .7rem 2rem;
+            margin: 3rem auto 1rem auto;
+        }
+
+        .member {
+            font-size: $meduim;
+            font-weight: map-get($font-weights, big);
+
+            span {
+                font-weight: map-get($font-weights, semibold);
+            }
+        }
+    }
+
+    &__about {
+
+        >section {
+            background: $light100;
+            border: 1px solid rgba(45, 45, 45, 0.1);
+            border-radius: $radius-4;
+            padding: $base;
+            margin-bottom: $base;
+        }
+
+        h4 {
+            font-size: $base;
+            margin-bottom: calc($base + 8px);
+            font-weight: map-get($font-weights, semibold);
+        }
+
+        button {
+            display: block;
+            margin-left: auto;
+            border: none;
+            background-color: transparent;
+            color: $primary;
+            margin-top: $base;
+        }
+
+        .description {
+            p {
+                font-weight: map-get($font-weights, thin);
+                font-size: $meduim;
+            }
+        }
+
+        .pricing {
+            p {
+                font-size: $meduim;
+                font-weight: map-get($font-weights, semibold);
+                display: flex;
+                align-items: center;
+                margin-bottom: .7rem;
+
+                span {
+                    color: hsla(0, 0%, 51%, 1);
+                    margin-left: 5px;
+                }
+
+                img {
+                    margin-left: 2rem;
+                }
+            }
+        }
+    }
+}

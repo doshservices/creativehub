@@ -13,6 +13,7 @@ import RecentJobs from './views/recentJobs/recentJobs';
 import TalentInfo from './views/talentInfo/talentInfo';
 import NewPassword from './views/newPassword/newPassword';
 import SearchResult from './views/searchResult/searchResult';
+import UserDashboard from './views/userDashboard/dashboard';
 import SoundEngineerInfo from './views/soundEngineer/engineer';
 import { CreativesNotification } from './views/notification/creatives';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -37,6 +38,7 @@ const App = () => {
         <Route path='/talentlisting' element={<Listing />} />
         <Route path='/soundengineer' element={<SoundEngineerInfo />} />
         <Route path='/notifications' element={<CreativesNotification />} />
+        <Route path='/usersDashboard' element={<UserDashboard />} />
       </Routes>
       <Footer />
     </BrowserRouter>
