@@ -52,11 +52,12 @@
                         padding: 4px 6px;
                     }
                 }
+
+                .sign__in {
+                    display: none;
+                }
             }
-
-
         }
-
     }
 
     .sign__in {
@@ -71,9 +72,6 @@
     .main__header {
 
         & nav {
-            display: grid;
-            grid-template-columns: 1fr 1fr max-content;
-
             .menu__icon {
                 display: block;
             }
@@ -120,6 +118,23 @@
                             color: $dark200;
                         }
                     }
+
+                    .sign__in {
+                        display: block;
+                        width: 100%;
+                        padding: 0;
+
+                        a {
+                            display: block;
+                            color: $primary;
+                            border: 2px solid $primary;
+                            border-radius: $radius-4;
+                            font-weight: map-get($font-weights, big);
+                            font-size: $meduim;
+                            text-align: center;
+                            padding: .7rem 1rem;
+                        }
+                    }
                 }
 
                 .open {
@@ -128,22 +143,15 @@
             }
 
         }
+
+        .sign__in {
+            display: none;
+        }
     }
 }
 
 @media(max-width: 480px) {
     .main__header {
         padding: .6rem 1rem;
-    }
-}
-
-@media(max-width: 350px) {
-    .main__header {
-        & nav {
-            .sign__in {
-                font-size: 12px;
-                padding: .3rem 1rem;
-            }
-        }
     }
 }

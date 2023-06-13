@@ -33,7 +33,6 @@ const HeaderNav: FC = () => {
     return (
         <header className={"main__header"}>
             <nav>
-                <img onClick={closeMenu} ref={ref} className='menu__icon' src={menuIcon} alt="menu icon" />
                 <div className='links'>
                     <Link className='logo' to='/'>
                         <img src={logo} alt="logo" />
@@ -44,7 +43,7 @@ const HeaderNav: FC = () => {
                             <NavLink to='/explore'>Explore</NavLink>
                         </li>
                         <li onClick={closeMenu}>
-                            <NavLink to='/recentJobs'>Recent Jobs</NavLink>
+                            <NavLink to='/'>Recent Jobs</NavLink>
                         </li>
                         <li onClick={closeMenu} className='bargain'>
                             <NavLink to='/'>Bargain</NavLink>
@@ -55,9 +54,13 @@ const HeaderNav: FC = () => {
                         <li onClick={closeMenu}>
                             <NavLink to='/'>Find Work</NavLink>
                         </li>
+                        <li className='sign__in' onClick={closeMenu}>
+                            <Link to='/signin'>Sign In</Link>
+                        </li>
                     </ul>
                 </div>
-                <Link className='sign__in' to='/'>Sign In</Link>
+                <img onClick={closeMenu} className='menu__icon' src={menuIcon} alt="menu icon" />
+                <Link className='sign__in' to='/signin'>Sign In</Link>
             </nav>
         </header>
     )
