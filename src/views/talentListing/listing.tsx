@@ -21,26 +21,30 @@ const Listing = () => {
                     {result.map((results: object | any, index: number) => {
                         return (
                             <div className='dancer' key={index}>
-                                {results.img && <img src={results.img} />}
-                                <div>
-                                    {results.type && <h5>{results.type}</h5>}
-                                    <div className='name'>
-                                        {results.name && <p>{results.name} <span>{results.state}</span></p>}
-                                        <img src={results.like} alt="" />
+                                <div className='col'>
+                                    <div>
+                                        {results.img && <img src={results.img} alt='talent' />}
                                     </div>
-                                    <div className='stars'>
-                                        <div>
-                                            <img src={results.star} alt="" />
-                                            <img src={results.star} alt="" />
-                                            <img src={results.star} alt="" />
-                                            <img src={results.star} alt="" />
-                                            <img src={results.star} alt="" />
-                                            {results.number && <p>{results.number}</p>}
+                                    <div className='desc'>
+                                        {results.type && <h5>{results.type}</h5>}
+                                        <div className='name'>
+                                            {results.name && <p>{results.name} <span>{results.state}</span></p>}
+                                            <img src={results.like} alt="" />
                                         </div>
-                                        <p className={results.active === 'Online' ? 'online' : 'offline'}>{results.active}</p>
+                                        <div className='stars'>
+                                            <div>
+                                                <img src={results.star} alt="" />
+                                                <img src={results.star} alt="" />
+                                                <img src={results.star} alt="" />
+                                                <img src={results.star} alt="" />
+                                                <img src={results.star} alt="" />
+                                                {results.number && <p>{results.number}</p>}
+                                            </div>
+                                            <p className={results.active === 'Online' ? 'online' : 'offline'}>{results.active}</p>
+                                        </div>
                                     </div>
-                                    <p>{results.about}</p>
                                 </div>
+                                <p>{results.about}</p>
                             </div>
                         )
                     })}

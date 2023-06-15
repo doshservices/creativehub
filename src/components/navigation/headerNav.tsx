@@ -1,5 +1,6 @@
 import './_header.scss';
 import logo from '../../assets/creative hub logo.svg';
+import drop from '../../assets/drop.svg';
 import menuIcon from './icons/menu.svg';
 import { NavLink, Link } from 'react-router-dom';
 import { FC, useState, useRef, useEffect } from 'react';
@@ -40,7 +41,10 @@ const HeaderNav: FC = () => {
                     <div className={showNav ? "overlay" : 'overlay overlay__fade'}></div>
                     <ul ref={ref} className={showNav ? 'open' : ''} >
                         <li onClick={closeMenu}>
-                            <NavLink to='/explore'>Explore</NavLink>
+                            <NavLink to='/'>Home</NavLink>
+                        </li>
+                        <li onClick={closeMenu}>
+                            <NavLink to='/explore' className='explore'><span>Explore</span><img src={drop} alt="dropdown" /></NavLink>
                         </li>
                         <li onClick={closeMenu}>
                             <NavLink to='/recentJobs'>Recent Jobs</NavLink>

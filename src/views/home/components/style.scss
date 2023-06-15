@@ -87,6 +87,10 @@
         flex-wrap: wrap;
         margin-top: 1.3rem;
 
+        @media(max-width:450px) {
+            display: none;
+        }
+
         p {
             margin: 0 .3rem 0 0;
             border-radius: $radius-8;

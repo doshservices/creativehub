@@ -26,7 +26,7 @@
 
         div {
             @include flex-center;
-            column-gap: 5rem;
+            column-gap: 8rem;
 
             .overlay {
                 display: none;
@@ -53,6 +53,14 @@
                     }
                 }
 
+                .explore {
+                    display: flex;
+
+                    img {
+                        margin-left: .5rem;
+                    }
+                }
+
                 .sign__in {
                     display: none;
                 }
@@ -68,7 +76,7 @@
 
 }
 
-@media(max-width: 1020px) {
+@media(max-width: 1200px) {
     .main__header {
 
         & nav {
