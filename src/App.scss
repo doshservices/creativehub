@@ -39,16 +39,16 @@ $scroll-bar-color: #c5c5c5;
 $scroll-bar-bg-color: #f6f6f6;
 
 /* Works on Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
+html::-webkit-scrollbar {
   width: 8px;
   height: 12px;
 }
 
-*::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track {
   background: $scroll-bar-bg-color;
 }
 
-*::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
   background-color: $scroll-bar-color;
   border-radius: 20px;
   border: 1px solid $scroll-bar-bg-color;

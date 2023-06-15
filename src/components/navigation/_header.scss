@@ -5,7 +5,7 @@
     background-color: $primary;
     padding: 1rem $padding-x;
     z-index: 900;
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 0;
 
@@ -36,6 +36,10 @@
                 @include flex-center;
                 column-gap: 2rem;
 
+                a {
+                    padding: 1rem 0;
+                }
+
                 .bargain {
                     position: relative;
                     margin-right: 1.5rem;
@@ -53,25 +57,40 @@
                     }
                 }
 
-                .explore {
-                    display: flex;
+                li {
                     position: relative;
-                    cursor: pointer;
 
-                    img {
-                        margin-left: .5rem;
+                    >div {
+                        opacity: 0;
+                        pointer-events: none;
+                    }
 
-                        &[alt="mobile-drop"] {
-                            display: none;
+                    &:hover {
+                        .explore__dropdown {
+                            opacity: 1;
+                            pointer-events: all;
                         }
+                    }
 
-                        @media(max-width: 1200px) {
-                            &[alt="desktop-drop"] {
+                    .explore {
+                        display: flex;
+                        cursor: pointer;
+
+                        img {
+                            margin-left: .5rem;
+
+                            &[alt="mobile-drop"] {
                                 display: none;
                             }
 
-                            &[alt="mobile-drop"] {
-                                display: block;
+                            @media(max-width: 1200px) {
+                                &[alt="desktop-drop"] {
+                                    display: none;
+                                }
+
+                                &[alt="mobile-drop"] {
+                                    display: block;
+                                }
                             }
                         }
                     }
@@ -139,6 +158,7 @@
 
                         a {
                             color: $dark200;
+                            padding: 0;
                         }
                     }
 
@@ -175,6 +195,6 @@
 
 @media(max-width: 480px) {
     .main__header {
-        padding: .6rem 1rem;
+        padding: .5rem 1rem;
     }
 }

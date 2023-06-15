@@ -33,7 +33,7 @@ const HeaderNav: FC = () => {
         }, [ref, handler]);
     }
 
-    const [showDropdown, setShowDropdown] = useState<boolean>(false);
+    const [showDropdown, setShowDropdown] = useState<boolean>(true);
 
     const handleDrop = () => {
         setShowDropdown(!showDropdown)
@@ -55,7 +55,7 @@ const HeaderNav: FC = () => {
                             <a className='explore'>
                                 <span>Explore</span><img src={desktopDrop} alt="desktop-drop" /><img src={mobileDrop} alt="mobile-drop" />
                             </a>
-                            {/* <ExploreDropdown className={showDropdown ? '' : 'top-visible'} onClick={handleDrop} /> */}
+                            <ExploreDropdown className='top-visible' onClick={handleDrop} />
                         </li>
                         <li onClick={closeMenu}>
                             <NavLink to='/recentJobs'>Recent Jobs</NavLink>

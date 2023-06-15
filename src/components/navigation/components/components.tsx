@@ -3,12 +3,12 @@ import { FC } from 'react';
 
 interface prop {
     onClick: any;
-    className: string
+    className?: string
 }
 
-const top: Array<string> = ["Ballet Dancer", "Sugar Mixer", "Songwriters", "Sound Engineer", "Male Singer", "Beat Makers", "Beat Makers", "Designers", "Artists"]
+const top: Array<string> = ["Ballet Dancer", "Sugar Mixer", "Songwriters", "Sound Engineer", "Male Singer", "Beat Makers", "Designers", "Artists"]
 
-export const ExploreDropdown: FC<prop> = ({ onClick, className }) => {
+export const ExploreDropdown: FC<prop> = ({ className }) => {
     return (
         <div className={`explore__dropdown ${className}`}>
             <section className="top">
@@ -21,7 +21,20 @@ export const ExploreDropdown: FC<prop> = ({ onClick, className }) => {
                     })}
                 </div>
             </section>
-            <section className="alphabetically"></section>
+            <section className="alphabetically">
+                <h3>Alphabetically</h3>
+                <div>
+                    <h4>A</h4>
+                    <p>Afrobeat Dancer</p>
+                    <p>Afrobeat Dancer</p>
+                    <h4>B</h4>
+                    <p>Ballet Dancer</p>
+                    <p>Beat Maker</p>
+                    <p>Beat Maker</p>
+                    <h4>C</h4>
+                    <p>Coffee Maker</p>
+                </div>
+            </section>
         </div>
     )
 }
