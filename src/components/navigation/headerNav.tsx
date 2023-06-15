@@ -55,7 +55,7 @@ const HeaderNav: FC = () => {
                             <a className='explore'>
                                 <span>Explore</span><img src={desktopDrop} alt="desktop-drop" /><img src={mobileDrop} alt="mobile-drop" />
                             </a>
-                            <ExploreDropdown className={showDropdown ? '' : 'top-visible'} onClick={handleDrop} />
+                            {/* <ExploreDropdown className={showDropdown ? '' : 'top-visible'} onClick={handleDrop} /> */}
                         </li>
                         <li onClick={closeMenu}>
                             <NavLink to='/recentJobs'>Recent Jobs</NavLink>
