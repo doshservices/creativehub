@@ -1,0 +1,24 @@
+@import '../../scss/variables';
+
+#contact {
+    color: $dark200;
+    padding: 8rem $padding-x 6rem $padding-x;
+    margin-trim: block-end;
+
+    h2 {
+        font-weight: map-get($font-weights, semibold);
+        font-size: clamp(2rem, 3.8vw, 3rem);
+        margin-bottom: $base;
+    }
+
+    p {
+        line-height: 2;
+        margin-bottom: .5rem;
+    }
+
+    >div {
+        box-shadow: 0px 2px 3px rgba(48, 52, 56, 0.125);
+        background-color: $light100;
+        padding: $base 2rem;
+    }
+}

@@ -6,6 +6,7 @@ import Verify from './views/emailVerify/verify';
 import Chioce from './views/choice/choice';
 import Footer from './components/navigation/footer';
 import SignIn from './views/signin/signIn';
+import Contact from './views/contact/contact';
 import Explore from './views/explore/explore';
 import Listing from './views/talentListing/listing';
 import HeaderNav from './components/navigation/headerNav';
@@ -30,6 +31,7 @@ const App = () => {
         <Route path='/signup' element={<SignIn />} />
         <Route path='/search' element={<SearchResult />} />
         <Route path='/explore' element={<Explore />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path='/recentJobs' element={<RecentJobs />} />
         <Route path='/talentinfo' element={<TalentInfo />} />
         <Route path='/newpassword' element={<NewPassword />} />
