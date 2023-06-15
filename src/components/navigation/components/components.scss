@@ -1,0 +1,47 @@
+@import '../../../scss/variables';
+
+.explore__dropdown {
+    background-color: $light100;
+    position: absolute;
+    border: 1px solid rgba(45, 45, 45, 0.1);
+    border-radius: $radius-4;
+    top: 80%;
+    opacity: 1;
+    transition: all .3s ease;
+    pointer-events: none;
+    padding: $base;
+    height: fit-content;
+    z-index: 500;
+
+    h3 {
+        color: hsla(0, 0%, 42%, 1);
+        font-size: $meduim;
+        font-weight: map-get($font-weights, big);
+        text-align: left;
+        margin-bottom: calc($base + 1px);
+    }
+
+    p {
+        text-align: left;
+        color: $dark200;
+        font-size: $meduim;
+        font-weight: map-get($font-weights, big);
+        line-height: 2.2;
+    }
+
+    .top {
+        height: 270px;
+        overflow-y: hidden;
+
+        >div {
+            max-height: 230px;
+            overflow-y: scroll;
+        }
+    }
+}
+
+.top-visible {
+    opacity: 0;
+    pointer-events: all;
+    top: 60%;
+}

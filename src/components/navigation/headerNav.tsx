@@ -1,8 +1,10 @@
 import './_header.scss';
 import logo from '../../assets/creative hub logo.svg';
-import drop from '../../assets/drop.svg';
 import menuIcon from './icons/menu.svg';
+import mobileDrop from '../../assets/drop-mobile.svg';
+import desktopDrop from '../../assets/drop.svg';
 import { NavLink, Link } from 'react-router-dom';
+import { ExploreDropdown } from './components/components';
 import { FC, useState, useRef, useEffect } from 'react';
 
 const HeaderNav: FC = () => {
@@ -31,6 +33,12 @@ const HeaderNav: FC = () => {
         }, [ref, handler]);
     }
 
+    const [showDropdown, setShowDropdown] = useState<boolean>(false);
+
+    const handleDrop = () => {
+        setShowDropdown(!showDropdown)
+    }
+
     return (
         <header className={"main__header"}>
             <nav>
@@ -43,8 +51,11 @@ const HeaderNav: FC = () => {
                         <li onClick={closeMenu}>
                             <NavLink to='/'>Home</NavLink>
                         </li>
-                        <li onClick={closeMenu}>
-                            <NavLink to='/explore' className='explore'><span>Explore</span><img src={drop} alt="dropdown" /></NavLink>
+                        <li onClick={handleDrop}>
+                            <a className='explore'>
+                                <span>Explore</span><img src={desktopDrop} alt="desktop-drop" /><img src={mobileDrop} alt="mobile-drop" />
+                            </a>
+                            <ExploreDropdown className={showDropdown ? '' : 'top-visible'} onClick={handleDrop} />
                         </li>
                         <li onClick={closeMenu}>
                             <NavLink to='/recentJobs'>Recent Jobs</NavLink>

@@ -24,7 +24,7 @@
             display: none;
         }
 
-        div {
+        >div {
             @include flex-center;
             column-gap: 8rem;
 
@@ -55,9 +55,25 @@
 
                 .explore {
                     display: flex;
+                    position: relative;
+                    cursor: pointer;
 
                     img {
                         margin-left: .5rem;
+
+                        &[alt="mobile-drop"] {
+                            display: none;
+                        }
+
+                        @media(max-width: 1200px) {
+                            &[alt="desktop-drop"] {
+                                display: none;
+                            }
+
+                            &[alt="mobile-drop"] {
+                                display: block;
+                            }
+                        }
                     }
                 }
 
@@ -115,8 +131,7 @@
                     max-width: 250px;
                     justify-content: flex-start;
                     align-items: flex-start;
-                    padding: 3rem clamp(1rem, 4vw, 3rem);
-                    padding-left: 2rem;
+                    padding: 3rem 1rem 2rem 1.5rem;
                     transition: all .4s ease;
 
                     li {
@@ -137,7 +152,7 @@
                             color: $primary;
                             border: 2px solid $primary;
                             border-radius: $radius-4;
-                            font-weight: map-get($font-weights, big);
+                            font-weight: map-get($font-weights, semibold);
                             font-size: $meduim;
                             text-align: center;
                             padding: .7rem 1rem;
