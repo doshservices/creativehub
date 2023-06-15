@@ -22,6 +22,7 @@
         background-color: $light100;
         padding: calc($base * 2) $base;
         text-align: center;
+        height: fit-content;
 
         .dp {
             margin-bottom: 1rem;
@@ -113,7 +114,12 @@
             }
         }
 
-        .pricing {
+        .pricing,
+        .languages,
+        .skills,
+        .awards,
+        .media,
+        .urls {
             p {
                 font-size: $meduim;
                 font-weight: map-get($font-weights, semibold);

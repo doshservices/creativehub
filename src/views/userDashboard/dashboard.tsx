@@ -29,11 +29,39 @@ const UserDashboard = () => {
                     <p>Short Bookings<span>$20/hr</span><img src={pencil} alt="" /></p>
                     <button>Add New</button>
                 </section>
-                <section className="languages"></section>
-                <section className="skills"></section>
-                <section className="awards"></section>
-                <section className="media"></section>
-                <section className="urls"></section>
+                <section className="languages">
+                    <h4>Languages</h4>
+                    <p>English - <span>Basic</span><img src={pencil} alt="" /></p>
+                    <button>Add New</button>
+                </section>
+                <section className="skills">
+                    <h4>Skills</h4>
+                    <p>Ballet Dancer - <span>Professional</span><img src={pencil} alt="" /></p>
+                    <p>Sound Engineer - <span>Basic</span><img src={pencil} alt="" /></p>
+                    <p>Music Producer - <span>Intermediate</span><img src={pencil} alt="" /></p>
+                    <button>Add New</button>
+                </section>
+                <section className="awards">
+                    <h4>Certification and Awards</h4>
+                    <p>Ballet Dancer - <span>Professional</span><img src={pencil} alt="" /></p>
+                    <p>Sound Engineer - <span>Basic</span><img src={pencil} alt="" /></p>
+                    <p>Music Producer - <span>Intermediate</span><img src={pencil} alt="" /></p>
+                    <button>Add New</button>
+                </section>
+                <section className="media">
+                    <h4>Media</h4>
+                    <p>Media 1 - <span>Screams of Shalazah</span><img src={pencil} alt="" /></p>
+                    <p>Media 2 - <span>Big Boy Tune</span><img src={pencil} alt="" /></p>
+                    <p>Music Producer - <span>Intermediate</span><img src={pencil} alt="" /></p>
+                    <button>Add New</button>
+                </section>
+                <section className="urls">
+                    <h4>Media</h4>
+                    <p>Media 1 - <span>Screams of Shalazah</span><img src={pencil} alt="" /></p>
+                    <p>Media 2 - <span>Big Boy Tune</span><img src={pencil} alt="" /></p>
+                    <p>Music Producer - <span>Intermediate</span><img src={pencil} alt="" /></p>
+                    <button>Add New</button>
+                </section>
             </div>
         </section>
     )
