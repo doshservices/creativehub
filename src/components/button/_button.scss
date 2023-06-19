@@ -19,6 +19,10 @@
     border: none;
 }
 
+button:disabled {
+    opacity: .7;
+}
+
 .google-btn {
     display: flex;
     justify-content: center;

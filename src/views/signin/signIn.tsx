@@ -17,7 +17,7 @@ const SignIn: FC = () => {
                 <SigninForm />
                 <p className="or">OR</p>
                 <GoogleBtn content='Continue With Google' />
-                <p className='account'>Already have an account? <Link to='/login'>Log In</Link></p>
+                <p className='account'>Already have an account? <Link to='/signin'>Log In</Link></p>
             </div>
         </section>
     )

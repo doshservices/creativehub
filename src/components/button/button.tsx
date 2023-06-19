@@ -6,6 +6,7 @@ interface signin {
     id: string;
     content: string;
     type: any;
+    disabled: any
 }
 
 interface link {
@@ -38,7 +39,7 @@ export const LinkBtn = (props: link) => {
 
 export const SignBtn = (props: signin) => {
     return (
-        <button className='signin-btn' type={props.type} id={props.id}>
+        <button disabled={props.disabled} className='signin-btn' type={props.type} id={props.id}>
             {props.content}
         </button>
     )
