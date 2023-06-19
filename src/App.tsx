@@ -21,6 +21,8 @@ import { ScrollToTop } from './resets/ScrollToTop';
 import SoundEngineerInfo from './views/soundEngineer/engineer';
 import { CreativesNotification } from './views/notification/creatives';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AuthRoutes from './utils/authRoute';
+import OpenRoutes from './utils/unAuthRoute';
 
 const App: FC = () => {
 
@@ -51,21 +53,25 @@ const App: FC = () => {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/*' element={<ErrorPage />} />
-            <Route path='/signin' element={<Login />} />
-            <Route path='/choice' element={<Chioce />} />
-            <Route path='/signup' element={<SignIn />} />
-            <Route path='/search' element={<SearchResult />} />
-            <Route path='/explore' element={<Explore />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/recentJobs' element={<RecentJobs />} />
-            <Route path='/talentinfo' element={<TalentInfo />} />
-            <Route path='/newpassword' element={<NewPassword />} />
-            <Route path='/verifyemail' element={<Verify />} />
-            <Route path='/passwordreset' element={<Reset />} />
-            <Route path='/talentlisting' element={<Listing />} />
-            <Route path='/soundengineer' element={<SoundEngineerInfo />} />
-            <Route path='/notifications' element={<CreativesNotification />} />
-            <Route path='/usersDashboard' element={<UserDashboard />} />
+            <Route element={<AuthRoutes />}>
+              <Route path='/explore' element={<Explore />} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='/recentJobs' element={<RecentJobs />} />
+              <Route path='/talentinfo' element={<TalentInfo />} />
+              <Route path='/talentlisting' element={<Listing />} />
+              <Route path='/soundengineer' element={<SoundEngineerInfo />} />
+              <Route path='/notifications' element={<CreativesNotification />} />
+              <Route path='/usersDashboard' element={<UserDashboard />} />
+            </Route>
+            <Route element={<OpenRoutes />}>
+              <Route path='/signin' element={<Login />} />
+              <Route path='/choice' element={<Chioce />} />
+              <Route path='/signup' element={<SignIn />} />
+              <Route path='/search' element={<SearchResult />} />
+              <Route path='/newpassword' element={<NewPassword />} />
+              <Route path='/verifyemail' element={<Verify />} />
+              <Route path='/passwordreset' element={<Reset />} />
+            </Route>
           </Routes>
         </main>
         {backToTopButton && (
