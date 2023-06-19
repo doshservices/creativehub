@@ -2,7 +2,7 @@
 @import '../../scss/variables';
 
 #signin {
-    padding: 7rem $padding-x 4rem $padding-x;
+    padding: 6.5rem $padding-x 4rem $padding-x;
     color: $dark200;
 
     >p {
@@ -15,7 +15,7 @@
     >h2 {
         text-align: center;
         max-width: 650px;
-        margin: 2rem auto;
+        margin: 1.5rem auto;
         line-height: 2.5rem;
         font-weight: map-get($font-weights, semibold);
     }
@@ -26,7 +26,7 @@
 
         form {
 
-            #purple {
+            .purple {
                 width: 100% !important;
                 margin-top: 2rem;
             }

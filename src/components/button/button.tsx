@@ -39,7 +39,7 @@ export const LinkBtn = (props: link) => {
 
 export const SignBtn = (props: signin) => {
     return (
-        <button disabled={props.disabled} className='signin-btn' type={props.type} id={props.id}>
+        <button disabled={props.disabled} className={`signin-btn ${props.id}`} type={props.type}>
             {props.content}
         </button>
     )
