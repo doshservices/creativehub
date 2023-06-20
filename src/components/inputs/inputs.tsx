@@ -12,6 +12,7 @@ interface attributes {
     value: any;
     id: string
     className: string
+    name: string
 }
 interface values {
     type?: string;
@@ -23,6 +24,7 @@ interface values {
     value: any;
     id: string
     className: string
+    name: string
 }
 
 export const Passowrd = (props: attributes) => {
@@ -41,7 +43,7 @@ export const Passowrd = (props: attributes) => {
     };
     return (
         <div className="password">
-            <input autoComplete='on' id={props.id} onChange={props.onChange} onBlur={props.onBlur} value={props.value} className={`comp__input ${props.className}`} type={type} placeholder={props.placeholder} />
+            <input autoComplete='on' name={props.name} id={props.id} onChange={props.onChange} onBlur={props.onBlur} value={props.value} className={`comp__input ${props.className}`} type={type} placeholder={props.placeholder} />
             <span onClick={handleToggle}>
                 <Icon icon={icon} size={18} />
             </span>
@@ -53,7 +55,7 @@ export const InputLabel = (props: values) => {
     return (
         <>
             <label className='comp__label' htmlFor={props.for}>{props.label}</label>
-            <input id={props.id} onChange={props.onChange} onBlur={props.onBlur} value={props.value} className={`comp__input ${props.className}`} type="text" placeholder={props.placeholder} />
+            <input name={props.name} id={props.id} onChange={props.onChange} onBlur={props.onBlur} value={props.value} className={`comp__input ${props.className}`} type="text" placeholder={props.placeholder} />
         </>
     )
 }

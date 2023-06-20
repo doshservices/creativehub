@@ -8,11 +8,10 @@ export const basicSchema = yup.object().shape({
   firstName: yup.string().min(1, "Please enter your First Name").required("Required"),
   lastName: yup.string().min(1, "Please enter your LastName").required("Required"),
   country: yup.string().min(1, "Please select a country").required("Required"),
-  password: yup
-    .string()
-    .min(5)
-    .matches(passwordRules, { message: "Password must be a min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit" })
-    .required("Required"),
+  gender: yup.string().min(1, "Please select a Gender").required("Required"),
+  role: yup.string().min(1, "Please select a Role").required("Required"),
+  phoneNumber: yup.number().positive().integer().required("Required"),
+  password: yup.string().min(5).matches(passwordRules, { message: "Password must be a min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit" }).required("Required"),
 });
 
 export const loginSchema = yup.object().shape({

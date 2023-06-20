@@ -8,6 +8,39 @@ interface attributes {
     value: any;
     className: string
 }
+
+export const GenderSelect = (props: attributes) => {
+    return (
+        <>
+            <label className='comp__label' htmlFor="gender">Gender</label>
+            <div className={`form-select ${props.className}`}>
+                <img src={dropdown} alt="" />
+                <select className='error' onChange={props.onChange} onBlur={props.onBlur} value={props.value} id="gender" name="gender">
+                    <option value="">Select Gender</option>
+                    <option value='Male'>Male</option>
+                    <option value='Female'>Female</option>
+                </select>
+            </div>
+        </>
+    )
+}
+
+export const RoleSelect = (props: attributes) => {
+    return (
+        <>
+            <label className='comp__label' htmlFor="fole">Role</label>
+            <div className={`form-select ${props.className}`}>
+                <img src={dropdown} alt="" />
+                <select className='error' onChange={props.onChange} onBlur={props.onBlur} value={props.value} id="role" name="role">
+                    <option value="">Select Role</option>
+                    <option value='USER'>USER</option>
+                    <option value='CREATIVES'>CREATIVES</option>
+                </select>
+            </div>
+        </>
+    )
+}
+
 export const Select = (props: attributes) => {
 
     return (
