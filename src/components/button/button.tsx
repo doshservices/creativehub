@@ -3,16 +3,17 @@ import { Link } from 'react-router-dom';
 import google from '../../assets/google.svg';
 
 interface signin {
-    id: string;
+    className: string;
     content: string;
     type: any;
     disabled: any
 }
 
 interface link {
-    id: string;
+    className: string;
     to: string;
     content: string;
+    onClick: any
 }
 
 interface googleBtn {
@@ -31,15 +32,15 @@ interface resendBtn {
 
 export const LinkBtn = (props: link) => {
     return (
-        <Link className='signin-link' id={props.id} to={props.to}>
+        <a className={`signin-link ${props.className}`} onClick={props.onClick}>
             {props.content}
-        </Link>
+        </a>
     )
 }
 
 export const SignBtn = (props: signin) => {
     return (
-        <button disabled={props.disabled} className={`signin-btn ${props.id}`} type={props.type}>
+        <button disabled={props.disabled} className={`signin-btn ${props.className}`} type={props.type}>
             {props.content}
         </button>
     )

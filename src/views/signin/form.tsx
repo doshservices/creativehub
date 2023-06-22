@@ -59,16 +59,16 @@ const SigninForm: FC = () => {
             })
             .catch((err: any) => {
                 console.log(err);
-                toast.error(err.response.data.message, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
+                // toast.error(err.response.data.message, {
+                //     position: "top-right",
+                //     autoClose: 5000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     pauseOnHover: true,
+                //     draggable: true,
+                //     progress: undefined,
+                //     theme: "colored",
+                // });
             })
     };
 
@@ -118,7 +118,7 @@ const SigninForm: FC = () => {
             <Passowrd name='password' className={errors.password && touched.password ? "input-error" : ""} id="password" onChange={handleChange} onBlur={handleBlur} value={values.password} placeholder='Password (8 or more characters)' />
             {errors.password && touched.password && <p className="error">{errors.password}</p>}
 
-            <SignBtn disabled={isSubmitting} content={isSubmitting ? 'Creating account...' : 'Create Account'} id='purple' type='submit' />
+            <SignBtn disabled={isSubmitting} content={isSubmitting ? 'Creating account...' : 'Create Account'} className='purple' type='submit' />
         </form>
     )
 }

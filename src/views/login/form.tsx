@@ -56,16 +56,16 @@ const LoginForm: FC = () => {
             })
             .catch((err: any) => {
                 console.log(err);
-                toast.error(err.response.data.message, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
+                // toast.error(err.response.data.message, {
+                //     position: "top-right",
+                //     autoClose: 5000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     pauseOnHover: true,
+                //     draggable: true,
+                //     progress: undefined,
+                //     theme: "colored",
+                // });
             })
     };
 
@@ -104,7 +104,7 @@ const LoginForm: FC = () => {
                 {errors.password && touched.password && <p className="error">{errors.password}</p>}
 
                 <Link to='/passwordreset' className="forgot">Forgot Password?</Link>
-                <SignBtn disabled={isSubmitting} content='Log In' id='purple' type='submit' />
+                <SignBtn disabled={isSubmitting} content='Log In' className='purple' type='submit' />
             </form>
         </div>
     )

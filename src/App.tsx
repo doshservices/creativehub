@@ -51,9 +51,9 @@ const App: FC = () => {
         <HeaderNav />
         <main>
           <Routes>
-            <Route path='/' element={<Home />} />
             <Route path='/*' element={<ErrorPage />} />
             <Route element={<AuthRoutes />}>
+              <Route path='/' element={<Home />} />
               <Route path='/explore' element={<Explore />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/recentJobs' element={<RecentJobs />} />

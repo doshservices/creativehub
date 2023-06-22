@@ -9,8 +9,21 @@ import pbl from './assets/pbl.svg';
 import pbr from './assets/pbr.svg';
 import { FC } from 'react';
 import { LinkBtn } from '../../components/button/button';
+import { useNavigate } from 'react-router-dom';
 
 const Chioce: FC = () => {
+
+    const navigate = useNavigate()
+
+    const role1 = () => {
+        sessionStorage.setItem("user", JSON.stringify("Client"))
+        navigate("/signup")
+    }
+    const role2 = () => {
+        sessionStorage.setItem("user", JSON.stringify("Creatives"))
+        navigate("/signup")
+    }
+
     return (
         <section id="choice">
             <div id="choice__users">
@@ -22,7 +35,7 @@ const Chioce: FC = () => {
                 <p>
                     Hire professional sound engineers, producers, dancers etc to work on your next project
                 </p>
-                <LinkBtn id='purple' content='SIGN IN' to='/signin' />
+                <LinkBtn onClick={role1} className='purple' content='SIGN IN' to='/signup' />
             </div>
             <div id="choice__creatives">
                 <img className="tr" src={ptr} alt="" />
@@ -31,7 +44,7 @@ const Chioce: FC = () => {
                 <img className="br" src={pbr} alt="" />
                 <h3>FOR CREATIVES</h3>
                 <p>Get listed as a professional sound engineer, producer, dancer etc and get hired for work</p>
-                <LinkBtn id='yellow' content='SIGN IN' to='/signin' />
+                <LinkBtn onClick={role2} className='yellow' content='SIGN IN' to='/signup' />
             </div>
         </section>
     )

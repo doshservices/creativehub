@@ -5,15 +5,23 @@ import SigninForm from './form';
 import { GoogleBtn } from '../../components/button/button';
 
 const SignIn: FC = () => {
+
+    const role: string = JSON.parse(sessionStorage.getItem("user")!);
+
     return (
         <section id='signin'>
             <p>
-                Sign up as a Creatives
+                {`Sign up as a ${role}`}
             </p>
             <h2>
-                Hire professional sound engineers, producers, dancers etc to work on your next project
+                {
+                    role === 'Client' ?
+                        'Get listed as a professional sound engineer, producer, dancer etc and get hired for work'
+                        :
+                        'Hire professional sound engineers, producers, dancers etc to work on your next project'
+                }
             </h2>
-            <div className=''>
+            <div>
                 <SigninForm />
                 <p className="or">OR</p>
                 <GoogleBtn content='Continue With Google' />
