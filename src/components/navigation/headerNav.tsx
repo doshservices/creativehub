@@ -3,7 +3,7 @@ import logo from '../../assets/creative hub logo.svg';
 import menuIcon from './icons/menu.svg';
 import mobileDrop from '../../assets/drop-mobile.svg';
 import desktopDrop from '../../assets/drop.svg';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { ExploreDropdown } from './components/components';
 import { FC, useState, useRef, useEffect } from 'react';
 
@@ -39,8 +39,19 @@ const HeaderNav: FC = () => {
         setShowDropdown(!showDropdown)
     }
 
+    const currentLocation = useLocation()
+
     return (
-        <header className={"main__header"}>
+        <header className={
+            currentLocation?.pathname === '/' ||
+                currentLocation?.pathname === '/talentlisting' ||
+                currentLocation?.pathname === '/explore' ||
+                currentLocation?.pathname === '/talentinfo' ||
+                currentLocation?.pathname === '/soundengineer' ||
+                currentLocation?.pathname === '/recentJobs'
+                ? 'main__header transparent'
+                : 'main__header'
+        } >
             <nav>
                 <div className='links'>
                     <Link className='logo' to='/'>
@@ -52,9 +63,9 @@ const HeaderNav: FC = () => {
                             <NavLink to='/'>Home</NavLink>
                         </li>
                         <li onClick={handleDrop}>
-                            <a className='explore'>
+                            <NavLink to='explore' className='explore'>
                                 <span>Explore</span><img src={desktopDrop} alt="desktop-drop" /><img src={mobileDrop} alt="mobile-drop" />
-                            </a>
+                            </NavLink>
                             <ExploreDropdown className='top-visible' onClick={handleDrop} />
                         </li>
                         <li onClick={closeMenu}>

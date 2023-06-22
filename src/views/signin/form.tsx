@@ -32,7 +32,7 @@ const SigninForm: FC = () => {
 
     const url = 'https://creativehub-endpoints-production.up.railway.app/api/users';
 
-    const onSubmit = async (values: object, errors: any) => {
+    const onSubmit = async (values: object, errors: object) => {
         console.log(values);
 
         if (JSON.stringify(errors) === "{}") {
