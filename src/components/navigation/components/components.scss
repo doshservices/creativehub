@@ -8,7 +8,7 @@
     top: 100%;
     display: grid;
     grid-template-columns: 200px 200px;
-    transition: all .2s ease;
+    transition: all .2s ease-in-out;
 
     h3 {
         color: hsla(0, 0%, 42%, 1);
@@ -47,6 +47,104 @@
 
 @media(max-width: 1200px) {
     .explore__dropdown {
+        display: none;
+    }
+}
+
+.profile__dropdown {
+    max-width: fit-content;
+    position: relative;
+
+    >img {
+        height: 40px;
+        cursor: pointer;
+    }
+
+    nav {
+        position: absolute;
+        background-color: $light100;
+        width: 220px;
+        right: 0;
+        padding: calc($base + 6px) 0;
+        border: 1px solid rgba(45, 45, 45, 0.1);
+        border-radius: $radius-4;
+        opacity: 0;
+        pointer-events: none;
+        transition: all .3s ease-in-out;
+
+        a {
+            display: flex;
+            color: $dark200;
+            font-size: $meduim;
+            padding: 0 $base;
+            font-weight: map-get($font-weights, big);
+            margin-bottom: calc($base + 5px);
+
+            img {
+                margin-right: 8px;
+                height: 20px;
+                width: 20px;
+            }
+        }
+
+        button {
+            font-size: $meduim;
+            font-weight: map-get($font-weights, big);
+            color: $red300;
+            background-color: inherit;
+            border: 1px solid $red300;
+            border-radius: $radius-4;
+            width: 80%;
+            display: block;
+            margin: calc($base + 5px) auto 0 auto;
+            padding: .6rem 1rem;
+        }
+    }
+
+    &:hover {
+        nav {
+            opacity: 1;
+            pointer-events: all;
+        }
+    }
+
+    @media(max-width:1200px) {
+        >img {
+            display: none;
+        }
+
+        nav {
+            position: static;
+            background: transparent;
+            border: none;
+            opacity: 1;
+            pointer-events: all;
+            width: 100%;
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.nav__drop1 {
+    display: none;
+
+    @media(max-width: 1200px) {
+        display: block;
+        min-width: 100%;
+        flex-shrink: 0;
+
+        a {
+            padding: 0 !important;
+            color: $dark200;
+        }
+    }
+}
+
+.nav__drop2 {
+    @media(max-width: 1200px) {
         display: none;
     }
 }

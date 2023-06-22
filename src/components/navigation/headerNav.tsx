@@ -3,11 +3,27 @@ import logo from '../../assets/creative hub logo.svg';
 import menuIcon from './icons/menu.svg';
 import mobileDrop from '../../assets/drop-mobile.svg';
 import desktopDrop from '../../assets/drop.svg';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { ProfileDropdown } from './components/profileDropdown';
 import { ExploreDropdown } from './components/components';
+import { isAuthenticated } from '../../utils/helper';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { FC, useState, useRef, useEffect } from 'react';
 
 const HeaderNav: FC = () => {
+
+    const anthenticated = isAuthenticated()
+
+    const [backgroundColor, setBackgroundColor] = useState<boolean>(false)
+
+    const changeColor = () => {
+        if (window.scrollY >= 70) {
+            setBackgroundColor(true)
+        } else {
+            setBackgroundColor(false)
+        }
+    }
+    window.addEventListener('scroll', changeColor)
+
     const [showNav, setShowNav] = useState<boolean>(false);
 
     const closeMenu = () => setShowNav(!showNav)
@@ -42,16 +58,17 @@ const HeaderNav: FC = () => {
     const currentLocation = useLocation()
 
     return (
-        <header className={
-            currentLocation?.pathname === '/' ||
-                currentLocation?.pathname === '/talentlisting' ||
-                currentLocation?.pathname === '/explore' ||
-                currentLocation?.pathname === '/talentinfo' ||
-                currentLocation?.pathname === '/soundengineer' ||
-                currentLocation?.pathname === '/recentJobs'
-                ? 'main__header transparent'
-                : 'main__header'
-        } >
+        <header id={backgroundColor ? 'default' : ''}
+            className={
+                currentLocation?.pathname === '/' ||
+                    currentLocation?.pathname === '/talentlisting' ||
+                    currentLocation?.pathname === '/explore' ||
+                    currentLocation?.pathname === '/talentinfo' ||
+                    currentLocation?.pathname === '/soundengineer' ||
+                    currentLocation?.pathname === '/recentJobs'
+                    ? 'main__header transparent'
+                    : 'main__header'
+            }>
             <nav>
                 <div className='links'>
                     <Link className='logo' to='/'>
@@ -80,13 +97,19 @@ const HeaderNav: FC = () => {
                         <li onClick={closeMenu}>
                             <NavLink to='/'>Find Work</NavLink>
                         </li>
-                        <li className='sign__in' onClick={closeMenu}>
-                            <Link to='/signin'>Sign In</Link>
-                        </li>
+                        {anthenticated ?
+                            <ProfileDropdown className='nav__drop1' /> :
+                            <li className='sign__in' onClick={closeMenu}>
+                                <Link to='/signin'>Sign In</Link>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <img onClick={closeMenu} className='menu__icon' src={menuIcon} alt="menu icon" />
-                <Link className='sign__in' to='/signin'>Sign In</Link>
+                {anthenticated ?
+                    <ProfileDropdown className='nav__drop2' /> :
+                    <Link className='sign__in' to='/signin'>Sign In</Link>
+                }
             </nav>
         </header>
     )

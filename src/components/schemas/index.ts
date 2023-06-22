@@ -15,7 +15,7 @@ export const basicSchema = yup.object().shape({
 });
 
 export const loginSchema = yup.object().shape({
-  email: yup.string().email("Please enter a valid email").required("Required"),
+  loginId: yup.string().email("Please enter a valid email").required("Required"),
   password: yup
     .string()
     .min(5)
@@ -23,16 +23,3 @@ export const loginSchema = yup.object().shape({
     .required("Required"),
 });
 
-// export const advancedSchema = yup.object().shape({
-  // username: yup
-  //   .string()
-  //   .min(3, "Username must be at least 3 characters long")
-  //   .required("Required"),
-  // jobType: yup
-  //   .string()
-  //   .oneOf(["designer", "developer", "manager", "other"], "Invalid Job Type")
-  //   .required("Required"),
-  // acceptedTos: yup
-  //   .boolean()
-  //   .oneOf([true], "Please accept the terms of service"),
-// });

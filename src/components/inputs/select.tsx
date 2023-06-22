@@ -17,8 +17,8 @@ export const GenderSelect = (props: attributes) => {
                 <img src={dropdown} alt="" />
                 <select className='error' onChange={props.onChange} onBlur={props.onBlur} value={props.value} id="gender" name="gender">
                     <option value="">Select Gender</option>
-                    <option value='Male'>Male</option>
-                    <option value='Female'>Female</option>
+                    <option value='MALE'>MALE</option>
+                    <option value='FEMALE'>FEMALE</option>
                 </select>
             </div>
         </>

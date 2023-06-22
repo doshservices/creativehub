@@ -25,53 +25,51 @@ const SigninForm: FC = () => {
 
         // navigate if auth token and id is not empty
         if (authToken && ID !== "") {
-            navigate("/");
+            navigate("/verifyemail");
         }
         return;
     };
 
     const url = 'https://creativehub-endpoints-production.up.railway.app/api/users';
 
-    const onSubmit = async (values: object, errors: object) => {
-        console.log(values);
+    const onSubmit = async (values: any) => {
 
-        if (JSON.stringify(errors) === "{}") {
-
-            await axios
-                .post(url, { values })
-                .then((res: any) => {
-                    console.log(res)
-                    toast.success("Account Succesfully Created", {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "colored",
-                    });
-                    const authToken = res.data.data.token;
-                    const authID = res.data.data.userDetails._id;
-                    const authName = res.data.data.userDetails.firstName;
-                    handleSaveAuth(authID, authToken, authName);
-                })
-                .catch((err: any) => {
-                    console.log(err);
-                    toast.error(err.response.data.message, {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "colored",
-                    });
-                })
-        } else {
-            return errors;
-        }
+        await axios
+            .post(url, values, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then((res: any) => {
+                console.log(res)
+                toast.success("Account Succesfully Created", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+                const authToken = res.data.data.token;
+                const authID = res.data.data.user._id;
+                const authName = res.data.data.user.firstName;
+                handleSaveAuth(authID, authToken, authName);
+            })
+            .catch((err: any) => {
+                console.log(err);
+                toast.error(err.response.data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            })
     };
 
     const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
@@ -89,7 +87,7 @@ const SigninForm: FC = () => {
         onSubmit
     });
 
-    onSubmit(values, errors)
+    onSubmit(values)
 
     return (
         <form onSubmit={handleSubmit}>

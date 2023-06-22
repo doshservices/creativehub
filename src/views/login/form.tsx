@@ -1,18 +1,73 @@
+import axios from "axios";
+import { FC } from 'react'
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 import { SignBtn } from "../../components/button/button";
 import { useFormik } from "formik";
 import { loginSchema } from "../../components/schemas";
+import { useNavigate } from 'react-router-dom';
 import { InputLabel, Passowrd } from "../../components/inputs/inputs";
 
-const onSubmit = async (values: any, actions: any) => {
-    console.log(values);
-    console.log(actions);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    actions.resetForm();
-    console.log('submitted');
-};
+const LoginForm: FC = () => {
+    const navigate = useNavigate()
 
-const LoginForm = () => {
+    const handleSaveAuth = (id: string, token: string, authname: string) => {
+        //save token id and first name to storage
+        localStorage.setItem("c/id", JSON.stringify(id));
+        localStorage.setItem("c/tk", JSON.stringify(token));
+        localStorage.setItem("c/usn", JSON.stringify(authname))
+
+        // get token and id from storage
+        const authToken = localStorage.getItem("c/id");
+        const ID = localStorage.getItem("c/tk");
+
+        // navigate if auth token and id is not empty
+        if (authToken && ID !== "") {
+            navigate("/");
+        }
+        return;
+    };
+
+    const url = 'https://creativehub-endpoints-production.up.railway.app/api/users/login';
+
+    const onSubmit = async (values: any) => {
+        await axios
+            .post(url, values, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then((res: any) => {
+                console.log(res)
+                toast.success("Account Succesfully Created", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+                const authToken = res.data.data.token;
+                const authID = res.data.data.user._id;
+                const authName = res.data.data.user.firstName;
+                handleSaveAuth(authID, authToken, authName);
+            })
+            .catch((err: any) => {
+                console.log(err);
+                toast.error(err.response.data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            })
+    };
 
     const {
         values,
@@ -24,27 +79,27 @@ const LoginForm = () => {
         handleSubmit,
     } = useFormik({
         initialValues: {
-            email: "",
+            loginId: "",
             password: "",
         },
         validationSchema: loginSchema,
         onSubmit,
     });
-    console.log(errors, values);
+    onSubmit(values)
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <InputLabel className={errors.email && touched.email ? "input-error" : ""}
-                    id='email' onChange={handleChange} onBlur={handleBlur} value={values.email}
-                    label='Email Address' placeholder="Email address here"
+                <InputLabel className={errors.loginId && touched.loginId ? "input-error" : ""}
+                    id='loginId' onChange={handleChange} onBlur={handleBlur} value={values.loginId}
+                    label='Email Address' placeholder="Email address here" name='loginId'
                 />
-                {errors.email && touched.email && <p className="error">{errors.email}</p>}
+                {errors.loginId && touched.loginId && <p className="error">{errors.loginId}</p>}
 
                 <label style={{ display: 'block', margin: '1rem 0 .5rem 0' }} htmlFor="">Password</label>
                 <Passowrd className={errors.password && touched.password ? "input-error" : ""}
                     id="password" onChange={handleChange} onBlur={handleBlur} value={values.password}
-                    placeholder="Password (8 or more characters)"
+                    placeholder="Password (8 or more characters)" name="password"
                 />
                 {errors.password && touched.password && <p className="error">{errors.password}</p>}
 

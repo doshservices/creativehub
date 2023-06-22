@@ -5,9 +5,10 @@
     background-color: $primary;
     padding: 1rem $padding-x;
     z-index: 900;
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 0;
+    transition: all .3s ease-in-out;
 
     a {
         color: $light100;
@@ -15,7 +16,7 @@
         font-weight: map-get($font-weights, big);
     }
 
-    & nav {
+    >nav {
         @include flex-center;
         column-gap: 2rem;
 
@@ -24,7 +25,7 @@
             display: none;
         }
 
-        >div {
+        .links {
             @include flex-center;
             column-gap: 8rem;
 
@@ -114,12 +115,12 @@
 @media(max-width: 1200px) {
     .main__header {
 
-        & nav {
+        >nav {
             .menu__icon {
                 display: block;
             }
 
-            div {
+            .links {
 
                 .overlay {
                     display: block;
@@ -150,7 +151,7 @@
                     max-width: 250px;
                     justify-content: flex-start;
                     align-items: flex-start;
-                    padding: 3rem 1rem 2rem 1.5rem;
+                    padding: 3rem 1rem 4rem 1.5rem;
                     transition: all .4s ease;
 
                     li {
@@ -200,5 +201,9 @@
 }
 
 .transparent {
-    background-color: transparent !important;
+    background-color: transparent;
+}
+
+#default {
+    background-color: $primary;
 }
