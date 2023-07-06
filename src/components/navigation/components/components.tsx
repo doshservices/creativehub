@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 interface prop {
     onClick: any;
-    className?: string
+    className?: string;
 }
 
 const top: Array<string> = ["Ballet Dancer", "Sugar Mixer", "Songwriters", "Sound Engineer", "Male Singer", "Beat Makers", "Designers", "Artists"]

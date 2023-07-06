@@ -25,7 +25,7 @@
         height: fit-content;
 
         .dp {
-            margin-bottom: 1rem;
+            margin: 0 auto 1rem auto;
         }
 
         h3 {
@@ -57,6 +57,11 @@
             font-size: $small;
             font-weight: map-get($font-weights, big);
             color: $green300;
+            text-transform: uppercase;
+        }
+
+        .email {
+            display: block;
         }
 
         button {

@@ -100,7 +100,9 @@ const HeaderNav: FC = () => {
                             <NavLink to='explore' className='explore'>
                                 <span>Explore</span><img src={desktopDrop} alt="desktop-drop" /><img src={mobileDrop} alt="mobile-drop" />
                             </NavLink>
-                            <ExploreDropdown className='top-visible' onClick={handleDrop} />
+                            {
+                                <ExploreDropdown className='top-visible' onClick={handleDrop} />
+                            }
                         </li>
                         <li onClick={closeMenu}>
                             <NavLink to='/recentJobs'>Recent Jobs</NavLink>

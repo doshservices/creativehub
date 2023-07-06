@@ -1,19 +1,67 @@
 import './dashboard.scss';
 import dp from './assets/dp.svg';
 import pencil from './assets/pencil.svg';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useEffect, useState } from "react";
 
 const UserDashboard = () => {
+
+    const [userdetails, setUserDetails] = useState<any>([])
+    const [errMessage, setErrMessage] = useState<string>("")
+    console.log(userdetails);
+
+    const authToken = JSON.parse(localStorage.getItem("c/tk") as string)
+
+    const url = 'https://creativehub-endpoints-production.up.railway.app/api/users';
+
+    const getDetails = async () => {
+        axios.get(url, {
+            headers: {
+                Authorization: `Bearer ${authToken}`
+            },
+        })
+            .then((response: any) => {
+                // console.log(response);
+                setUserDetails(response.data.data.user[0])
+            })
+            .catch((error: any) => {
+                setErrMessage(error.message)
+                toast.error(errMessage, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            })
+    }
+
+    useEffect(() => {
+        getDetails()
+    }, [])
+
     return (
         <section id="users__dashboard">
             <section id="users__dashboard__profile">
                 <img className='dp' src={dp} alt="profile" />
-                <h3>
-                    <span>Shai Hulud</span>
-                    <img src={pencil} alt="*" />
-                </h3>
-                <a>shai.hulud.t@gmail.com</a>
+                {
+                    userdetails.firstName && userdetails.lastName ?
+                        <h3>
+                            <span>{userdetails.firstName} {userdetails.lastName}</span>
+                            <img src={pencil} alt="*" />
+                        </h3>
+                        : ""
+                }
+
+                {userdetails.email ? <a className='email'>{userdetails.email}</a> : ""}
+
                 <address>Agege, Lagos</address>
-                <p className="status">ONLINE</p>
+                {userdetails.status ? <p className="status">{userdetails.status}</p> : ""}
+
                 <button>Preview Profile</button>
                 <p className="member">Member since  <span>June 2023</span></p>
             </section>

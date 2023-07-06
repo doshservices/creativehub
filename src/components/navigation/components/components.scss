@@ -47,7 +47,18 @@
 
 @media(max-width: 1200px) {
     .explore__dropdown {
-        display: none;
+        grid-template-columns: 1fr;
+        margin-top: .5rem;
+
+        >section {
+            padding: calc($base - 5px);
+            border-bottom: 1px solid rgb(196, 196, 196);
+            width: 100%;
+
+            div {
+                height: 200px;
+            }
+        }
     }
 }
 
