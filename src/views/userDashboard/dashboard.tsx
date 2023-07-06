@@ -9,7 +9,6 @@ const UserDashboard = () => {
 
     const [userdetails, setUserDetails] = useState<any>([])
     const [errMessage, setErrMessage] = useState<string>("")
-    console.log(userdetails);
 
     const authToken = JSON.parse(localStorage.getItem("c/tk") as string)
 
