@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom';
 import { clearStorage } from '../../../utils/authRoute';
 
 interface prop {
-    className: string
+    className: string;
+    menuAction: any;
 }
 
-export const ProfileDropdown: FC<prop> = ({ className }) => {
+export const ProfileDropdown: FC<prop> = ({ className, menuAction }) => {
 
     const logout = () => clearStorage()
 
@@ -17,11 +18,11 @@ export const ProfileDropdown: FC<prop> = ({ className }) => {
         <div className={`profile__dropdown ${className}`}>
             <img src={dp} alt="" />
             <nav>
-                <Link to='/usersDashboard'>
+                <Link onClick={menuAction} to='/usersDashboard'>
                     <img src={accountDp} alt="" />
                     <span>Profile</span>
                 </Link>
-                <Link to='/notifications'>
+                <Link onClick={menuAction} to='/notifications'>
                     <img src={notIcon} alt="" />
                     <span>Notications</span>
                 </Link>

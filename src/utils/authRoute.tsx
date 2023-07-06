@@ -6,6 +6,7 @@ export const clearStorage = () => {
     localStorage.removeItem('c/id')
     localStorage.removeItem('c/tk')
     localStorage.removeItem('c/usn')
+    window.location.reload()
 }
 
 const AuthRoutes = () => {
@@ -20,9 +21,9 @@ const AuthRoutes = () => {
     }, [authenticated]);
 
     // log user out after 3 hours
-    // useEffect(() => {
-    //     setTimeout(clearStorage, 1000 * 60 * 60 * 3)
-    // }, [])
+    useEffect(() => {
+        setTimeout(clearStorage, 1000 * 60 * 60 * 3)
+    }, [])
 
     return (
         <div>

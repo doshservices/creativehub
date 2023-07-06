@@ -10,7 +10,7 @@ const Login = () => {
             <LoginForm />
             <p className="or">OR</p>
             <GoogleBtn content="Continue with Google" />
-            <p className="account">Don’t have an account? <Link to='/signup'>Sign up</Link></p>
+            <p className="account">Don’t have an account? <Link to='/choice'>Sign up</Link></p>
         </section>
     )
 }

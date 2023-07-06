@@ -32,7 +32,7 @@ const SigninForm: FC = () => {
 
     const url = 'https://creativehub-endpoints-production.up.railway.app/api/users';
 
-    const onSubmit = async (values: any) => {
+    const onSubmit = async (values: any, actions: any) => {
 
         await axios
             .post(url, values, {
@@ -56,19 +56,20 @@ const SigninForm: FC = () => {
                 const authID = res.data.data.user._id;
                 const authName = res.data.data.user.firstName;
                 handleSaveAuth(authID, authToken, authName);
+                actions.resetForm();
             })
             .catch((err: any) => {
                 console.log(err);
-                // toast.error(err.response.data.message, {
-                //     position: "top-right",
-                //     autoClose: 5000,
-                //     hideProgressBar: false,
-                //     closeOnClick: true,
-                //     pauseOnHover: true,
-                //     draggable: true,
-                //     progress: undefined,
-                //     theme: "colored",
-                // });
+                toast.error(err.response.data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             })
     };
 
@@ -86,8 +87,6 @@ const SigninForm: FC = () => {
         validationSchema: basicSchema,
         onSubmit
     });
-
-    onSubmit(values)
 
     return (
         <form onSubmit={handleSubmit}>
