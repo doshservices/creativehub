@@ -10,8 +10,8 @@ const Reset = () => {
             <h2>Forgot your Password?</h2>
             <p>Please fill in your e-mail below and we will send you reset password instructions</p>
             <form action="">
-                <InputLabel label='Email' placeholder='Email address here' />
-                <SignBtn id='purple' content='Reset Password' type='submit' />
+                <InputLabel onChange="" onBlur="" value="" id='' className='' name='' label='Email' placeholder='Email address here' />
+                <SignBtn disabled="" className='purple' content='Reset Password' type='submit' />
             </form>
             <p id='reset__password__resend'>Didn’t get reset instructions? <span>Resend Instructions</span></p>
         </section>
