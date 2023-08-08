@@ -27,7 +27,7 @@ const AuthRoutes = () => {
 
     return (
         <div>
-            <Outlet />
+            {authenticated ? <Outlet /> : <></>}
         </div>
     )
 }

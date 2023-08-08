@@ -11,7 +11,7 @@ export const Form: FC = () => {
                 <input type="checkbox" />
                 I have read and accept the privacy policy.
             </label>
-            <SignBtn id='purple' content='SIGN UP' type='submit' />
+            <SignBtn disabled="" className="purple" content='SIGN UP' type='submit' />
         </form>
     )
 }

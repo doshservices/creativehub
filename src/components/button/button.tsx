@@ -1,5 +1,4 @@
 import './_button.scss';
-import { Link } from 'react-router-dom';
 import google from '../../assets/google.svg';
 
 interface signin {
