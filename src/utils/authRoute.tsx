@@ -12,13 +12,13 @@ export const clearStorage = () => {
 const AuthRoutes = () => {
 
     const authenticated = isAuthenticated();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!authenticated) {
-            navigate("/signin");
-        }
-    }, [authenticated]);
+    // useEffect(() => {
+    //     if (!authenticated) {
+    //         navigate("/signin");
+    //     }
+    // }, [authenticated]);
 
     // log user out after 3 hours
     useEffect(() => {
@@ -27,7 +27,9 @@ const AuthRoutes = () => {
 
     return (
         <div>
-            {authenticated ? <Outlet /> : <></>}
+            {/* {authenticated ? */}
+            <Outlet />
+            {/* // : <></>} */}
         </div>
     )
 }
