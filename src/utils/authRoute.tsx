@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { isAuthenticated } from "./helper";
-import { Outlet, useNavigate } from "react-router-dom";
+// import { isAuthenticated } from "./helper";
+import { Outlet } from "react-router-dom";
 
 export const clearStorage = () => {
     localStorage.removeItem('c/id')
@@ -11,7 +11,7 @@ export const clearStorage = () => {
 
 const AuthRoutes = () => {
 
-    const authenticated = isAuthenticated();
+    // const authenticated = isAuthenticated();
     // const navigate = useNavigate();
 
     // useEffect(() => {
