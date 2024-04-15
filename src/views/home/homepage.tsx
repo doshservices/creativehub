@@ -4,8 +4,12 @@ import { FC } from 'react'
 import { User } from './components/users';
 import { Search } from './components/search';
 import { HowItWorks, WhyChoose } from './components/howItWorks';
+import { api } from '../../utils/config';
 
 const Home: FC = () => {
+
+    console.log(api);
+
     return (
         <div id="home">
             <section id="home__hero">
