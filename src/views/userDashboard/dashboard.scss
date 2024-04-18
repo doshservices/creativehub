@@ -23,6 +23,8 @@
         padding: calc($base * 2) $base;
         text-align: center;
         height: fit-content;
+        position: sticky;
+        top: 100px;
 
         .dp {
             margin: 0 auto 1rem auto;

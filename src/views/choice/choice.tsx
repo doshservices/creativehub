@@ -19,6 +19,7 @@ const Chioce: FC = () => {
         sessionStorage.setItem("user", JSON.stringify("Client"))
         navigate("/signup")
     }
+
     const role2 = () => {
         sessionStorage.setItem("user", JSON.stringify("Creatives"))
         navigate("/signup")
@@ -35,7 +36,7 @@ const Chioce: FC = () => {
                 <p>
                     Hire professional sound engineers, producers, dancers etc to work on your next project
                 </p>
-                <LinkBtn onClick={role1} className='purple' content='SIGN IN' to='/signup' />
+                <LinkBtn onClick={role1} className='purple' content='SIGN UP' to='/signup' />
             </div>
             <div id="choice__creatives">
                 <img className="tr" src={ptr} alt="" />
@@ -44,7 +45,7 @@ const Chioce: FC = () => {
                 <img className="br" src={pbr} alt="" />
                 <h3>FOR CREATIVES</h3>
                 <p>Get listed as a professional sound engineer, producer, dancer etc and get hired for work</p>
-                <LinkBtn onClick={role2} className='yellow' content='SIGN IN' to='/signup' />
+                <LinkBtn onClick={role2} className='yellow' content='SIGN UP' to='/signup' />
             </div>
         </section>
     )

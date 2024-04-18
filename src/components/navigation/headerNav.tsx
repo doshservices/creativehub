@@ -4,9 +4,9 @@ import mobileDrop from '../../assets/drop-mobile.svg';
 import desktopDrop from '../../assets/drop.svg';
 import { ProfileDropdown } from './components/profileDropdown';
 import { ExploreDropdown } from './components/components';
-import { isAuthenticated } from '../../utils/helper';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { FC, useState, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 export const Logo = () => {
     return (
@@ -28,7 +28,7 @@ export const Logo = () => {
 
 const HeaderNav: FC = () => {
 
-    const anthenticated = isAuthenticated()
+    const anthenticated = useSelector((state: any) => state?.auth?.authToken)
 
     const [backgroundColor, setBackgroundColor] = useState<boolean>(false)
 

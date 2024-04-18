@@ -1,65 +1,29 @@
 import './dashboard.scss';
 import dp from './assets/dp.svg';
 import pencil from './assets/pencil.svg';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 
 const UserDashboard = () => {
 
-    const [userdetails, setUserDetails] = useState<any>([])
-    const [errMessage, setErrMessage] = useState<string>("")
-
-    const authToken = JSON.parse(localStorage.getItem("c/tk") as string)
-
-    const url = 'https://creativehub-endpoints-production.up.railway.app/api/users';
-
-    const getDetails = async () => {
-        axios.get(url, {
-            headers: {
-                Authorization: `Bearer ${authToken}`
-            },
-        })
-            .then((response: any) => {
-                // console.log(response);
-                setUserDetails(response.data.data.user[0])
-            })
-            .catch((error: any) => {
-                setErrMessage(error.message)
-                toast.error(errMessage, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
-            })
-    }
-
-    useEffect(() => {
-        getDetails()
-    }, [])
+    const user = useSelector((state: any) => state?.auth?.user)
 
     return (
         <section id="users__dashboard">
             <section id="users__dashboard__profile">
                 <img className='dp' src={dp} alt="profile" />
                 {
-                    userdetails.firstName && userdetails.lastName ?
+                    user.firstName && user.lastName ?
                         <h3>
-                            <span>{userdetails.firstName} {userdetails.lastName}</span>
-                            <img src={pencil} alt="*" />
+                            <span>{user.firstName} {user.lastName}</span>
+                            <img src={pencil} alt="edit profile" />
                         </h3>
                         : ""
                 }
 
-                {userdetails.email ? <a className='email'>{userdetails.email}</a> : ""}
+                {user.email ? <a className='email'>{user.email}</a> : ""}
 
                 <address>Agege, Lagos</address>
-                {userdetails.status ? <p className="status">{userdetails.status}</p> : ""}
+                {user.status ? <p className="status">{user.status}</p> : ""}
 
                 <button>Preview Profile</button>
                 <p className="member">Member since  <span>June 2023</span></p>

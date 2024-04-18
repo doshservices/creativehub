@@ -1,71 +1,45 @@
 import axios from "axios";
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { Link } from "react-router-dom";
-import { toast } from 'react-toastify';
 import { SignBtn } from "../../components/button/button";
 import { useFormik } from "formik";
 import { loginSchema } from "../../components/schemas";
 import { useNavigate } from 'react-router-dom';
 import { InputLabel, Passowrd } from "../../components/inputs/inputs";
-// import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthToken, setUser } from '../../state/slice/authSlice';
+import { errorMessage, responseMessage } from "../../utils/toast";
 
 const LoginForm: FC = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+    const authUser = useSelector((state: any) => state?.auth?.user)
 
-    const handleSaveAuth = (id: string, token: string, authname: string) => {
-        //save token id and first name to storage
-        localStorage.setItem("c/id", JSON.stringify(id));
-        localStorage.setItem("c/tk", JSON.stringify(token));
-        localStorage.setItem("c/usn", JSON.stringify(authname))
-
-        // get token and id from storage
-        const authToken = localStorage.getItem("c/id");
-        const ID = localStorage.getItem("c/tk");
-
-        // navigate if auth token and id is not empty
-        if (authToken && ID !== "") {
-            navigate("/");
+    useEffect(() => {
+        if (authUser) {
+            navigate("/")
         }
-        return;
-    };
+    }, [])
 
     const url = 'https://creativehub-endpoints-production.up.railway.app/api/users/login';
 
-    const onSubmit = async (values: any) => {
-        await axios
-            .post(url, values, {
+    const onSubmit = async (values: any, actions: any) => {
+        try {
+            const response = await axios.post(url, values, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             })
-            .then((res: any) => {
-                toast.success("Login Succesful", {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
-                const authToken = res.data.data.token;
-                const authID = res.data.data.user._id;
-                const authName = res.data.data.user.firstName;
-                handleSaveAuth(authID, authToken, authName);
-            })
-            .catch((err: any) => {
-                toast.error(err.response.data.message, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
-            })
+            console.log(response);
+            dispatch(setUser(response?.data?.data?.user))
+            dispatch(setAuthToken(response?.data?.data?.token))
+            responseMessage("Login Succesful")
+            actions.resetForm();
+            window.location.reload()
+        } catch (error: any) {
+            console.log(error);
+            errorMessage(error.response.data.message)
+        }
     };
 
     const {

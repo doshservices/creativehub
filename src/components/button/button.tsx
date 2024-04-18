@@ -12,7 +12,7 @@ interface link {
     className: string;
     to: string;
     content: string;
-    onClick: any
+    onClick: () => void;
 }
 
 interface googleBtn {

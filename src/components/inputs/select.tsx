@@ -5,7 +5,7 @@ interface attributes {
     placeholder?: string;
     onChange: any;
     onBlur: any;
-    value: any;
+    value: string;
     className: string
 }
 
@@ -31,11 +31,12 @@ export const RoleSelect = (props: attributes) => {
             <label className='comp__label' htmlFor="fole">Role</label>
             <div className={`form-select ${props.className}`}>
                 <img src={dropdown} alt="" />
-                <select className='error' onChange={props.onChange} onBlur={props.onBlur} value={props.value} id="role" name="role">
+                <select disabled className='error' onChange={props.onChange} onBlur={props.onBlur} value={props.value} id="role" name="role">
                     <option value="">Select Role</option>
-                    <option value='USER'>USER</option>
+                    <option value={props?.value}>{props?.value}</option>
                     <option value='CREATIVES'>CREATIVES</option>
                 </select>
+
             </div>
         </>
     )
