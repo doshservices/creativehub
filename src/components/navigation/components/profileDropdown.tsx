@@ -3,7 +3,10 @@ import { FC } from 'react';
 import notIcon from '../../../assets/notifications.svg';
 import accountDp from '../../../assets/account.svg';
 import { Link } from 'react-router-dom';
-import { clearStorage } from '../../../utils/authRoute';
+import { useDispatch } from 'react-redux';
+import { clearAuthToken } from '../../../state/slice/authSlice';
+import { responseMessage } from '../../../utils/toast';
+// import { clearStorage } from '../../../utils/authRoute';
 
 interface prop {
     className: string;
@@ -12,7 +15,15 @@ interface prop {
 
 export const ProfileDropdown: FC<prop> = ({ className, menuAction }) => {
 
-    const logout = () => clearStorage()
+    // const logout = () => clearStorage()
+    const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    // Dispatching the clearAuthToken action when the user logs out
+    dispatch(clearAuthToken());
+    responseMessage("Logout Succesful")
+  }
+    
 
     return (
         <div className={`profile__dropdown ${className}`}>
@@ -27,7 +38,7 @@ export const ProfileDropdown: FC<prop> = ({ className, menuAction }) => {
                     <span>Notications</span>
                 </Link>
                 <hr />
-                <button onClick={logout}>Sign Out</button>
+                <button onClick={handleLogout}>Sign Out</button>
             </nav>
         </div>
     )
