@@ -62,12 +62,16 @@ const App: FC = () => {
               <Route path='/soundengineer' element={<SoundEngineerInfo />} />
               <Route path='/notifications' element={<CreativesNotification />} />
               <Route path='/usersDashboard' element={<UserDashboard />} />
-              <Route path='/search' element={<SearchResult />} />
-            </Route>
-            <Route element={<OpenRoutes />}>
+              <Route path='/search/:searchId' element={<SearchResult />} />
+
               <Route path='/signin' element={<Login />} />
               <Route path='/choice' element={<Chioce />} />
               <Route path='/signup' element={<SignIn />} />
+            </Route>
+            <Route element={<OpenRoutes />}>
+              {/* <Route path='/signin' element={<Login />} /> */}
+              {/* <Route path='/choice' element={<Chioce />} /> */}
+              {/* <Route path='/signup' element={<SignIn />} /> */}
               {/* <Route path='/search' element={<SearchResult />} /> */}
               <Route path='/newpassword' element={<NewPassword />} />
               <Route path='/verifyemail' element={<Verify />} />

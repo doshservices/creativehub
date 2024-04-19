@@ -4,7 +4,7 @@ import notIcon from '../../../assets/notifications.svg';
 import accountDp from '../../../assets/account.svg';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { clearAuthToken } from '../../../state/slice/authSlice';
+import { clearAuthToken, clearUser } from '../../../state/slice/authSlice';
 import { responseMessage } from '../../../utils/toast';
 // import { clearStorage } from '../../../utils/authRoute';
 
@@ -20,7 +20,8 @@ export const ProfileDropdown: FC<prop> = ({ className, menuAction }) => {
 
   const handleLogout = () => {
     // Dispatching the clearAuthToken action when the user logs out
-    dispatch(clearAuthToken());
+    // dispatch(clearAuthToken());
+    dispatch(clearUser());
     responseMessage("Logout Succesful")
   }
     

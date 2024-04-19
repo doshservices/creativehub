@@ -14,6 +14,7 @@ const userSlice = createSlice({
         },
         clearUser: (state) => {
             state.user = null;
+            state.authToken = null;
         },
         setAuthToken: (state, action) => {
             state.authToken = action.payload;

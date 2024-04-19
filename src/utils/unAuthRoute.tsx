@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
-import { isAuthenticated } from "./helper";
 import { Outlet, useNavigate } from "react-router-dom";
+import { useAuthentication } from './helper';
 
 const OpenRoutes = () => {
-    const authenticated = isAuthenticated();
+    const authenticated = useAuthentication();
     const navigate = useNavigate()
 
     useEffect(() => {
         if (authenticated) {
             navigate("/");
         }
-    }, [authenticated]);
+    }, [authenticated, navigate]);
     return (
         <div>
             <Outlet />

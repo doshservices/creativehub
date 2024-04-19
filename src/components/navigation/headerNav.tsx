@@ -28,7 +28,7 @@ export const Logo = () => {
 
 const HeaderNav: FC = () => {
 
-    const anthenticated = useSelector((state: any) => state?.auth?.authToken)
+    const anthenticated = useSelector((state: any) => state?.auth?.user)
 
     const [backgroundColor, setBackgroundColor] = useState<boolean>(false)
 

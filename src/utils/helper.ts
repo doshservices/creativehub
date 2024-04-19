@@ -1,8 +1,17 @@
-export const isAuthenticated = () => {
+import { useSelector } from "react-redux";
 
-    const authToken = localStorage.getItem("c/tk");
-    const ID = localStorage.getItem("c/id");
-    const authName = localStorage.getItem("c/usn");
+export const useAuthentication = () => {
+
+    const token = useSelector((state: any) => state?.auth?.authToken);
+    const user = useSelector((state: any) => state?.auth?.user);
+    console.log("token: ", token);
+    console.log("userId: ", user._id);
+    console.log("userName: ", user.firstName);
+    
+
+    const authToken = token;
+    const ID = user._id;
+    const authName = user.firstName;
 
     if (authToken && ID && authName !== "") {
         return true;
