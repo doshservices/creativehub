@@ -10,6 +10,15 @@ $text: rgba(45, 45, 45, 0.8);
         @include background1;
         background-position: 0 35%;
 
+        .skill {
+            color: green; 
+                cursor: pointer;
+            :hover {
+                color: green; 
+                cursor: pointer;
+            }
+        }
+
         div {
             background: rgba(45, 45, 45, 0.7);
             padding: 16rem $padding-x 9rem $padding-x;
@@ -56,6 +65,7 @@ $text: rgba(45, 45, 45, 0.8);
                 outline: none;
             }
         }
+       
 
         button {
             color: $light200;
@@ -112,6 +122,7 @@ $text: rgba(45, 45, 45, 0.8);
                         font-weight: map-get($font-weights, semibold);
                         margin-bottom: 1rem;
                     }
+                    
 
                     .desc {
                         padding: 1rem

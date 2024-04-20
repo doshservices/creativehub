@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import './index.scss';
 import star from './assets/star.svg';
 import photo from './assets/3.png';
@@ -9,16 +10,54 @@ import instagram from './assets/instagram.svg';
 import facebook from './assets/facebook.svg';
 import { reviews } from './info';
 import { Toggler } from '../../components/profile';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+interface UserDetails {
+    firstName: string;
+    lastName: string;
+    location: string;
+    country: string;
+    bio: string;
+    skills: string[];
+  }
 
 const TalentInfo = () => {
-
+    const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
+    const { userId } = useParams();
+  
+    const onUser = async (userId: any) => {
+      const url = `https://creativehub-endpoints-production.up.railway.app/api/users/${userId}`;
+  
+      try {
+        const response = await axios.get(url, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        // console.log(response.data.data.user);
+        setUserDetails(response.data.data.user);
+      } catch (error: any) {
+        console.log(error);
+        // errorMessage(error.response.data.message)
+      }
+    };
+    useEffect(() => {
+      onUser(userId);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+  
+    console.log("user details: ", userDetails);
+  
 
     return (
         <section id="talent__info">
             <section id="talent__info__intro">
                 <div>
-                    <h2>Shai Hulud</h2>
-                    <h3>Ballet Dancer</h3>
+                    {userDetails?.firstName && (
+                        <h2>{userDetails.firstName} {" "} {userDetails.lastName} </h2>
+                    )}
+                    <h3>{userDetails?.skills[0]}</h3>
                     <div className="stars">
                         <img src={star} alt="" />
                         <img src={star} alt="" />
@@ -26,18 +65,14 @@ const TalentInfo = () => {
                         <img src={star} alt="" />
                         <img src={star} alt="" /> <p>(452)</p>
                     </div>
-                    <p>Ibadan, Nigeria</p>
+                    <p>{userDetails?.location}, {userDetails?.country}</p>
                 </div>
             </section>
             <div id="talent__info__profile">
                 <Toggler />
                 <div className='talent__info__grid'>
                     <div id="talent__info__about">
-                        <p>As a ballet dancer, I have dedicated my life to the art of classical dance. With over [X years/months] of training and performing experience, I have honed my skills and developed a deep understanding of the technique, artistry, and discipline required to excel in this demanding dance form. <br />
-                            My training includes extensive study in ballet technique, as well as complementary forms such as contemporary and jazz dance. I have worked with renowned teachers and choreographers, refining my technique and mastering the nuances of the dance. <br />
-                            In my performances, I strive to embody the grace, beauty, and precision that are hallmarks of classical ballet. From delicate adagios to virtuosic allegros, I bring a depth of expression and emotion to each movement, creating a seamless and captivating performance. <br />
-                            Whether performing in a traditional ballet company, a modern dance ensemble, or a multidisciplinary collaboration, I bring a level of professionalism and dedication that sets me apart. I am always eager to push my boundaries and explore new aspects of dance, whether through experimentation with choreography or collaboration with other artists. <br />
-                            Overall, as a ballet dancer, I bring a deep passion and commitment to my craft, along with a mastery of technique and a dedication to excellence that ensures a captivating and memorable performance every time.</p>
+                        <p>{userDetails?.bio}</p>
                         <section className="reviews">
                             <h4>10 Reviews</h4>
                             {reviews.map((review: object | any, index: number) => {

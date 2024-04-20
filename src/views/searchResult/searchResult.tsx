@@ -3,12 +3,12 @@ import "./index.scss";
 import { FC, useEffect, useState } from "react";
 import arrowup from "./assets/arrow up.svg";
 import arrowright from "./assets/arrow right.svg";
-import { result } from "./components/result";
+// import { result } from "./components/result";
 import { Search } from "../home/components/search";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { responseMessage } from "../../utils/toast";
+// import { responseMessage } from "../../utils/toast";
 import like from "./assets/like.svg";
 import star from "./assets/star.svg";
 import ballet from "./assets/ballet.png";
@@ -16,6 +16,7 @@ import ballet from "./assets/ballet.png";
 const SearchResult: FC = () => {
   const [searchDetails, setSearchDetails] = useState([]);
   const { searchId } = useParams();
+  const navigate = useNavigate();
   const token = useSelector((state: any) => state?.auth?.authToken);
 
   const onSearch = async (searchId: any) => {
@@ -44,6 +45,10 @@ const SearchResult: FC = () => {
     onSearch(searchId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const seeMoreUser = (userId: any) => {
+    navigate(`/talentinfo/${userId}`);
+  };
 
   console.log("search: ", searchDetails);
   return (
@@ -125,7 +130,7 @@ const SearchResult: FC = () => {
                 <div className="results" key={index}>
                   {results.img ? <img src={ballet} /> : <img src={ballet} />}
                   <div>
-                    {results.skills && <h5>{results.skills[0]}</h5>}
+                    {results.skills && <h5 onClick={() => seeMoreUser(results._id)}>{results.skills[0]}</h5>}
                     <div className="name">
                       {results.firstName && (
                         <p>
