@@ -3,10 +3,15 @@ import upload from '../../assets/Vector.svg';
 import { FaTimes } from 'react-icons/fa';
 import { useState, useRef, useEffect } from 'react';
 
-export const ProjectModal = () => {
+interface Props {
+    isOpen: boolean;
+    onClose: () => void;
+}
 
-    const [open, setOpen] = useState<boolean>(false)
-    const closeModal = () => setOpen(!open)
+export const BargainModal: React.FC<Props> = ({ isOpen, onClose }) => {
+
+    // const [open, setOpen] = useState<boolean>(false)
+    // const closeModal = () => setOpen(!open)
 
     const modalRef = useRef<HTMLDivElement>(null);
 
@@ -26,12 +31,12 @@ export const ProjectModal = () => {
             };
         }, [modalRef, handler]);
     }
-    useOnClickOutside(modalRef, () => setOpen(false));
+    useOnClickOutside(modalRef, () => onClose());
 
     return (
-        <div className={open ? "project__modal" : 'project__modal modal__show__false'}>
+        <div className={isOpen ? "project__modal" : 'project__modal modal__show__false'}>
             <div ref={modalRef} className="project__modal__content">
-                <div ref={modalRef} onClick={closeModal} className="close">
+                <div ref={modalRef} onClick={onClose} className="close">
                     <FaTimes size={20} color='#2d2d2d' />
                 </div>
                 <h3>Describe your project and Shazam Fred will reply to your message</h3>
