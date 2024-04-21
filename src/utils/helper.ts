@@ -4,16 +4,12 @@ export const useAuthentication = () => {
 
     const token = useSelector((state: any) => state?.auth?.authToken);
     const user = useSelector((state: any) => state?.auth?.user);
-    console.log("token: ", token);
-    console.log("userId: ", user._id);
-    console.log("userName: ", user.firstName);
-    
 
     const authToken = token;
-    const ID = user._id;
-    const authName = user.firstName;
+    const ID = user?._id;
+    const authName = user?.firstName;
 
-    if (authToken && ID && authName !== "") {
+    if (authToken && ID && authName) {
         return true;
     }
     return false;

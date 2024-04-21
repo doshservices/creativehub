@@ -11,11 +11,9 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-// import rootReducer from '../rootReducer'
 import { rootReducer, RootState } from './rootReducer'
 
 export type AppDispatch = typeof store.dispatch
-// export type RootState = ReturnType<typeof store.getState>
 export type AppThunk<ReturnType = void> = ThunkAction<
     ReturnType,
     RootState,

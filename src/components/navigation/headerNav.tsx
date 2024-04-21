@@ -29,9 +29,14 @@ export const Logo = () => {
 
 const HeaderNav: FC = () => {
 
+    const currentLocation = useLocation();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [showNav, setShowNav] = useState<boolean>(false);
+    const ref = useRef<HTMLUListElement & HTMLImageElement>(null);
+    const [showDropdown, setShowDropdown] = useState<boolean>(true);
     const anthenticated = useSelector((state: any) => state?.auth?.user)
-
     const [backgroundColor, setBackgroundColor] = useState<boolean>(false)
+    const closeMenu = () => setShowNav(!showNav)
 
     const changeColor = () => {
         if (window.scrollY >= 70) {
@@ -41,14 +46,6 @@ const HeaderNav: FC = () => {
         }
     }
     window.addEventListener('scroll', changeColor)
-
-    const [showNav, setShowNav] = useState<boolean>(false);
-
-    const closeMenu = () => setShowNav(!showNav)
-
-    const ref = useRef<HTMLUListElement & HTMLImageElement>(null);
-
-    useOnClickOutside(ref, () => setShowNav(false));
 
     function useOnClickOutside(ref: any, handler: any) {
         useEffect(() => {
@@ -67,16 +64,11 @@ const HeaderNav: FC = () => {
         }, [ref, handler]);
     }
 
-    const [showDropdown, setShowDropdown] = useState<boolean>(true);
+    useOnClickOutside(ref, () => setShowNav(false));
 
     const handleDrop = () => {
         setShowDropdown(!showDropdown)
     }
-
-    const currentLocation = useLocation();
-
-    // open bargain modal
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -100,44 +92,49 @@ const HeaderNav: FC = () => {
                         <Logo />
                     </Link>
                     <div className={showNav ? "overlay" : 'overlay overlay__fade'}></div>
-                    <ul ref={ref} className={showNav ? 'open' : ''} >
-                        <li onClick={closeMenu}>
-                            <NavLink to='/'>Home</NavLink>
-                        </li>
-                        <li onClick={handleDrop}>
-                            <NavLink to='explore' className='explore'>
-                                <span>Explore</span><img src={desktopDrop} alt="desktop-drop" /><img src={mobileDrop} alt="mobile-drop" />
-                            </NavLink>
-                            {
-                                <ExploreDropdown className='top-visible' onClick={handleDrop} />
-                            }
-                        </li>
-                        <li onClick={closeMenu}>
-                            <NavLink to='/recentJobs'>Recent Jobs</NavLink>
-                        </li>
-                        <li onClick={() => {closeMenu(); openModal()}} className='bargain'>
-                            <NavLink to='/'>Bargain</NavLink>
-                            
-                        </li>
-                        <BargainModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-                        <li onClick={closeMenu}>
-                            <NavLink to='/talentlisting'>Find Talent</NavLink>
-                        </li>
-                        <li onClick={closeMenu}>
-                            <NavLink to='/'>Find Work</NavLink>
-                        </li>
-                        {anthenticated ?
-                            <ProfileDropdown menuAction={closeMenu} className='nav__drop1' /> :
-                            <li className='sign__in' onClick={closeMenu}>
-                                <Link to='/signin'>Sign In</Link>
+                    {anthenticated ?
+                        <ul ref={ref} className={showNav ? 'open' : ''} >
+                            <li onClick={closeMenu}>
+                                <NavLink to='/'>Home</NavLink>
                             </li>
-                        }
-                    </ul>
+                            <li onClick={handleDrop}>
+                                <NavLink to='explore' className='explore'>
+                                    <span>Explore</span><img src={desktopDrop} alt="desktop-drop" /><img src={mobileDrop} alt="mobile-drop" />
+                                </NavLink>
+                                {
+                                    <ExploreDropdown className='top-visible' onClick={handleDrop} />
+                                }
+                            </li>
+                            <li onClick={closeMenu}>
+                                <NavLink to='/recentJobs'>Recent Jobs</NavLink>
+                            </li>
+                            <li onClick={() => { closeMenu(); openModal() }} className='bargain'>
+                                <NavLink to='/'>Bargain</NavLink>
+
+                            </li>
+                            <BargainModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                            <li onClick={closeMenu}>
+                                <NavLink to='/talentlisting'>Find Talent</NavLink>
+                            </li>
+                            <li onClick={closeMenu}>
+                                <NavLink to='/'>Find Work</NavLink>
+                            </li>
+                            {anthenticated ?
+                                <ProfileDropdown menuAction={closeMenu} className='nav__drop1' /> :
+                                <li className='sign__in' onClick={closeMenu}>
+                                    <Link to='/signin'>Sign In</Link>
+                                </li>
+                            }
+                        </ul>
+                        : null}
                 </div>
-                <img onClick={closeMenu} className='menu__icon' src={menuIcon} alt="menu icon" />
                 {anthenticated ?
-                    <ProfileDropdown menuAction={closeMenu} className='nav__drop2' /> :
-                    <Link className='sign__in' to='/signin'>Sign In</Link>
+                    <img onClick={closeMenu} className='menu__icon' src={menuIcon} alt="menu icon" />
+                    : null}
+                {anthenticated ?
+                    <ProfileDropdown menuAction={closeMenu} className='nav__drop2' />
+                    :
+                    <Link className='sign__in' to={currentLocation?.pathname === "/signin" ? "choice" : "/signin"}>{currentLocation?.pathname === "/signin" ? "Sign Up" : "Sign In"}</Link>
                 }
             </nav>
         </header>

@@ -1,6 +1,6 @@
 import '../../components/errors.scss';
 import axios from 'axios';
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { SignBtn } from "../../components/button/button";
 import { useFormik } from "formik";
 import { basicSchema } from "../../components/schemas";
@@ -8,25 +8,39 @@ import { InputLabel, Passowrd } from "../../components/inputs/inputs";
 import { GenderSelect, RoleSelect, Select } from "../../components/inputs/select";
 import { errorMessage, responseMessage } from '../../utils/toast';
 import { setAuthToken, setUser } from '../../state/slice/authSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+interface Payload {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    country: string,
+    phoneNumber: string,
+    gender: string,
+    role: string,
+}
 
 const SigninForm: FC = () => {
 
     const signUpRole: string = JSON.parse(sessionStorage.getItem("user") as string)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const authUser = useSelector((state: any) => state?.auth?.user)
 
-    useEffect(() => {
-        if (authUser) {
-            navigate("/")
-        }
-    }, [])
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/home";
+
+    const redirectToHome = () => {
+        setTimeout(() => {
+            navigate(from, { replace: true });
+            window.location.reload()
+        }, 2500);
+    };
 
     const url = 'https://creativehub-endpoints-production.up.railway.app/api/users';
 
-    const onSubmit = async (values: any, actions: any) => {
+    const onSubmit = async (values: Payload, actions: any) => {
         try {
             const response = await axios.post(url, values, {
                 headers: {
@@ -38,7 +52,7 @@ const SigninForm: FC = () => {
             dispatch(setAuthToken(response?.data?.data?.token))
             responseMessage("Account Succesfully Created")
             actions.resetForm();
-            window.location.reload()
+            redirectToHome()
         } catch (error: any) {
             console.log(error);
             errorMessage(error.response.data.message)

@@ -1,6 +1,13 @@
-import { useEffect } from 'react';
-// import { isAuthenticated } from "./helper";
-import { Outlet } from "react-router-dom";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
+interface RootState {
+    auth: {
+        user: any;
+    };
+}
 
 export const clearStorage = () => {
     localStorage.removeItem('c/id')
@@ -9,29 +16,10 @@ export const clearStorage = () => {
     window.location.reload()
 }
 
-const AuthRoutes = () => {
+const AuthRoutes: React.FC = () => {
+    const authUser = useSelector((state: RootState) => state?.auth?.user);
 
-    // const authenticated = isAuthenticated();
-    // const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     if (!authenticated) {
-    //         navigate("/signin");
-    //     }
-    // }, [authenticated]);
-
-    // log user out after 3 hours
-    useEffect(() => {
-        setTimeout(clearStorage, 1000 * 60 * 60 * 3)
-    }, [])
-
-    return (
-        <div>
-            {/* {authenticated ? */}
-            <Outlet />
-            {/* // : <></>} */}
-        </div>
-    )
-}
+    return authUser ? <Outlet /> : <Navigate to="/signin" replace />;
+};
 
 export default AuthRoutes;
