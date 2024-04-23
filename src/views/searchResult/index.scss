@@ -4,6 +4,10 @@
 $text: rgba(45, 45, 45, 0.8);
 $top: 1px solid hsl(120, 15%, 86%);
 
+.cursor {
+    cursor: pointer;
+}
+
 #search {
     padding: 7rem $padding-x 2rem $padding-x;
 

@@ -19,7 +19,7 @@ const LoginForm: FC = () => {
         if (authUser) {
             navigate("/")
         }
-    }, [])
+    }, [authUser, navigate])
 
     const url = 'https://creativehub-endpoints-production.up.railway.app/api/users/login';
 

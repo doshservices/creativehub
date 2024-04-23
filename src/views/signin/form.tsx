@@ -29,7 +29,7 @@ const SigninForm: FC = () => {
     const navigate = useNavigate()
 
     const location = useLocation()
-    const from = location.state?.from?.pathname || "/home";
+    const from = location.state?.from?.pathname || "/";
 
     const redirectToHome = () => {
         setTimeout(() => {
@@ -66,9 +66,10 @@ const SigninForm: FC = () => {
             email: "",
             password: "",
             country: "",
+            state: "",
             phoneNumber: "",
             gender: "",
-            role: signUpRole === "Client" ? "USER" : "CREATIVES",
+            role: signUpRole === "Client" ? "USER" : "CREATIVE",
         },
         validationSchema: basicSchema,
         onSubmit
@@ -92,6 +93,9 @@ const SigninForm: FC = () => {
 
             <Select className={errors.country && touched.country ? "input-error" : ""} onChange={handleChange} onBlur={handleBlur} value={values.country} />
             {errors.country && touched.country && <p className="error">{errors.country}</p>}
+
+            {/* <Select className={errors.state && touched.state ? "input-error" : ""} onChange={handleChange} onBlur={handleBlur} value={values.state} />
+            {errors.state && touched.state && <p className="error">{errors.state}</p>} */}
 
             <GenderSelect className={errors.gender && touched.gender ? "input-error" : ""} onChange={handleChange} onBlur={handleBlur} value={values.gender} />
             {errors.gender && touched.gender && <p className="error">{errors.gender}</p>}

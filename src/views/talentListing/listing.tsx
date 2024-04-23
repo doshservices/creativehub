@@ -64,7 +64,7 @@ const Listing = () => {
         <div className="dancers">
           {creativesDetails.map((results: object | any, index: number) => {
             return (
-              <div className="dancer" key={index}>
+              <div className="dancer cursor" onClick={() => seeMoreUser(results._id)} key={index}>
                 <div className="col">
                   <div>
                     {results.img ? (
@@ -75,7 +75,7 @@ const Listing = () => {
                   </div>
                   <div className="desc">
                     {results.skills && 
-                    <h5 className="skill" onClick={() => seeMoreUser(results._id)}>{results.skills[0]}</h5>
+                    <h5 className="skill" >{results.skills[0]}</h5>
                     }
                     <div className="name">
                       {results.firstName && (
