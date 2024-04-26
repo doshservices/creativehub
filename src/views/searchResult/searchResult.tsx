@@ -127,10 +127,10 @@ const SearchResult: FC = () => {
           <div className="items">
             {searchDetails.map((results: object | any, index: number) => {
               return (
-                <div className="results" key={index}>
+                <div className="results cursor" onClick={() => seeMoreUser(results._id)} key={index}>
                   {results.img ? <img src={ballet} /> : <img src={ballet} />}
                   <div>
-                    {results.skills && <h5 onClick={() => seeMoreUser(results._id)}>{results.skills[0]}</h5>}
+                    {results.skills && <h5>{results.skills[0]}</h5>}
                     <div className="name">
                       {results.firstName && (
                         <p>

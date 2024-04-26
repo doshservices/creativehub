@@ -7,6 +7,13 @@
     transition: all .2s ease;
     overflow-y: scroll;
 
+    // .flex {
+    //     display: flex;
+    //     justify-content: space-between;
+    //     flex-direction: row-reverse;
+    //     align-items: center;
+    // }
+
     &__content {
         background: $light200;
         padding: 1rem 2rem 1rem 2rem;
