@@ -26,6 +26,10 @@
         position: sticky;
         top: 100px;
 
+        @media(max-width: 650px) {
+            position: static;
+        }
+
         .dp {
             margin: 0 auto 1rem auto;
         }

@@ -25,10 +25,10 @@ const Listing = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data.data.creatives);
+      // console.log(response.data.data.creatives);
       setCreativesDetails(response.data.data.creatives);
     } catch (error: any) {
-      console.log(error);
+      // console.log(error);
       // errorMessage(error.response.data.message)
     }
   };
@@ -37,7 +37,7 @@ const Listing = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log("creatives: ", creativesDetails);
+  // console.log("creatives: ", creativesDetails);
 
 
   const seeMoreUser = (userId: any) => {
@@ -74,8 +74,8 @@ const Listing = () => {
                     )}
                   </div>
                   <div className="desc">
-                    {results.skills && 
-                    <h5 className="skill" onClick={() => seeMoreUser(results._id)}>{results.skills[0]}</h5>
+                    {results.skills &&
+                      <h5 className="skill" onClick={() => seeMoreUser(results._id)}>{results.skills[0]?.skill}</h5>
                     }
                     <div className="name">
                       {results.firstName && (

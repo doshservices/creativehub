@@ -1,12 +1,34 @@
 import './notification.scss';
 import user from './Orlando_Studio_Pic_1.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { api } from '../../utils/config';
+import { authHeader } from '../../utils/headers';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../state/rootReducer';
 
 export const CreativesNotification = () => {
+
+    const authToken = useSelector((state: RootState | any) => state?.auth?.token)
 
     const [fullView, setFullView] = useState<boolean>(false)
 
     const setView = () => setFullView(!fullView);
+
+    const getAllNotifications = async () => {
+        try {
+            const response = await axios.get(`${api}api/notifications`, {
+                headers: authHeader(`${authToken}`)
+            })
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getAllNotifications()
+    }, [])
 
     return (
         <section id="notification">
