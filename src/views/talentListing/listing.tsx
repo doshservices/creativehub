@@ -75,7 +75,7 @@ const Listing = () => {
                   </div>
                   <div className="desc">
                     {results.skills &&
-                      <h5 className="skill" >{results.skills[0]}</h5>
+                      <h5 className="skill" >{results.skills[0]?.skill}</h5>
                     }
                     <div className="name">
                       {results.firstName && (
