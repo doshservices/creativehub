@@ -103,7 +103,9 @@ const RecentJobs = () => {
                     <img src={stars} alt="" />
                 </div>
                 <div className="reviews">
-                    {searchReviews.map((review: any, index: number) => {
+                    {searchReviews.length !== 0 ? (
+                      <div>
+                        {searchReviews.map((review: any, index: number) => {
                         return (
                             <div key={index}>
                                 {review.comment && (
@@ -115,6 +117,10 @@ const RecentJobs = () => {
                             </div>
                         )
                     })}
+                      </div>
+                    ) : (
+                      <div>No reviews</div>
+                    )}
                 </div>
             </section>
         </section>

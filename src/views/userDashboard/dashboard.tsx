@@ -2,10 +2,12 @@ import "./dashboard.scss";
 import dp from "./assets/dp.svg";
 import pencil from "./assets/pencil.svg";
 import { useSelector } from "react-redux";
+// import { useEffect } from "react";
 
 const UserDashboard = () => {
   const user = useSelector((state: any) => state?.auth?.user);
   // Timestamp from the API
+  console.log("user: ", user)
   const apiTimestamp = user.createdAt;
 
   // Convert the timestamp string to a Date object
@@ -17,6 +19,11 @@ const UserDashboard = () => {
     day: "numeric",
     year: "numeric",
   });
+
+  interface User {
+    languages: { name: string, proficiency: string }[];
+    // Add other properties of the user object here
+  } 
 
 
   return (
@@ -36,7 +43,11 @@ const UserDashboard = () => {
 
         {user.email ? <a className="email">{user.email}</a> : ""}
 
-        <address>{user.country}</address>
+        {user.country ? (
+          <address>{user.state}, {user.country}</address>
+        ) : (
+          <address>No address yet</address>
+        )}
         {user.status ? <p className="status">{user.status}</p> : ""}
 
         <button>Preview Profile</button>
@@ -77,7 +88,7 @@ const UserDashboard = () => {
           {user.languages.length !== 0 ? (
             <div>
                 {user.languages.map((language: any) => (
-                    <p>
+                    <p >
                     {language} - <span>Basic</span>
                     <img src={pencil} alt="" />
                   </p>
