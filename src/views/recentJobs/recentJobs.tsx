@@ -59,9 +59,10 @@ import { useSelector } from 'react-redux';
 const RecentJobs = () => {
     const [searchReviews, setSearchReviews] = useState([]);
     const token = useSelector((state: any) => state?.auth?.authToken);
+    const user = useSelector((state: any) => state?.auth?.user);
 
   const getReviews = async () => {
-    const userId = "64a9de481f2a0557ce79f0eb"
+    const userId = user._id;
     const url = `https://creativehub-endpoints-production.up.railway.app/api/creatives/review?userId=${userId}`;
 
     try {
@@ -103,7 +104,7 @@ const RecentJobs = () => {
                     <img src={stars} alt="" />
                 </div>
                 <div className="reviews">
-                    {searchReviews.length !== 0 ? (
+                    {searchReviews && searchReviews.length !== 0 ? (
                       <div>
                         {searchReviews.map((review: any, index: number) => {
                         return (
