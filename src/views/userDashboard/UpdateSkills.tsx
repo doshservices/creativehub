@@ -4,26 +4,28 @@ import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
+import { useUpdateUser } from "./UpdateUserApi";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  updateUser: () => Promise<void>;
+  // updateUser: () => Promise<void>;
 }
 
-const UpdateModal: React.FC<Props> = ({ isOpen, onClose, updateUser }) => {
+export const UpdateSkills: React.FC<Props> = ({ isOpen, onClose }) => {
   const token = useSelector((state: any) => state?.auth?.authToken);
-  // const user = useSelector((state: any) => state?.auth?.user);
+  const user = useSelector((state: any) => state?.auth?.user);
+  const { newUpdateUser } = useUpdateUser();
 
   const url =
-    "https://creativehub-endpoints-production.up.railway.app/api/users/add-languages";
+    "https://creativehub-endpoints-production.up.railway.app/api/users/add-skills";
 
     const onSubmit = async (values: any, actions: any) => {
       const updatedValues = {
-        "newLanguages": [
+        "newSkills": [
           {
             ...values,
-            proficiency: values.proficiency.toUpperCase(),
+            experience_level: values.experience_level.toUpperCase(),
           }
         ]
       };
@@ -35,9 +37,9 @@ const UpdateModal: React.FC<Props> = ({ isOpen, onClose, updateUser }) => {
           },
         });
         console.log(response);
-        responseMessage("Bargain sent Succesful");
+        responseMessage("Skill updated succesfully");
         actions.resetForm();
-        updateUser();
+        newUpdateUser(user._id);
         onClose();
       } catch (error: any) {
         console.log(error);
@@ -57,8 +59,8 @@ const UpdateModal: React.FC<Props> = ({ isOpen, onClose, updateUser }) => {
     handleSubmit,
   } = useFormik({
     initialValues: {
-      language: "",
-      proficiency: "",
+      skill: "",
+      experience_level: "",
     },
     onSubmit,
   });
@@ -89,39 +91,39 @@ const UpdateModal: React.FC<Props> = ({ isOpen, onClose, updateUser }) => {
         <span className="close-button" onClick={onClose}>
           &times;
         </span>
-        {/* Add form fields and update language proficiency */}
-        <h2>Update Language</h2>
+        {/* Add form fields and update skill experience_level */}
+        <h2>Update Skills</h2>
         {/* Add form fields here */}
         <form className="update-form" onSubmit={handleSubmit}>
-          <section className={errors.language && touched.language ? "input-error" : ""}>
+          <section className={errors.skill && touched.skill ? "input-error" : ""}>
             <input
               type="text"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.language}
-              name='language'
-              placeholder="Add Language"
+              value={values.skill}
+              name='skill'
+              placeholder="Add Skills"
             />
-            {errors.language && touched.language && <p className="error">{errors.language}</p>}
+            {errors.skill && touched.skill && <p className="error">{errors.skill}</p>}
           </section>
-          <section className={errors.proficiency && touched.proficiency ? "input-error" : ""}>
+          <section className={errors.experience_level && touched.experience_level ? "input-error" : ""}>
   <select
     onChange={handleChange}
     onBlur={handleBlur}
-    name="proficiency"
-    value={values.proficiency}
+    name="experience_level"
+    value={values.experience_level}
   >
-    <option value="" disabled>Select Language Level</option>
+    <option value="" disabled>Select Skills Level</option>
     <option value="BEGINNER">Beginner</option>
     <option value="ADVANCED">Advanced</option>
   </select>
-  {errors.proficiency && touched.proficiency && <p className="error">{errors.proficiency}</p>}
+  {errors.experience_level && touched.experience_level && <p className="error">{errors.experience_level}</p>}
 </section>
 
   
           <section className="submit-sec">
             <p onClick={onClose}>Cancel</p>
-          <button  disabled={isSubmitting} type="submit">{isSubmitting ? 'Bargaining...' : 'Bargain'}</button>
+          <button  disabled={isSubmitting} type="submit">{isSubmitting ? 'Updating...' : 'Update'}</button>
           </section>
         </form>
       </div>
@@ -129,4 +131,3 @@ const UpdateModal: React.FC<Props> = ({ isOpen, onClose, updateUser }) => {
   );
 };
 
-export default UpdateModal;
