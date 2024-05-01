@@ -54,13 +54,10 @@ const UserDashboard = () => {
       },
   });
     const updatedUserData = updatedUserResponse.data.data.user;
-    responseMessage("refeshed!!!");
-
     // Dispatch the setUser action with the updated user data
     dispatch(setUser(updatedUserData));
     } catch (error) {
       console.log(error);
-      
     }
   } 
 
@@ -145,7 +142,7 @@ const UserDashboard = () => {
             <p>No languages are available.</p>
           )}
           <button onClick={openModal}>Add New</button>
-          <UpdateModal isOpen={isModalOpen} onClose={closeModal} />
+          <UpdateModal isOpen={isModalOpen} onClose={closeModal} updateUser={updateUser} />
         </section>
         <section className="skills">
           <h4>Skills</h4>

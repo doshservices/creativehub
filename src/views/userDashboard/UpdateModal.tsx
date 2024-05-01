@@ -1,28 +1,22 @@
 import React, { useEffect, useRef } from "react";
 import "./update.scss";
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
-import { setUser } from "../../state/slice/authSlice";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  updateUser: () => Promise<void>;
 }
 
-const UpdateModal: React.FC<Props> = ({ isOpen, onClose }) => {
+const UpdateModal: React.FC<Props> = ({ isOpen, onClose, updateUser }) => {
   const token = useSelector((state: any) => state?.auth?.authToken);
-  const user = useSelector((state: any) => state?.auth?.user);
-  const dispatch = useDispatch();
-  // console.log("userId: ", user._id);
-  
+  // const user = useSelector((state: any) => state?.auth?.user);
 
   const url =
     "https://creativehub-endpoints-production.up.railway.app/api/users/add-languages";
-
-  const updatedUserDataUrl =
-    `https://creativehub-endpoints-production.up.railway.app/api/api/users/${user._id}`;
 
     const onSubmit = async (values: any, actions: any) => {
       const updatedValues = {
@@ -43,19 +37,7 @@ const UpdateModal: React.FC<Props> = ({ isOpen, onClose }) => {
         console.log(response);
         responseMessage("Bargain sent Succesful");
         actions.resetForm();
-        
-        // Fetch the updated user data from the API
-        const updatedUserResponse = await axios.get(updatedUserDataUrl, {
-          headers: {
-              'Content-Type': 'application/json',
-          },
-      });
-        const updatedUserData = updatedUserResponse.data.data.user;
-        responseMessage("refeshed!!!");
-    
-        // Dispatch the setUser action with the updated user data
-        dispatch(setUser(updatedUserData));
-        
+        updateUser();
         onClose();
       } catch (error: any) {
         console.log(error);
