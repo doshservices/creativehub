@@ -27,6 +27,7 @@ interface mailBtn {
 interface resendBtn {
     type?: any;
     content: string;
+    onClick?: () => void
 }
 
 export const LinkBtn = (props: link) => {
@@ -59,6 +60,6 @@ export const MailBtn = (props: mailBtn) => {
 
 export const ResendBtn = (props: resendBtn) => {
     return (
-        <button className='resend-btn' type={props.type}>{props.content}</button>
+        <button onClick={props.onClick} className='resend-btn' type={props.type}>{props.content}</button>
     )
 }

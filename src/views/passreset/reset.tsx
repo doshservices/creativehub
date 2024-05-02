@@ -6,10 +6,12 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { errorMessage, responseMessage } from '../../utils/toast';
+import { useNavigate } from 'react-router-dom';
 
 const Reset = () => {
 
     const url = 'https://creativehub-endpoints-production.up.railway.app/api/users/forgot-password';
+    const navigate = useNavigate()
 
     const onSubmit = async (values: any) => {
         try {
@@ -18,11 +20,9 @@ const Reset = () => {
                     'Content-Type': 'application/json',
                 },
             })
-            console.log(response);
             responseMessage(`We have sent reset instructions to ${values?.email}`)
-            JSON.stringify(localStorage.setItem("resetMail", values?.email))
+            navigate('/new-password')
         } catch (error: any) {
-            console.log(error);
             errorMessage(error?.response?.data?.message)
         }
     }
@@ -51,7 +51,7 @@ const Reset = () => {
                 {errors.email && touched.email && <p className="error">{errors.email}</p>}
                 <SignBtn disabled={isSubmitting} className='purple' content={isSubmitting ? 'Reseting Password...' : 'Reset Password'} type='submit' />
             </form>
-            <p id='reset__password__resend'>Didn’t get reset instructions? <span>Resend Instructions</span></p>
+            {/* <p id='reset__password__resend'>Didn’t get reset instructions? <span>Resend Instructions</span></p> */}
         </section>
     )
 }
