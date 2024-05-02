@@ -6,14 +6,17 @@ import { useState } from "react";
 interface attributes {
   placeholder: string;
   className: string;
+  onSearch: (searchValue: string) => Promise<void>;
 }
 
 export const Search = (props: attributes) => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
+  const onSearch = props.onSearch;
 
   const handleSearch = () => {
     navigate(`/search/${searchValue}`);
+    onSearch(searchValue);
   };
 
   return (
