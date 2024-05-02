@@ -19,11 +19,11 @@ const Reset = () => {
                 },
             })
             console.log(response);
-            responseMessage(`We have sent reset instructions to your${values?.email}`)
+            responseMessage(`We have sent reset instructions to ${values?.email}`)
             JSON.stringify(localStorage.setItem("resetMail", values?.email))
         } catch (error: any) {
             console.log(error);
-            errorMessage(error.response.data.message)
+            errorMessage(error?.response?.data?.message)
         }
     }
 

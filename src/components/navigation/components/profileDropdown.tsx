@@ -17,9 +17,11 @@ export const ProfileDropdown: FC<prop> = ({ className, menuAction }) => {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-        // Dispatching the clearAuthToken action when the user logs out
         dispatch(clearUser());
         responseMessage("Logout Succesful")
+        setTimeout(() => {
+            window.location.reload()
+        }, 3000)
     }
 
     return (

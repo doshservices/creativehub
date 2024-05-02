@@ -53,7 +53,7 @@ export const GoogleBtn = (props: googleBtn) => {
 
 export const MailBtn = (props: mailBtn) => {
     return (
-        <a className='email-btn' href={props.href} target='_blank'>{props.content}</a>
+        <a className='email-btn' href={props.href} target='_self'>{props.content}</a>
     )
 }
 

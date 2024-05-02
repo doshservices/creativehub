@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     user: null,
-    authToken: null
+    authToken: null,
+    verificationMail: null
 };
 
 const userSlice = createSlice({
@@ -22,8 +23,21 @@ const userSlice = createSlice({
         clearAuthToken: (state) => {
             state.authToken = null;
         },
+        setVerificationMail: (state, action) => {
+            state.verificationMail = action.payload;
+        },
+        clearVerificationMail: (state) => {
+            state.verificationMail = null;
+        }
     },
 });
 
-export const { setUser, clearUser, setAuthToken, clearAuthToken } = userSlice.actions;
+export const {
+    setUser,
+    clearUser,
+    setAuthToken,
+    clearAuthToken,
+    setVerificationMail,
+    clearVerificationMail
+} = userSlice.actions;
 export default userSlice.reducer;
