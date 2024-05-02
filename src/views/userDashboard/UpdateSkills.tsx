@@ -29,6 +29,10 @@ export const UpdateSkills: React.FC<Props> = ({ isOpen, onClose }) => {
           }
         ]
       };
+
+      if (!navigator.onLine) { // Check if there is no internet connection
+        errorMessage("No internet connection. Please check your network settings.");
+      } 
       try {
         const response = await axios.post(url, updatedValues, {
           headers: {
@@ -42,7 +46,7 @@ export const UpdateSkills: React.FC<Props> = ({ isOpen, onClose }) => {
         newUpdateUser(user._id);
         onClose();
       } catch (error: any) {
-        console.log(error);
+        console.log("error: ", error.response.data.message);
         errorMessage(error.response.data.message);
         onClose();
       }
