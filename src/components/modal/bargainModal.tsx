@@ -11,11 +11,16 @@ import { useSelector } from "react-redux";
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  recieverId: string;
 }
 
-export const BargainModal: React.FC<Props> = ({ isOpen, onClose }) => {
+export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) => {
   // const [open, setOpen] = useState<boolean>(false)
   // const closeModal = () => setOpen(!open)
+  const user = useSelector((state: any) => state?.auth?.user);
+  console.log("user: ", user._id);
+  console.log("reciverId: ", recieverId);
+  
 
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -43,19 +48,22 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose }) => {
     "https://creativehub-endpoints-production.up.railway.app/api/creatives/bargain";
 
   const onSubmit = async (values: any, actions: any) => {
+    const updatedValues = {
+      ...values,
+      senderId: user._id,
+      recieverId: recieverId,
+    };
     try {
-      const response = await axios.post(url, values, {
+      const response = await axios.post(url, updatedValues, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
       console.log(response);
-      //   dispatch(setUser(response?.data?.data?.user))
-      //   dispatch(setAuthToken(response?.data?.data?.token))
       responseMessage("Bargain sent Succesful");
       actions.resetForm();
-      window.location.reload();
+      // window.location.reload();
       onClose();
     } catch (error: any) {
       console.log(error);
@@ -75,9 +83,9 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose }) => {
     handleSubmit,
   } = useFormik({
     initialValues: {
-      skills: "",
+      skill: "",
       projectDescription: "",
-      price: "",
+      proposedPrice: "",
     },
     onSubmit,
   });
@@ -98,36 +106,42 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose }) => {
           </h3>
         </section>
         <form onSubmit={handleSubmit}>
-          <section className={errors.skills && touched.skills ? "input-error" : ""}>
+          <section className={errors.skill && touched.skill ? "input-error" : ""}>
             <label htmlFor="">What can I help you with?</label>
             <input
               type="text"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.skills}
+              value={values.skill}
+              name='skill'
               placeholder="Need couple of songs produced"
             />
-            {errors.skills && touched.skills && <p className="error">{errors.skills}</p>}
+            {errors.skill && touched.skill && <p className="error">{errors.skill}</p>}
           </section>
           <section className={errors.projectDescription && touched.projectDescription ? "input-error" : ""}>
             <label htmlFor="">Tell me more about your project:</label>
             <textarea
               onChange={handleChange}
               onBlur={handleBlur}
+              name='projectDescription'
               value={values.projectDescription}
             ></textarea>
             {errors.projectDescription && touched.projectDescription && <p className="error">{errors.projectDescription}</p>}
           </section>
-          <section className={errors.price && touched.price ? "input-error" : ""}>
+          {/* <section>
+            <input type="text" name="" id="" />
+          </section> */}
+          <section className={errors.proposedPrice && touched.proposedPrice ? "input-error" : ""}>
             <label htmlFor="">Proposed Price</label>
             <input
               type="number"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.price}
+              name="proposedPrice"
+              value={values.proposedPrice}
               placeholder="Input a value (in $)"
             />
-            {errors.price && touched.price && <p className="error">{errors.price}</p>}
+            {errors.proposedPrice && touched.proposedPrice && <p className="error">{errors.proposedPrice}</p>}
           </section>
           {/* <button className='upload'>
                         <img src={upload} alt="" />
