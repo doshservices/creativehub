@@ -7,6 +7,10 @@ import { HowItWorks, WhyChoose } from './components/howItWorks';
 
 const Home: FC = () => {
 
+    const onSearch = async () => {
+        return Promise.resolve();
+    };
+
     return (
         <div id="home">
             <section id="home__hero">
@@ -14,7 +18,7 @@ const Home: FC = () => {
                     <div id='home__hero__overlay__content'>
                         <h1>Not Creative Right Now</h1>
                         <p>Hire top-notch mixing and mastering engineers, singers, songwriters, producers, studio musicians etc.</p>
-                        <Search placeholder="Try ‘Dancers in Accra’" className='' />
+                        <Search placeholder="Try ‘Dancers in Accra’" onSearch={onSearch} className='' />
                     </div>
                 </div>
             </section>

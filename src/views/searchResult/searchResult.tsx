@@ -15,13 +15,15 @@ import ballet from "./assets/ballet.png";
 
 const SearchResult: FC = () => {
   const [searchDetails, setSearchDetails] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { searchId } = useParams();
   const navigate = useNavigate();
   const token = useSelector((state: any) => state?.auth?.authToken);
+  
 
   const onSearch = async (searchId: any) => {
     const url = `https://creativehub-endpoints-production.up.railway.app/api/creatives/search?skill=${searchId}&location=&country=Nigeria&gender=MALE`;
-
+    setLoading(true)
     try {
       const response = await axios.get(url, {
         headers: {
@@ -31,13 +33,14 @@ const SearchResult: FC = () => {
       });
       console.log(response.data.data.creatives);
       setSearchDetails(response.data.data.creatives);
-
+      setLoading(false);
       // dispatch(setUser(response?.data?.data?.user))
       // dispatch(setAuthToken(response?.data?.data?.token))
       //   responseMessage(`Search for ${searchId} Succesful`)
       // window.location.reload()
     } catch (error: any) {
       console.log(error);
+      setLoading(false);
       // errorMessage(error.response.data.message)
     }
   };
@@ -49,6 +52,8 @@ const SearchResult: FC = () => {
   const seeMoreUser = (userId: any) => {
     navigate(`/talentinfo/${userId}`);
   };
+
+  
 
   console.log("search: ", searchDetails);
   return (
@@ -123,14 +128,19 @@ const SearchResult: FC = () => {
           </div>
         </section>
         <div className="search__results">
-          <Search placeholder="Dancers" className="result__bar" />
+          <Search placeholder="Dancers" onSearch={onSearch} className="result__bar" />
           <div className="items">
-            {searchDetails.map((results: object | any, index: number) => {
+           { loading ? (
+            <div>
+              <p>Loading....</p>
+            </div>
+           ) : searchDetails && searchDetails.length > 0 ? (
+             searchDetails.map((results: object | any, index: number) => {
               return (
                 <div className="results cursor" onClick={() => seeMoreUser(results._id)} key={index}>
                   {results.img ? <img src={ballet} /> : <img src={ballet} />}
                   <div>
-                    {results.skills && <h5>{results.skills[0]}</h5>}
+                    {results.skills && <h5>{searchId}</h5>}
                     <div className="name">
                       {results.firstName && (
                         <p>
@@ -166,7 +176,12 @@ const SearchResult: FC = () => {
                   </div>
                 </div>
               );
-            })}
+            })
+           ) : (
+            <div>
+              <p>No search results for {searchId} found </p>
+            </div>
+           )}
           </div>
         </div>
       </div>
