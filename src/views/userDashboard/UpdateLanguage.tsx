@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
 import { useUpdateUser } from "./UpdateUserApi";
+import { updateLanguageSchema } from "../../components/schemas";
 
 interface Props {
   isOpen: boolean;
@@ -63,6 +64,7 @@ export const UpdateLanguage: React.FC<Props> = ({ isOpen, onClose }) => {
       proficiency: "",
     },
     onSubmit,
+    validationSchema: updateLanguageSchema
   });
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -123,7 +125,7 @@ export const UpdateLanguage: React.FC<Props> = ({ isOpen, onClose }) => {
   
           <section className="submit-sec">
             <p onClick={onClose}>Cancel</p>
-          <button  disabled={isSubmitting} type="submit">{isSubmitting ? 'Bargaining...' : 'Bargain'}</button>
+          <button  disabled={isSubmitting} type="submit">{isSubmitting ? 'Updating...' : 'Update'}</button>
           </section>
         </form>
       </div>

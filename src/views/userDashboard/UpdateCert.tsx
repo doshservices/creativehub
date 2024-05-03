@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
 import { useUpdateUser } from "./UpdateUserApi";
-import { updateBioSchema } from "../../components/schemas";
+import { updateCertificatesSchema } from "../../components/schemas";
 
 interface Props {
   isOpen: boolean;
@@ -13,10 +13,9 @@ interface Props {
   // updateUser: () => Promise<void>;
 }
 
-export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
+export const UpdateCert: React.FC<Props> = ({ isOpen, onClose }) => {
   const token = useSelector((state: any) => state?.auth?.authToken);
   const user = useSelector((state: any) => state?.auth?.user);
-  console.log("bio: ", user.bio);
 
   const { newUpdateUser } = useUpdateUser();
 
@@ -26,6 +25,7 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
   const onSubmit = async (values: any, actions: any) => {
     const updatedValues = {
       ...values,
+      certificates: [...user.certificates, values.certificates],
       // "state": "Lagos",
       // "profilePicture": "{{$randomAbstractImage}}",
       // "certificates": [
@@ -52,7 +52,7 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
         },
       });
       console.log(response);
-      responseMessage("Description updated succesfully");
+      responseMessage("Certificate Link updated");
       actions.resetForm();
       newUpdateUser(user._id);
       onClose();
@@ -66,7 +66,7 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
   const {
     values,
     errors,
-    setValues,
+    // setValues,
     touched,
     isSubmitting,
     handleBlur,
@@ -74,17 +74,17 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
     handleSubmit,
   } = useFormik({
     initialValues: {
-      bio: user.bio,
+      certificates: "",
     },
     onSubmit,
-    validationSchema: updateBioSchema
+    validationSchema: updateCertificatesSchema
   });
-  useEffect(() => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      bio: user.bio,
-    }));
-  }, [user.bio, setValues]);
+  // useEffect(() => {
+  //   setValues((prevValues) => ({
+  //     ...prevValues,
+  //     bio: user.bio,
+  //   }));
+  // }, [user.bio, setValues]);
 
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -113,20 +113,20 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
           &times;
         </span>
         {/* Add form fields and update skill experience_level */}
-        <h2>Update Bio</h2>
+        <h2>Update Certificate</h2>
         {/* Add form fields here */}
         <form className="update-form" onSubmit={handleSubmit}>
-          <section className={errors.bio && touched.bio ? "input-error" : ""}>
-            <textarea
+          <section className={errors.certificates && touched.certificates ? "input-error" : ""}>
+            <input
               // type="text"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.bio}
-              name="bio"
-              placeholder="Edit Description"
+              value={values.certificates}
+              name="certificates"
+              placeholder="Input Certificate Link"
             />
-            {errors.bio && touched.bio && typeof errors.bio === "string" && (
-              <p className="error">{errors.bio}</p>
+            {errors.certificates && touched.certificates && typeof errors.certificates === "string" && (
+              <p className="error">{errors.certificates}</p>
             )}
           </section>
 

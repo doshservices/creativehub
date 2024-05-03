@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./dashboard.scss";
 import dp from "./assets/dp.svg";
-import pencil from "./assets/pencil.svg";
+// import pencil from "./assets/pencil.svg";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useUpdateUser } from "./UpdateUserApi";
@@ -9,6 +9,9 @@ import { UpdateLanguage } from "./UpdateLanguage";
 import { UpdateSkills } from "./UpdateSkills";
 import { Link } from "react-router-dom";
 import { UpdateBio } from "./UpdateBio";
+import { UpdateCert } from "./UpdateCert";
+import { UpdateUrls } from "./UpdateUrls";
+import { UpdateHourlyRate } from "./UpdateHourlyRate";
 // import { responseMessage } from "../../utils/toast";
 // import { useEffect } from "react";
 
@@ -17,6 +20,9 @@ const UserDashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false);
   const [isBioModalOpen, setIsBioModalOpen] = useState(false);
+  const [isCertModalOpen, setIsCertModalOpen] = useState(false);
+  const [isUrlsModalOpen, setIsUrlsModalOpen] = useState(false);
+  const [isHourlyRateModalOpen, setIsHourlyRateModalOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -24,6 +30,30 @@ const UserDashboard = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const openHourlyRateModal = () => {
+    setIsHourlyRateModalOpen(true);
+  };
+
+  const closeHourlyRateModal = () => {
+    setIsHourlyRateModalOpen(false);
+  };
+
+  const openUrlsModal = () => {
+    setIsUrlsModalOpen(true);
+  };
+
+  const closeUrlsModal = () => {
+    setIsUrlsModalOpen(false);
+  };
+
+  const openCertModal = () => {
+    setIsCertModalOpen(true);
+  };
+
+  const closeCertModal = () => {
+    setIsCertModalOpen(false);
   };
 
   const openBioModal = () => {
@@ -57,11 +87,20 @@ const UserDashboard = () => {
     year: "numeric",
   });
 
-  // interface User {
-  //   languages: { name: string, proficiency: string }[];
-  //   // Add other properties of the user object here
-  // }
-
+  function addCommasToNumber(number: number) {
+    // Convert number to string
+    let strNumber = number.toString();
+    // Split the string into groups of three digits from the right
+    const parts = [];
+    while (strNumber.length > 3) {
+      parts.unshift(strNumber.slice(-3));
+      strNumber = strNumber.slice(0, -3);
+    }
+    // Add the remaining digits
+    parts.unshift(strNumber);
+    // Join the parts with commas
+    return parts.join(',');
+  }
   // const token = useSelector((state: any) => state?.auth?.authToken);
   // const updatedUserDataUrl =
   //   `https://creativehub-endpoints-production.up.railway.app/api/users/${user._id}`;
@@ -98,7 +137,7 @@ const UserDashboard = () => {
             <span>
               {user.firstName} {user.lastName}
             </span>
-            <img src={pencil} alt="edit profile" />
+            {/* <img src={pencil} alt="edit profile" /> */}
           </h3>
         ) : (
           ""
@@ -132,12 +171,19 @@ const UserDashboard = () => {
           <UpdateBio isOpen={isBioModalOpen} onClose={closeBioModal} />
         </section>
         <section className="pricing">
-          <h4>Pricing</h4>
-          <p>
-            Concert<span>N{user.hourlyRate}/hr</span>
+          <h4>Hourly Rate</h4>
+          {user.hourlyRate && user.hourlyRate !== "" ? (
+            <p>
+            Hourly Rate - <span>₦{addCommasToNumber(user.hourlyRate)}/hr</span>
             {/* <img src={pencil} alt="" /> */}
           </p>
-          <button>Add New</button>
+          ) : (
+            <p>
+            No Hourly Rate available
+          </p>
+          )}
+           <button onClick={openHourlyRateModal}>Add New HourlyRate</button>
+          <UpdateHourlyRate isOpen={isHourlyRateModalOpen} onClose={closeHourlyRateModal} />
         </section>
         <section className="languages">
           <h4>Languages</h4>
@@ -202,9 +248,10 @@ const UserDashboard = () => {
           ) : (
             <p>No certificates are available.</p>
           )}
-          <button>Add New</button>
+           <button onClick={openCertModal}>Add New Certificate</button>
+          <UpdateCert isOpen={isCertModalOpen} onClose={closeCertModal} />
         </section>
-        <section className="media">
+        {/* <section className="media">
           <h4>Media</h4>
           <p>
             Media 1 - <span>Screams of Shalazah</span>
@@ -219,7 +266,7 @@ const UserDashboard = () => {
             <img src={pencil} alt="" />
           </p>
           <button>Add New</button>
-        </section>
+        </section> */}
         <section className="urls">
           <h4>URLs</h4>
           {user.urls.length !== 0 ? (
@@ -236,7 +283,8 @@ const UserDashboard = () => {
           ) : (
             <p>No urls are available.</p>
           )}
-          <button>Add New</button>
+            <button onClick={openUrlsModal}>Add New Urls</button>
+          <UpdateUrls isOpen={isUrlsModalOpen} onClose={closeUrlsModal} />
         </section>
       </div>
     </section>

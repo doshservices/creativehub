@@ -10,6 +10,8 @@ import { responseMessage } from "../../utils/toast";
 export const CreativesNotification = () => {
   const [fullView, setFullView] = useState<boolean>(false);
   const [notifications, setNotifications] = useState([]);
+  const [isAccepting, setIsAccepting] = useState(false);
+  const [isRejecting, setIsRejecting] = useState(false);
 
   const token = useSelector((state: any) => state?.auth?.authToken);
   const setView = () => setFullView(!fullView);
@@ -36,6 +38,7 @@ export const CreativesNotification = () => {
   }, []);
 
   const acceptBargain = async (id: any) => {
+    setIsAccepting(true);
     const url = `https://creativehub-endpoints-production.up.railway.app/api/creatives/bargain?id=${id}&response=ACCEPTED`;
     try {
       const response = await axios.patch(
@@ -51,12 +54,15 @@ export const CreativesNotification = () => {
       console.log(response);
       responseMessage("Bargain accepted Succesful");
       getAllNotifications();
+      setIsAccepting(false);
     } catch (error) {
       console.log(error);
+      setIsAccepting(false);
     }
   };
 
   const rejectBargain = async (id: any) => {
+    setIsRejecting(true);
     const url = `https://creativehub-endpoints-production.up.railway.app/api/creatives/bargain?id=${id}&response=DECLINED`;
     try {
       const response = await axios.patch(
@@ -72,8 +78,10 @@ export const CreativesNotification = () => {
       console.log(response);
       responseMessage("Bargain rejected");
       getAllNotifications();
+      setIsRejecting(false);
     } catch (error) {
       console.log(error);
+      setIsRejecting(false);
     }
   };
 
@@ -95,7 +103,7 @@ export const CreativesNotification = () => {
                 <>
                   <p className="headline">
                     {notification.docId._id} is in need of your services and
-                    have bargained for ${notification.docId.proposedPrice} per
+                    have bargained for ₦{notification.docId.proposedPrice} per
                     hour. Let him know your decision.
                   </p>
                   <div className="desc">
@@ -104,7 +112,7 @@ export const CreativesNotification = () => {
                   </div>
                   <div className="desc">
                     <h4>Proposed Pricing</h4>
-                    <p>${notification.docId.proposedPrice} per hour</p>
+                    <p>₦{notification.docId.proposedPrice} per hour</p>
                   </div>
                 </>
               )}
@@ -118,13 +126,13 @@ export const CreativesNotification = () => {
                       onClick={() => acceptBargain(notification.docId._id)}
                       className="accept"
                     >
-                      Accept
+                      {isAccepting ? "Accepting" : "Accept"}
                     </button>
                     <button
                       onClick={() => rejectBargain(notification.docId._id)}
                       className="reject"
                     >
-                      Reject
+                      {isRejecting ? "Rejecting" : "Reject"}
                     </button>
                   </div>
                 )}

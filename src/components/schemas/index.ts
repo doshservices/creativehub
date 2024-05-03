@@ -24,3 +24,34 @@ export const loginSchema = yup.object().shape({
     .required("Required"),
 });
 
+export const bargainSchema = yup.object().shape({
+  skill: yup.string().min(3, "Please enter the skill").required("Required"),
+  projectDescription: yup.string().min(3, "Please describe your project").required("Required"),
+  proposedPrice: yup.number().positive().integer().required("Required"),
+});
+
+export const updateLanguageSchema = yup.object().shape({
+  language: yup.string().min(3, "Please enter the language").required("Required"),
+  proficiency: yup.string().min(3, "Please enter your proficiency").required("Required"),
+});
+
+export const updateSkillsSchema = yup.object().shape({
+  skill: yup.string().min(3, "Please enter the skill").required("Required"),
+  experience_level: yup.string().min(3, "Please enter your experience level").required("Required"),
+});
+
+export const updateBioSchema = yup.object().shape({
+  bio: yup.string().min(3, "Please update your bio").required("Required"),
+});
+
+export const updatePriceSchema = yup.object().shape({
+  hourlyRate: yup.number().positive().integer().required("Required"),
+});
+
+export const updateCertificatesSchema = yup.object().shape({
+  certificates: yup.string().min(3, "Please update your certificates").required("Required"),
+});
+
+export const updateUrlsSchema = yup.object().shape({
+  urls: yup.string().min(3, "Please update your url").required("Required"),
+});
