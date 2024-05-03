@@ -13,8 +13,20 @@ import like from "./assets/like.svg";
 import star from "./assets/star.svg";
 import ballet from "./assets/ballet.png";
 
+interface SearchResultItem {
+  _id: string;
+  img?: string;
+  firstName?: string;
+  lastName?: string;
+  skills?: string[];
+  status?: string;
+  bio?: string;
+  gender?: string;
+}
+
 const SearchResult: FC = () => {
-  const [searchDetails, setSearchDetails] = useState([]);
+  const [searchDetails, setSearchDetails] = useState<SearchResultItem[]>([]);
+  const [searchOriginalDetails, setSearchOriginalDetails] = useState<SearchResultItem[]>([]);
   const [loading, setLoading] = useState(false);
   const { searchId } = useParams();
   const navigate = useNavigate();
@@ -32,6 +44,7 @@ const SearchResult: FC = () => {
       });
       console.log(response.data.data.creatives);
       setSearchDetails(response.data.data.creatives);
+      setSearchOriginalDetails(response.data.data.creatives);
       setLoading(false);
       // dispatch(setUser(response?.data?.data?.user))
       // dispatch(setAuthToken(response?.data?.data?.token))
@@ -51,6 +64,13 @@ const SearchResult: FC = () => {
   const seeMoreUser = (userId: any) => {
     navigate(`/talentinfo/${userId}`);
   };
+
+    const filterResultsByGender = (gender: string) => {
+      const filteredResults = searchOriginalDetails.filter(
+        (result) => result.gender === gender
+      );
+      setSearchDetails(filteredResults);
+    };
 
   console.log("search: ", searchDetails);
   return (
@@ -83,15 +103,15 @@ const SearchResult: FC = () => {
               {/* <img src={arrowup} alt="" /> */}
             </h4>
             {/* <input type="text" placeholder="Mombasa" /> */}
-            <label htmlFor="Male">
+            <label htmlFor="Male" onClick={() => filterResultsByGender("MALE")}>
               <input type="radio" id="Male" name="gender" value="Male" />
               Male
             </label>
-            <label htmlFor="Female">
+            <label htmlFor="Female" onClick={() => filterResultsByGender("FEMALE")}>
               <input type="radio" id="Female" name="gender" value="Female" />
               Female
             </label>
-            <label htmlFor="Mixed">
+            <label htmlFor="Mixed" onClick={() => onSearch(searchId)}>
               <input type="radio" id="Mixed" name="gender" value="Mixed" />
               Mixed
             </label>
