@@ -68,8 +68,8 @@ const App: FC = () => {
               <Route path='/signin' element={<Login />} />
               <Route path='/choice' element={<Chioce />} />
               <Route path='/signup' element={<SignIn />} />
-              <Route path='/newpassword' element={<NewPassword />} />
-              <Route path='/verifyemail' element={<Verify />} />
+              <Route path='/new-password' element={<NewPassword />} />
+              <Route path='/verify-email' element={<Verify />} />
               <Route path='/passwordreset' element={<Reset />} />
             </Route>
           </Routes>

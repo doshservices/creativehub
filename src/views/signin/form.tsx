@@ -1,15 +1,16 @@
 import '../../components/errors.scss';
 import axios from 'axios';
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { SignBtn } from "../../components/button/button";
 import { useFormik } from "formik";
 import { basicSchema } from "../../components/schemas";
 import { InputLabel, Passowrd } from "../../components/inputs/inputs";
 import { GenderSelect, RoleSelect, Select } from "../../components/inputs/select";
 import { errorMessage, responseMessage } from '../../utils/toast';
-import { setAuthToken, setUser } from '../../state/slice/authSlice';
-import { useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { setVerificationMail } from '../../state/slice/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../state/rootReducer';
+import { useNavigate } from 'react-router-dom';
 
 interface Payload {
     firstName: string,
@@ -25,18 +26,16 @@ interface Payload {
 const SigninForm: FC = () => {
 
     const signUpRole: string = JSON.parse(sessionStorage.getItem("user") as string)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const navigate = useNavigate()
+    const verifyMail = useSelector((state: RootState) => state?.auth?.verificationMail)
+    // console.log(verifyMail);
 
-    const location = useLocation()
-    const from = location.state?.from?.pathname || "/";
-
-    const redirectToHome = () => {
-        setTimeout(() => {
-            navigate(from, { replace: true });
-            window.location.reload()
-        }, 2500);
-    };
+    useEffect(() => {
+        if (verifyMail) {
+            navigate('/verify-email');
+        }
+    })
 
     const url = 'https://creativehub-endpoints-production.up.railway.app/api/users';
 
@@ -48,11 +47,12 @@ const SigninForm: FC = () => {
                 },
             })
             console.log(response);
-            dispatch(setUser(response?.data?.data?.user))
-            dispatch(setAuthToken(response?.data?.data?.token))
+            dispatch(setVerificationMail(response?.data?.data?.user?.email))
             responseMessage("Account Succesfully Created")
             actions.resetForm();
-            redirectToHome()
+            setTimeout(() => {
+                window.location.reload()
+            }, 2000)
         } catch (error: any) {
             console.log(error);
             errorMessage(error.response.data.message)

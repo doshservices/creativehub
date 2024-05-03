@@ -27,6 +27,7 @@ interface mailBtn {
 interface resendBtn {
     type?: any;
     content: string;
+    onClick?: () => void
 }
 
 export const LinkBtn = (props: link) => {
@@ -53,12 +54,12 @@ export const GoogleBtn = (props: googleBtn) => {
 
 export const MailBtn = (props: mailBtn) => {
     return (
-        <a className='email-btn' href={props.href} target='_blank'>{props.content}</a>
+        <a className='email-btn' href={props.href} target='_self'>{props.content}</a>
     )
 }
 
 export const ResendBtn = (props: resendBtn) => {
     return (
-        <button className='resend-btn' type={props.type}>{props.content}</button>
+        <button onClick={props.onClick} className='resend-btn' type={props.type}>{props.content}</button>
     )
 }
