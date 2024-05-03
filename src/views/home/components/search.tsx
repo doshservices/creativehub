@@ -22,7 +22,9 @@ export const Search = (props: attributes) => {
 
   return (
     <div id="home__search" className={props.className}>
-      <div id="home__search__bar">
+      
+        <form action=""  onSubmit={handleSearch}>
+        <div id="home__search__bar">
         <img src={search} alt="search" />
         <input
           type="search"
@@ -31,8 +33,10 @@ export const Search = (props: attributes) => {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <button onClick={handleSearch} type="submit">Search</button>
-      </div>
+        <button type="submit">Search</button>
+        </div>
+        </form>
+      
       <div className="top__searched">
         <p>Top Searched:</p>
         <div>
