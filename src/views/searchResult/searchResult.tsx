@@ -22,12 +22,19 @@ interface SearchResultItem {
   status?: string;
   bio?: string;
   gender?: string;
+  country?: string;
+  hourlyRate?: string;
 }
 
 const SearchResult: FC = () => {
   const [searchDetails, setSearchDetails] = useState<SearchResultItem[]>([]);
-  const [searchOriginalDetails, setSearchOriginalDetails] = useState<SearchResultItem[]>([]);
+  const [searchOriginalDetails, setSearchOriginalDetails] = useState<
+    SearchResultItem[]
+  >([]);
   const [loading, setLoading] = useState(false);
+  const [countryValue, setCountryValue] = useState("");
+  const [hourlyValue, setHourlyValue] = useState("");
+
   const { searchId } = useParams();
   const navigate = useNavigate();
   const token = useSelector((state: any) => state?.auth?.authToken);
@@ -46,10 +53,6 @@ const SearchResult: FC = () => {
       setSearchDetails(response.data.data.creatives);
       setSearchOriginalDetails(response.data.data.creatives);
       setLoading(false);
-      // dispatch(setUser(response?.data?.data?.user))
-      // dispatch(setAuthToken(response?.data?.data?.token))
-      //   responseMessage(`Search for ${searchId} Succesful`)
-      // window.location.reload()
     } catch (error: any) {
       console.log(error);
       setLoading(false);
@@ -65,12 +68,68 @@ const SearchResult: FC = () => {
     navigate(`/talentinfo/${userId}`);
   };
 
-    const filterResultsByGender = (gender: string) => {
-      const filteredResults = searchOriginalDetails.filter(
-        (result) => result.gender === gender
-      );
-      setSearchDetails(filteredResults);
-    };
+  const filterResultsByGender = (gender: string) => {
+    const filteredResults = searchOriginalDetails.filter(
+      (result) => result.gender === gender
+    );
+    setSearchDetails(filteredResults);
+  };
+
+  const filterResultsByLocation = (country: string) => {
+    const filteredResults = searchOriginalDetails.filter(
+      (result) => result.country === country
+    );
+    setSearchDetails(filteredResults);
+    setCountryValue("");
+  };
+
+  const filterByHourlyRate = (hourlyRate: string) => {
+    const filteredResults = searchOriginalDetails.filter(
+      (result) => result.hourlyRate === hourlyRate
+    );
+    setSearchDetails(filteredResults);
+    setHourlyValue("");
+  };
+  const filterBy10kbelow = () => {
+     const filteredResults = searchOriginalDetails.filter(
+      (result) => result.hourlyRate && parseInt(result.hourlyRate) <= 10000
+    );
+    setSearchDetails(filteredResults);
+    setHourlyValue("");
+  };
+  const filterBy101kabove = () => {
+    const filteredResults = searchOriginalDetails.filter(
+     (result) => result.hourlyRate && parseInt(result.hourlyRate) >= 101000
+   );
+   setSearchDetails(filteredResults);
+   setHourlyValue("");
+ };
+ const filterBetween11kAnd50k = () => {
+  const filteredResults = searchOriginalDetails.filter(
+      (result) => {
+          if (result.hourlyRate) {
+              const rate = parseInt(result.hourlyRate);
+              return rate >= 11000 && rate <= 50000;
+          }
+          return false;
+      }
+  );
+  setSearchDetails(filteredResults);
+  setHourlyValue("");
+};
+const filterBetween51kAnd100k = () => {
+  const filteredResults = searchOriginalDetails.filter(
+      (result) => {
+          if (result.hourlyRate) {
+              const rate = parseInt(result.hourlyRate);
+              return rate >= 51000 && rate <= 100000;
+          }
+          return false;
+      }
+  );
+  setSearchDetails(filteredResults);
+  setHourlyValue("");
+};
 
   console.log("search: ", searchDetails);
   return (
@@ -85,16 +144,43 @@ const SearchResult: FC = () => {
           <div className="location">
             <h4>
               <span>Location</span>
-              <img src={arrowup} alt="" />
+              {/* <img src={arrowup} alt="" /> */}
             </h4>
-            <input type="text" placeholder="eg, Spain" />
-            <label htmlFor="">
-              <input type="checkbox" />
+            {/* <form action=""> */}
+            <input
+              type="number"
+              value={countryValue}
+              onChange={(e) => setCountryValue(e.target.value)}
+              placeholder="eg, Spain"
+            />
+            <button onClick={() => filterResultsByLocation(countryValue)}>
+              Filter by Location
+            </button>
+            {/* </form> */}
+            <label htmlFor="any" onClick={() => onSearch(searchId)}>
+              <input type="radio" id="any" name="location" />
               Any Location
             </label>
-            <label htmlFor="">
-              <input type="checkbox" />
-              Mombasa
+            <label
+              htmlFor="Nigeria"
+              onClick={() => filterResultsByLocation("Nigeria")}
+            >
+              <input type="radio" id="Nigeria" name="location" />
+              Nigeria
+            </label>
+            <label
+              htmlFor="Spain"
+              onClick={() => filterResultsByLocation("Spain")}
+            >
+              <input type="radio" id="Spain" name="location" />
+              Spain
+            </label>
+            <label
+              htmlFor="South-Africa"
+              onClick={() => filterResultsByLocation("South Africa")}
+            >
+              <input type="radio" id="South-Africa" name="location" />
+              South Africa
             </label>
           </div>
           <div className="location">
@@ -107,7 +193,10 @@ const SearchResult: FC = () => {
               <input type="radio" id="Male" name="gender" value="Male" />
               Male
             </label>
-            <label htmlFor="Female" onClick={() => filterResultsByGender("FEMALE")}>
+            <label
+              htmlFor="Female"
+              onClick={() => filterResultsByGender("FEMALE")}
+            >
               <input type="radio" id="Female" name="gender" value="Female" />
               Female
             </label>
@@ -121,32 +210,40 @@ const SearchResult: FC = () => {
               <span>Hourly Rate</span>
               <img src={arrowup} alt="" />
             </h4>
-            <input type="text" placeholder="Input rate" />
-            <label htmlFor="">
-              <input type="checkbox" />
+            <input
+              type="number"
+              value={hourlyValue}
+              onChange={(e) => setHourlyValue(e.target.value)}
+              placeholder="Input rate"
+            />
+            <button onClick={() => filterByHourlyRate(hourlyValue)}>
+              Filter by Rate
+            </button>
+            <label htmlFor="Any-hour" onClick={() => onSearch(searchId)}>
+              <input type="radio" id="Any-hour" name="hour" />
               Any hourly rate
             </label>
-            <label htmlFor="">
-              <input type="checkbox" />
-              $10 and below
+            <label htmlFor="below-10k" onClick={filterBy10kbelow}>
+              <input type="radio" name="hour" id="below-10k" />
+              ₦10k and below
             </label>
-            <label htmlFor="">
-              <input type="checkbox" />
-              $11 - 50$
+            <label htmlFor="11and50" onClick={filterBetween11kAnd50k}>
+              <input type="radio" name="hour" id="11and50" />
+              ₦11k - ₦50k
             </label>
-            <label htmlFor="">
-              <input type="checkbox" />
-              $50 - $100
+            <label htmlFor="51and100" onClick={filterBetween51kAnd100k}>
+              <input type="radio" name="hour" id="51and100" />
+              ₦51k - ₦100k
             </label>
-            <label htmlFor="">
-              <input type="checkbox" />
-              $100 and above
+            <label htmlFor="101above" onClick={filterBy101kabove}>
+              <input type="radio" id="101above" name="hour" />
+              ₦101k and above
             </label>
           </div>
         </section>
         <div className="search__results">
           <Search
-            placeholder="Dancers"
+            placeholder="eg. Singer"
             onSearch={onSearch}
             className="result__bar"
           />

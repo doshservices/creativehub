@@ -182,7 +182,7 @@ const UserDashboard = () => {
             No Hourly Rate available
           </p>
           )}
-           <button onClick={openHourlyRateModal}>Add New HourlyRate</button>
+           <button onClick={openHourlyRateModal}>Edit HourlyRate</button>
           <UpdateHourlyRate isOpen={isHourlyRateModalOpen} onClose={closeHourlyRateModal} />
         </section>
         <section className="languages">

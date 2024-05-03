@@ -17,6 +17,7 @@ export const Search = (props: attributes) => {
   const handleSearch = () => {
     navigate(`/search/${searchValue}`);
     onSearch(searchValue);
+    setSearchValue("")
   };
 
   return (
