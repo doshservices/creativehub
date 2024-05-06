@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+
 interface UserDetails {
     firstName: string;
     lastName: string;
@@ -58,10 +59,10 @@ const TalentInfo = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log("reviews: ", response.data.data);
+            // console.log("reviews: ", response.data.data);
             setSearchReviews(response.data.data.reviews);
         } catch (error: any) {
-            console.log(error);
+            // console.log(error);
         }
     };
 
@@ -201,4 +202,5 @@ const TalentInfo = () => {
         </section>
     )
 }
+
 export default TalentInfo;

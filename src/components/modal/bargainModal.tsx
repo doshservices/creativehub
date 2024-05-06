@@ -107,7 +107,7 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) =
           </h3>
         </section>
         <form onSubmit={handleSubmit}>
-          <section className={errors.skill && touched.skill ? "input-error" : ""}>
+          <section>
             <label htmlFor="">What can I help you with?</label>
             <input
               type="text"
@@ -116,23 +116,25 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) =
               value={values.skill}
               name='skill'
               placeholder="Need couple of songs produced"
+              className={errors.skill && touched.skill ? "input-error" : ""}
             />
             {errors.skill && touched.skill && <p className="error">{errors.skill}</p>}
           </section>
-          <section className={errors.projectDescription && touched.projectDescription ? "input-error" : ""}>
+          <section>
             <label htmlFor="">Tell me more about your project:</label>
             <textarea
               onChange={handleChange}
               onBlur={handleBlur}
               name='projectDescription'
               value={values.projectDescription}
+              className={errors.projectDescription && touched.projectDescription ? "input-error" : ""}
             ></textarea>
             {errors.projectDescription && touched.projectDescription && <p className="error">{errors.projectDescription}</p>}
           </section>
           {/* <section>
             <input type="text" name="" id="" />
           </section> */}
-          <section className={errors.proposedPrice && touched.proposedPrice ? "input-error" : ""}>
+          <section>
             <label htmlFor="">Proposed Price</label>
             <input
               type="number"
@@ -141,6 +143,7 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) =
               name="proposedPrice"
               value={values.proposedPrice}
               placeholder="Input a value (in ₦)"
+              className={errors.proposedPrice && touched.proposedPrice ? "input-error" : ""}
             />
             {errors.proposedPrice && touched.proposedPrice && <p className="error">{errors.proposedPrice}</p>}
           </section>
