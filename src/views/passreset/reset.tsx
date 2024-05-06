@@ -22,6 +22,7 @@ const Reset = () => {
             })
             responseMessage(`We have sent reset instructions to ${values?.email}`)
             navigate('/new-password')
+            return response;
         } catch (error: any) {
             errorMessage(error?.response?.data?.message)
         }

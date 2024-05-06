@@ -5,9 +5,9 @@ import './index.scss';
 import { useState } from 'react';
 
 interface Props {
-    name: string;
-    recieverId: string;
-    reviewsNumber: number;
+    name?: string;
+    recieverId?: string;
+    reviewsNumber?: number;
 }
 
 export const Toggler = (props: Props) => {
@@ -24,9 +24,9 @@ export const Toggler = (props: Props) => {
             </div>
             <Link to=''  >
                 <div onClick={() => { openModal() }}>
-                Book {props.name}
+                    Book {props.name}
                 </div>
-                
+
             </Link>
             <BargainModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} recieverId={props.recieverId} />
         </header>

@@ -22,9 +22,9 @@ const NewPassword: FC = () => {
                     'Content-Type': 'application/json',
                 },
             })
-            // response
             responseMessage(`Password reset succesful`)
             navigate('/signin')
+            return response;
         } catch (error: any) {
             // console.log(error);
             errorMessage(error?.response?.data?.message)

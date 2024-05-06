@@ -23,48 +23,48 @@ interface UserDetails {
     state: string;
     bio: string;
     skills: string[];
-  }
+}
 
 const TalentInfo = () => {
     const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
     const { userId } = useParams();
     const [searchReviews, setSearchReviews] = useState([]);
     const token = useSelector((state: any) => state?.auth?.authToken);
-    const user = useSelector((state: any) => state?.auth?.user);
-  
+    // const user = useSelector((state: any) => state?.auth?.user);
+
     const onUser = async (userId: any) => {
-      const url = `https://creativehub-endpoints-production.up.railway.app/api/users/${userId}`;
-      try {
-        const response = await axios.get(url, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        // console.log(response.data.data.user);
-        setUserDetails(response.data.data.user);
-      } catch (error: any) {
-        console.log(error);
-      }
+        const url = `https://creativehub-endpoints-production.up.railway.app/api/users/${userId}`;
+        try {
+            const response = await axios.get(url, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            // console.log(response.data.data.user);
+            setUserDetails(response.data.data.user);
+        } catch (error: any) {
+            console.log(error);
+        }
     };
     const getUserReviews = async () => {
         const userId = userDetails?._id;
-        
+
         const url = `https://creativehub-endpoints-production.up.railway.app/api/creatives/review?userId=${userId}`;
-    
+
         try {
-          const response = await axios.get(url, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          console.log("reviews: ", response.data.data);
-          setSearchReviews(response.data.data.reviews);
+            const response = await axios.get(url, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log("reviews: ", response.data.data);
+            setSearchReviews(response.data.data.reviews);
         } catch (error: any) {
-          console.log(error);
+            console.log(error);
         }
-      };
-      
+    };
+
     // console.log("reviews details: ", searchReviews);
     // console.log("user details: ", userDetails?._id);
 
@@ -72,9 +72,7 @@ const TalentInfo = () => {
         onUser(userId);
         getUserReviews();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []);
-  
-  
+    }, []);
 
     return (
         <section id="talent__info">
@@ -91,11 +89,11 @@ const TalentInfo = () => {
                         <img src={star} alt="" />
                         <img src={star} alt="" /> <p>(452)</p>
                     </div>
-                   {userDetails?.country && userDetails.state ? (
-                     <p>{userDetails?.state}, {userDetails?.country}</p>
-                   ) : userDetails?.country && (
-                    <p>{userDetails?.country}</p>
-                   )}
+                    {userDetails?.country && userDetails.state ? (
+                        <p>{userDetails?.state}, {userDetails?.country}</p>
+                    ) : userDetails?.country && (
+                        <p>{userDetails?.country}</p>
+                    )}
                 </div>
             </section>
             <div id="talent__info__profile">
@@ -121,12 +119,12 @@ const TalentInfo = () => {
                                                         <img src={star} alt="" />
                                                         <img src={star} alt="" />
                                                         <img src={star} alt="" />
-                                                        <img src={star} alt="" />   
+                                                        <img src={star} alt="" />
                                                     </div>
                                                     {review.userId.firstName && (
                                                         <p>
-                                                        5 days ago by {review.userId.firstName} {review.userId.lastName}
-                                                    </p>
+                                                            5 days ago by {review.userId.firstName} {review.userId.lastName}
+                                                        </p>
                                                     )}
                                                 </div>
                                             </div>
