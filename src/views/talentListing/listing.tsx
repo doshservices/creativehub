@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 const Listing = () => {
   const [creativesDetails, setCreativesDetails] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
   const token = useSelector((state: any) => state?.auth?.authToken);
 
@@ -39,9 +40,14 @@ const Listing = () => {
 
   // console.log("creatives: ", creativesDetails);
 
-
   const seeMoreUser = (userId: any) => {
     navigate(`/talentinfo/${userId}`);
+  };
+
+  const handleSearch = () => {
+    navigate(`/search/${searchValue}`);
+    // onSearch(searchValue);
+    setSearchValue("");
   };
 
   return (
@@ -56,15 +62,24 @@ const Listing = () => {
         </div>
       </div>
       <div id="listing__dancers">
-        <div className="search">
-          <input type="text" placeholder="Try 'Mombasa'" />
+        <form onSubmit={handleSearch} className="search">
+          <input
+            type="text"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Try 'Mombasa'"
+          />
           <img src={search} alt="" />
-          <button>Filter</button>
-        </div>
+          <button type="submit">Filter</button>
+        </form>
         <div className="dancers">
           {creativesDetails.map((results: object | any, index: number) => {
             return (
-              <div className="dancer cursor" onClick={() => seeMoreUser(results._id)} key={index}>
+              <div
+                className="dancer cursor"
+                onClick={() => seeMoreUser(results._id)}
+                key={index}
+              >
                 <div className="col">
                   <div>
                     {results.img ? (
@@ -74,9 +89,9 @@ const Listing = () => {
                     )}
                   </div>
                   <div className="desc">
-                    {results.skills &&
-                      <h5 className="skill" >{results.skills[0]?.skill}</h5>
-                    }
+                    {results.skills && (
+                      <h5 className="skill">{results.skills[0]?.skill}</h5>
+                    )}
                     <div className="name">
                       {results.firstName && (
                         <p>

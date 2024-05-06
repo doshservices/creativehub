@@ -7,7 +7,7 @@ import { ExploreDropdown } from './components/components';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { FC, useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { BargainModal } from '../modal/bargainModal';
+// import { BargainModal } from '../modal/bargainModal';
 
 export const Logo = () => {
     return (
@@ -112,7 +112,7 @@ const HeaderNav: FC = () => {
                                 <NavLink to='/'>Bargain</NavLink>
 
                             </li>
-                            <BargainModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                            {/* <BargainModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> */}
                             <li onClick={closeMenu}>
                                 <NavLink to='/talentlisting'>Find Talent</NavLink>
                             </li>

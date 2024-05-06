@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
 import { useUpdateUser } from "./UpdateUserApi";
-import { updateBioSchema } from "../../components/schemas";
+import { updateUrlsSchema } from "../../components/schemas";
 
 interface Props {
   isOpen: boolean;
@@ -13,10 +13,9 @@ interface Props {
   // updateUser: () => Promise<void>;
 }
 
-export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
+export const UpdateUrls: React.FC<Props> = ({ isOpen, onClose }) => {
   const token = useSelector((state: any) => state?.auth?.authToken);
   const user = useSelector((state: any) => state?.auth?.user);
-  console.log("bio: ", user.bio);
 
   const { newUpdateUser } = useUpdateUser();
 
@@ -26,9 +25,10 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
   const onSubmit = async (values: any, actions: any) => {
     const updatedValues = {
       ...values,
+      urls: [...user.urls, values.urls],
       // "state": "Lagos",
       // "profilePicture": "{{$randomAbstractImage}}",
-      // "certificates": [
+      // "urls": [
       //     "https://jozzdev.vercel.app/",
       // ],
       // "urls": [
@@ -52,7 +52,7 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
         },
       });
       console.log(response);
-      responseMessage("Description updated succesfully");
+      responseMessage("Urls Link updated");
       actions.resetForm();
       newUpdateUser(user._id);
       onClose();
@@ -66,7 +66,7 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
   const {
     values,
     errors,
-    setValues,
+    // setValues,
     touched,
     isSubmitting,
     handleBlur,
@@ -74,17 +74,17 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
     handleSubmit,
   } = useFormik({
     initialValues: {
-      bio: user.bio,
+      urls: "",
     },
     onSubmit,
-    validationSchema: updateBioSchema
+    validationSchema: updateUrlsSchema
   });
-  useEffect(() => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      bio: user.bio,
-    }));
-  }, [user.bio, setValues]);
+  // useEffect(() => {
+  //   setValues((prevValues) => ({
+  //     ...prevValues,
+  //     bio: user.bio,
+  //   }));
+  // }, [user.bio, setValues]);
 
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -113,20 +113,20 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
           &times;
         </span>
         {/* Add form fields and update skill experience_level */}
-        <h2>Update Bio</h2>
+        <h2>Update URLs</h2>
         {/* Add form fields here */}
         <form className="update-form" onSubmit={handleSubmit}>
-          <section className={errors.bio && touched.bio ? "input-error" : ""}>
-            <textarea
+          <section className={errors.urls && touched.urls ? "input-error" : ""}>
+            <input
               // type="text"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.bio}
-              name="bio"
-              placeholder="Edit Description"
+              value={values.urls}
+              name="urls"
+              placeholder="Input Url Link"
             />
-            {errors.bio && touched.bio && typeof errors.bio === "string" && (
-              <p className="error">{errors.bio}</p>
+            {errors.urls && touched.urls && typeof errors.urls === "string" && (
+              <p className="error">{errors.urls}</p>
             )}
           </section>
 

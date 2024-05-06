@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
 import { useUpdateUser } from "./UpdateUserApi";
+import { updateSkillsSchema } from "../../components/schemas";
 
 interface Props {
   isOpen: boolean;
@@ -67,6 +68,7 @@ export const UpdateSkills: React.FC<Props> = ({ isOpen, onClose }) => {
       experience_level: "",
     },
     onSubmit,
+    validationSchema: updateSkillsSchema
   });
 
   const modalRef = useRef<HTMLDivElement>(null);

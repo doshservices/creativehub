@@ -7,6 +7,7 @@ import { errorMessage, responseMessage } from "../../utils/toast";
 import axios from "axios";
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
+import { bargainSchema } from "../schemas";
 
 interface Props {
   isOpen: boolean;
@@ -87,6 +88,7 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) =
       proposedPrice: "",
     },
     onSubmit,
+    validationSchema: bargainSchema
   });
 
   return (
@@ -138,7 +140,7 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) =
               onBlur={handleBlur}
               name="proposedPrice"
               value={values.proposedPrice}
-              placeholder="Input a value (in $)"
+              placeholder="Input a value (in ₦)"
             />
             {errors.proposedPrice && touched.proposedPrice && <p className="error">{errors.proposedPrice}</p>}
           </section>
