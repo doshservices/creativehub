@@ -12,7 +12,7 @@ import { bargainSchema } from "../schemas";
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  recieverId: string;
+  recieverId?: string;
 }
 
 export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) => {
@@ -21,7 +21,6 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) =
   const user = useSelector((state: any) => state?.auth?.user);
   console.log("user: ", user._id);
   console.log("reciverId: ", recieverId);
-  
 
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -148,8 +147,8 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) =
           {/* <button className='upload'>
                         <img src={upload} alt="" />
                         <span>Upload MP3(Optional)</span>
-                    </button> */}   
-          <button  disabled={isSubmitting} type="submit">{isSubmitting ? 'Bargaining...' : 'Bargain'}</button>
+                    </button> */}
+          <button disabled={isSubmitting} type="submit">{isSubmitting ? 'Bargaining...' : 'Bargain'}</button>
         </form>
       </div>
     </div>
