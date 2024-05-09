@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef } from "react";
 import "./update.scss";
 import { useFormik } from "formik";
@@ -12,10 +13,19 @@ interface Props {
   onClose: () => void;
   // updateUser: () => Promise<void>;
 }
+interface AuthState {
+  auth: {
+    authToken: string | null;
+    user: {
+      _id: any;
+      certificates: string[];
+    } | null;
+  };
+}
 
 export const UpdateCert: React.FC<Props> = ({ isOpen, onClose }) => {
-  const token = useSelector((state: any) => state?.auth?.authToken);
-  const user = useSelector((state: any) => state?.auth?.user);
+  const token = useSelector((state: AuthState) => state?.auth?.authToken);
+  const user = useSelector((state: AuthState) => state?.auth?.user);
 
   const { newUpdateUser } = useUpdateUser();
 
@@ -25,17 +35,7 @@ export const UpdateCert: React.FC<Props> = ({ isOpen, onClose }) => {
   const onSubmit = async (values: any, actions: any) => {
     const updatedValues = {
       ...values,
-      certificates: [...user.certificates, values.certificates],
-      // "state": "Lagos",
-      // "profilePicture": "{{$randomAbstractImage}}",
-      // "certificates": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "urls": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "hourlyRate": "15",
-      // "country": "Nigeria"
+      certificates: [...user?.certificates ?? [], values.certificates],
     };
 
     if (!navigator.onLine) {
@@ -54,7 +54,7 @@ export const UpdateCert: React.FC<Props> = ({ isOpen, onClose }) => {
       console.log(response);
       responseMessage("Certificate Link updated");
       actions.resetForm();
-      newUpdateUser(user._id);
+      newUpdateUser(user?._id);
       onClose();
     } catch (error: any) {
       console.log("error: ", error.response.data.message);

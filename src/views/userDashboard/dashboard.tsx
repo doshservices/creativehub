@@ -12,9 +12,6 @@ import { UpdateCert } from "./UpdateCert";
 import { UpdateUrls } from "./UpdateUrls";
 import { UpdateHourlyRate } from "./UpdateHourlyRate";
 import { useUpdateUser } from "../../apis/UpdateUserApi";
-import { number } from "yup";
-// import { responseMessage } from "../../utils/toast";
-// import { useEffect } from "react";
 
 interface Language {
   language: string | null;
