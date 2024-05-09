@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef } from "react";
 import "./update.scss";
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
-import { useUpdateUser } from "./UpdateUserApi";
 import { updateBioSchema } from "../../components/schemas";
+import { useUpdateUser } from "../../apis/UpdateUserApi";
 
 interface Props {
   isOpen: boolean;
@@ -13,10 +14,20 @@ interface Props {
   // updateUser: () => Promise<void>;
 }
 
+interface AuthState {
+  auth: {
+    authToken: string | null;
+    user: {
+      _id: any;
+      bio: string
+    } | null;
+  };
+}
+
 export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
-  const token = useSelector((state: any) => state?.auth?.authToken);
-  const user = useSelector((state: any) => state?.auth?.user);
-  console.log("bio: ", user.bio);
+  const token = useSelector((state: AuthState) => state?.auth?.authToken);
+  const user = useSelector((state: AuthState) => state?.auth?.user);
+
 
   const { newUpdateUser } = useUpdateUser();
 
@@ -26,16 +37,6 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
   const onSubmit = async (values: any, actions: any) => {
     const updatedValues = {
       ...values,
-      // "state": "Lagos",
-      // "profilePicture": "{{$randomAbstractImage}}",
-      // "certificates": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "urls": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "hourlyRate": "15",
-      // "country": "Nigeria"
     };
 
     if (!navigator.onLine) {
@@ -54,8 +55,9 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
       console.log(response);
       responseMessage("Description updated succesfully");
       actions.resetForm();
-      newUpdateUser(user._id);
+      newUpdateUser(user?._id || 0);
       onClose();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.log("error: ", error.response.data.message);
       errorMessage(error.response.data.message);
@@ -74,7 +76,7 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
     handleSubmit,
   } = useFormik({
     initialValues: {
-      bio: user.bio,
+      bio: user?.bio,
     },
     onSubmit,
     validationSchema: updateBioSchema
@@ -82,9 +84,9 @@ export const UpdateBio: React.FC<Props> = ({ isOpen, onClose }) => {
   useEffect(() => {
     setValues((prevValues) => ({
       ...prevValues,
-      bio: user.bio,
+      bio: user?.bio,
     }));
-  }, [user.bio, setValues]);
+  }, [user?.bio, setValues]);
 
   const modalRef = useRef<HTMLDivElement>(null);
 

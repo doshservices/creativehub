@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import './jobs.scss';
-import stars from '../searchResult/assets/star.svg';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import "./jobs.scss";
+import stars from "../searchResult/assets/star.svg";
+import { useEffect } from "react";
+import GetReviewsApi from "../../apis/GetReviews";
 
 // const reviews: Array<object> = [
 //     {
@@ -57,75 +56,63 @@ import { useSelector } from 'react-redux';
 // ]
 
 const RecentJobs = () => {
-    const [searchReviews, setSearchReviews] = useState([]);
-    const token = useSelector((state: any) => state?.auth?.authToken);
-    const user = useSelector((state: any) => state?.auth?.user);
+  const { searchReviews, getReviews, loading, error } = GetReviewsApi();
 
-  const getReviews = async () => {
-    const userId = user._id;
-    const url = `https://creativehub-endpoints-production.up.railway.app/api/creatives/review?userId=${userId}`;
-
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log("reviews: ", response.data.data);
-      setSearchReviews(response.data.data.reviews);
-    } catch (error: any) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
     getReviews();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log("new reviews: ", searchReviews);
-  
+  // console.log("new reviews: ", searchReviews);
 
-    return (
-        <section id="recent__jobs">
-            <section id="recent__jobs__intro">
-                <div>
-                    <h2>Not Creative Right Now</h2>
-                    <p>Hire top-notch mixing and mastering engineers, singers, songwriters, producers, studio musicians etc.</p>
-                </div>
-            </section>
-            <section id="recent__jobs__reviews">
-                <h3>RECENT REVIEWS</h3>
-                <div className="stars">
-                    <img src={stars} alt="" />
-                    <img src={stars} alt="" />
-                    <img src={stars} alt="" />
-                    <img src={stars} alt="" />
-                    <img src={stars} alt="" />
-                </div>
-                <div className="reviews">
-                    {searchReviews && searchReviews.length !== 0 ? (
-                      <div>
-                        {searchReviews.map((review: any, index: number) => {
-                        return (
-                            <div key={index}>
-                                {review.comment && (
-                                    <p>{review.comment}</p>
-                                )}
-                                {review.userId.firstName && (
-                                    <p>Job completed by: {review.userId.firstName} {" "}{review.userId.lastName} </p>
-                                )}
-                            </div>
-                        )
-                    })}
-                      </div>
-                    ) : (
-                      <div>No reviews</div>
+  return (
+    <section id="recent__jobs">
+      <section id="recent__jobs__intro">
+        <div>
+          <h2>Not Creative Right Now</h2>
+          <p>
+            Hire top-notch mixing and mastering engineers, singers, songwriters,
+            producers, studio musicians etc.
+          </p>
+        </div>
+      </section>
+      <section id="recent__jobs__reviews">
+        <h3>RECENT REVIEWS</h3>
+        <div className="stars">
+          <img src={stars} alt="" />
+          <img src={stars} alt="" />
+          <img src={stars} alt="" />
+          <img src={stars} alt="" />
+          <img src={stars} alt="" />
+        </div>
+        <div className="reviews">
+          {loading ? (
+            <div>Loading....</div>
+          ) : error ? (
+            <div> There is an error </div>
+          ) : searchReviews && searchReviews.length !== 0 ? (
+            <div>
+              {searchReviews.map((review: any, index: number) => {
+                return (
+                  <div key={index}>
+                    {review.comment && <p>{review.comment}</p>}
+                    {review.userId.firstName && (
+                      <p>
+                        Job completed by: {review.userId.firstName}{" "}
+                        {review.userId.lastName}{" "}
+                      </p>
                     )}
-                </div>
-            </section>
-        </section>
-    )
-}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div>No reviews</div>
+          )}
+        </div>
+      </section>
+    </section>
+  );
+};
 
 export default RecentJobs;

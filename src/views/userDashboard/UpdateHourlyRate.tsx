@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef } from "react";
 import "./update.scss";
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
-import { useUpdateUser } from "./UpdateUserApi";
+import { useUpdateUser } from "../../apis/UpdateUserApi";
 import { updatePriceSchema } from "../../components/schemas";
 
 
@@ -13,11 +14,19 @@ interface Props {
   onClose: () => void;
   // updateUser: () => Promise<void>;
 }
+interface AuthState {
+  auth: {
+    authToken: string | null;
+    user: {
+      _id: any;
+      hourlyRate: number;
+    } | null;
+  };
+}
 
 export const UpdateHourlyRate: React.FC<Props> = ({ isOpen, onClose }) => {
-  const token = useSelector((state: any) => state?.auth?.authToken);
-  const user = useSelector((state: any) => state?.auth?.user);
-  console.log("bio: ", user.bio);
+  const token = useSelector((state: AuthState) => state?.auth?.authToken);
+  const user = useSelector((state: AuthState) => state?.auth?.user);
 
   const { newUpdateUser } = useUpdateUser();
 
@@ -27,18 +36,7 @@ export const UpdateHourlyRate: React.FC<Props> = ({ isOpen, onClose }) => {
   const onSubmit = async (values: any, actions: any) => {
     const updatedValues = {
       ...values,
-      // "state": "Lagos",
-      // "profilePicture": "{{$randomAbstractImage}}",
-      // "certificates": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "urls": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "hourlyRate": "15",
-      // "country": "Nigeria"
     };
-
     if (!navigator.onLine) {
       // Check if there is no internet connection
       errorMessage(
@@ -55,7 +53,7 @@ export const UpdateHourlyRate: React.FC<Props> = ({ isOpen, onClose }) => {
       console.log(response);
       responseMessage("Description updated succesfully");
       actions.resetForm();
-      newUpdateUser(user._id);
+      newUpdateUser(user?._id);
       onClose();
     } catch (error: any) {
       console.log("error: ", error.response.data.message);
@@ -75,7 +73,7 @@ export const UpdateHourlyRate: React.FC<Props> = ({ isOpen, onClose }) => {
     handleSubmit,
   } = useFormik({
     initialValues: {
-      hourlyRate: user.hourlyRate,
+      hourlyRate: user?.hourlyRate,
     },
     onSubmit,
     validationSchema: updatePriceSchema
@@ -83,9 +81,9 @@ export const UpdateHourlyRate: React.FC<Props> = ({ isOpen, onClose }) => {
   useEffect(() => {
     setValues((prevValues) => ({
       ...prevValues,
-      hourlyRate: user.hourlyRate,
+      hourlyRate: user?.hourlyRate,
     }));
-  }, [user.hourlyRate, setValues]);
+  }, [user?.hourlyRate, setValues]);
 
   const modalRef = useRef<HTMLDivElement>(null);
 

@@ -10,68 +10,19 @@ import instagram from './assets/instagram.svg';
 import facebook from './assets/facebook.svg';
 import img3 from './assets/3.png';
 import { Toggler } from '../../components/profile';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-
-interface UserDetails {
-    firstName: string;
-    lastName: string;
-    _id: string;
-    location: string;
-    country: string;
-    state: string;
-    bio: string;
-    skills: string[];
-}
+import GetReviewsApi from '../../apis/GetReviews';
+import GetAUserApi from '../../apis/GetAUserApi';
 
 const TalentInfo = () => {
-    const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
     const { userId } = useParams();
-    const [searchReviews, setSearchReviews] = useState([]);
-    const token = useSelector((state: any) => state?.auth?.authToken);
-    // const user = useSelector((state: any) => state?.auth?.user);
-
-    const onUser = async (userId: any) => {
-        const url = `https://creativehub-endpoints-production.up.railway.app/api/users/${userId}`;
-        try {
-            const response = await axios.get(url, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-            // console.log(response.data.data.user);
-            setUserDetails(response.data.data.user);
-        } catch (error: any) {
-            console.log(error);
-        }
-    };
-    const getUserReviews = async () => {
-        const userId = userDetails?._id;
-
-        const url = `https://creativehub-endpoints-production.up.railway.app/api/creatives/review?userId=${userId}`;
-
-        try {
-            const response = await axios.get(url, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            // console.log("reviews: ", response.data.data);
-            setSearchReviews(response.data.data.reviews);
-        } catch (error: any) {
-            // console.log(error);
-        }
-    };
-
-    // console.log("reviews details: ", searchReviews);
-    // console.log("user details: ", userDetails?._id);
+    const { getReviews, searchReviews, loading, error } = GetReviewsApi();
+    const {getUser, userDetails } = GetAUserApi();
 
     useEffect(() => {
-        onUser(userId);
-        getUserReviews();
+        getUser(userId);
+        getReviews();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -80,7 +31,7 @@ const TalentInfo = () => {
             <section id="talent__info__intro">
                 <div>
                     {userDetails?.firstName && (
-                        <h2>{userDetails.firstName} {" "} {userDetails.lastName} </h2>
+                        <h2>{userDetails?.firstName} {" "} {userDetails?.lastName} </h2>
                     )}
                     {/* <h3>{userDetails?.skills[0]}</h3> */}
                     <div className="stars">
@@ -107,8 +58,16 @@ const TalentInfo = () => {
                             <p>No bio yet.</p>
                         )}
                         <section className="reviews">
-                            <h4>{searchReviews.length} Review(s)</h4>
-                            {searchReviews && searchReviews.length > 0 ? (
+                            {searchReviews ? (
+                                <h4>{searchReviews?.length} Review(s)</h4>
+                            ) : (
+                                <h4>1 Review(s)</h4>
+                            )}
+                            {loading ? (
+                                <div>Loading...</div>
+                            ) : error ? (
+                                <div>Error in fetching details</div>
+                            ) : searchReviews && searchReviews.length > 0 ? (
                                 searchReviews.map((review: object | any, index: number) => {
                                     return (
                                         <div key={index}>

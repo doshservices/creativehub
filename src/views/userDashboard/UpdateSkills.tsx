@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef } from "react";
 import "./update.scss";
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
-import { useUpdateUser } from "./UpdateUserApi";
+import { useUpdateUser } from "../../apis/UpdateUserApi";
 import { updateSkillsSchema } from "../../components/schemas";
 
 interface Props {
@@ -12,10 +13,18 @@ interface Props {
   onClose: () => void;
   // updateUser: () => Promise<void>;
 }
+interface AuthState {
+  auth: {
+    authToken: string | null;
+    user: {
+      _id: any;
+    } | null;
+  };
+}
 
 export const UpdateSkills: React.FC<Props> = ({ isOpen, onClose }) => {
-  const token = useSelector((state: any) => state?.auth?.authToken);
-  const user = useSelector((state: any) => state?.auth?.user);
+  const token = useSelector((state: AuthState) => state?.auth?.authToken);
+  const user = useSelector((state: AuthState) => state?.auth?.user);
   const { newUpdateUser } = useUpdateUser();
 
   const url =
@@ -44,7 +53,7 @@ export const UpdateSkills: React.FC<Props> = ({ isOpen, onClose }) => {
         console.log(response);
         responseMessage("Skill updated succesfully");
         actions.resetForm();
-        newUpdateUser(user._id);
+        newUpdateUser(user?._id);
         onClose();
       } catch (error: any) {
         console.log("error: ", error.response.data.message);

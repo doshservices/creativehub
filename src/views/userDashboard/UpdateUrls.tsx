@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef } from "react";
 import "./update.scss";
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
-import { useUpdateUser } from "./UpdateUserApi";
+import { useUpdateUser } from "../../apis/UpdateUserApi";
 import { updateUrlsSchema } from "../../components/schemas";
 
 interface Props {
@@ -12,10 +13,19 @@ interface Props {
   onClose: () => void;
   // updateUser: () => Promise<void>;
 }
+interface AuthState {
+  auth: {
+    authToken: string | null;
+    user: {
+      _id: any;
+      urls: string[];
+    } | null;
+  };
+}
 
 export const UpdateUrls: React.FC<Props> = ({ isOpen, onClose }) => {
-  const token = useSelector((state: any) => state?.auth?.authToken);
-  const user = useSelector((state: any) => state?.auth?.user);
+  const token = useSelector((state: AuthState) => state?.auth?.authToken);
+  const user = useSelector((state: AuthState) => state?.auth?.user);
 
   const { newUpdateUser } = useUpdateUser();
 
@@ -25,17 +35,8 @@ export const UpdateUrls: React.FC<Props> = ({ isOpen, onClose }) => {
   const onSubmit = async (values: any, actions: any) => {
     const updatedValues = {
       ...values,
-      urls: [...user.urls, values.urls],
-      // "state": "Lagos",
-      // "profilePicture": "{{$randomAbstractImage}}",
-      // "urls": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "urls": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "hourlyRate": "15",
-      // "country": "Nigeria"
+      urls: [...user?.urls ?? [], values.urls],
+      
     };
 
     if (!navigator.onLine) {
@@ -54,7 +55,7 @@ export const UpdateUrls: React.FC<Props> = ({ isOpen, onClose }) => {
       console.log(response);
       responseMessage("Urls Link updated");
       actions.resetForm();
-      newUpdateUser(user._id);
+      newUpdateUser(user?._id);
       onClose();
     } catch (error: any) {
       console.log("error: ", error.response.data.message);
