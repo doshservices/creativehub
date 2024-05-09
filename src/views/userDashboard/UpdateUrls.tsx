@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
-import { useUpdateUser } from "./UpdateUserApi";
+import { useUpdateUser } from "../../apis/UpdateUserApi";
 import { updateUrlsSchema } from "../../components/schemas";
 
 interface Props {
@@ -26,16 +26,7 @@ export const UpdateUrls: React.FC<Props> = ({ isOpen, onClose }) => {
     const updatedValues = {
       ...values,
       urls: [...user.urls, values.urls],
-      // "state": "Lagos",
-      // "profilePicture": "{{$randomAbstractImage}}",
-      // "urls": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "urls": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "hourlyRate": "15",
-      // "country": "Nigeria"
+      
     };
 
     if (!navigator.onLine) {

@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
-import { useUpdateUser } from "./UpdateUserApi";
+import { useUpdateUser } from "../../apis/UpdateUserApi";
 import { updateLanguageSchema } from "../../components/schemas";
 
 interface Props {

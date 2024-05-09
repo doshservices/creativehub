@@ -4,7 +4,6 @@ import dp from "./assets/dp.svg";
 // import pencil from "./assets/pencil.svg";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useUpdateUser } from "./UpdateUserApi";
 import { UpdateLanguage } from "./UpdateLanguage";
 import { UpdateSkills } from "./UpdateSkills";
 import { Link } from "react-router-dom";
@@ -12,6 +11,7 @@ import { UpdateBio } from "./UpdateBio";
 import { UpdateCert } from "./UpdateCert";
 import { UpdateUrls } from "./UpdateUrls";
 import { UpdateHourlyRate } from "./UpdateHourlyRate";
+import { useUpdateUser } from "../../apis/UpdateUserApi";
 // import { responseMessage } from "../../utils/toast";
 // import { useEffect } from "react";
 
@@ -101,28 +101,7 @@ const UserDashboard = () => {
     // Join the parts with commas
     return parts.join(',');
   }
-  // const token = useSelector((state: any) => state?.auth?.authToken);
-  // const updatedUserDataUrl =
-  //   `https://creativehub-endpoints-production.up.railway.app/api/users/${user._id}`;
-
-  // const updateUser = async () => {
-  //   try {
-  //     // Fetch the updated user data from the API
-  //   const updatedUserResponse = await axios.get(updatedUserDataUrl, {
-  //     headers: {
-  //         'Content-Type': 'application/json',
-  //     },
-  // });
-  //   const updatedUserData = updatedUserResponse.data.data.user;
-  //   // Dispatch the setUser action with the updated user data
-  //   dispatch(setUser(updatedUserData));
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   const { newUpdateUser } = useUpdateUser();
-
   useEffect(() => {
     // updateUser();
     newUpdateUser(user._id);

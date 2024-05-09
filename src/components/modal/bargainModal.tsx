@@ -3,11 +3,10 @@ import "./modal.scss";
 // import upload from "../../assets/Vector.svg";
 import { FaTimes } from "react-icons/fa";
 import { useRef, useEffect } from "react";
-import { errorMessage, responseMessage } from "../../utils/toast";
-import axios from "axios";
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import { bargainSchema } from "../schemas";
+import BargainSubmitApi from "../../apis/BargainSubmitApi";
 
 interface Props {
   isOpen: boolean;
@@ -15,9 +14,11 @@ interface Props {
   recieverId?: string;
 }
 
-export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) => {
-  // const [open, setOpen] = useState<boolean>(false)
-  // const closeModal = () => setOpen(!open)
+export const BargainModal: React.FC<Props> = ({
+  isOpen,
+  onClose,
+  recieverId,
+}) => {
   const user = useSelector((state: any) => state?.auth?.user);
   console.log("user: ", user._id);
   console.log("reciverId: ", recieverId);
@@ -43,33 +44,10 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) =
   useOnClickOutside(modalRef, () => onClose());
 
   //   form submission
-  const token = useSelector((state: any) => state?.auth?.authToken);
-  const url =
-    "https://creativehub-endpoints-production.up.railway.app/api/creatives/bargain";
+  const { bargainApi } = BargainSubmitApi();
 
   const onSubmit = async (values: any, actions: any) => {
-    const updatedValues = {
-      ...values,
-      senderId: user._id,
-      recieverId: recieverId,
-    };
-    try {
-      const response = await axios.post(url, updatedValues, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(response);
-      responseMessage("Bargain sent Succesful");
-      actions.resetForm();
-      // window.location.reload();
-      onClose();
-    } catch (error: any) {
-      console.log(error);
-      errorMessage(error.response.data.message);
-      onClose();
-    }
+    await bargainApi(recieverId, values, actions, onClose);
   };
 
   //   formik
@@ -88,7 +66,7 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) =
       proposedPrice: "",
     },
     onSubmit,
-    validationSchema: bargainSchema
+    validationSchema: bargainSchema,
   });
 
   return (
@@ -114,22 +92,30 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) =
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.skill}
-              name='skill'
+              name="skill"
               placeholder="Need couple of songs produced"
               className={errors.skill && touched.skill ? "input-error" : ""}
             />
-            {errors.skill && touched.skill && <p className="error">{errors.skill}</p>}
+            {errors.skill && touched.skill && (
+              <p className="error">{errors.skill}</p>
+            )}
           </section>
           <section>
             <label htmlFor="">Tell me more about your project:</label>
             <textarea
               onChange={handleChange}
               onBlur={handleBlur}
-              name='projectDescription'
+              name="projectDescription"
               value={values.projectDescription}
-              className={errors.projectDescription && touched.projectDescription ? "input-error" : ""}
+              className={
+                errors.projectDescription && touched.projectDescription
+                  ? "input-error"
+                  : ""
+              }
             ></textarea>
-            {errors.projectDescription && touched.projectDescription && <p className="error">{errors.projectDescription}</p>}
+            {errors.projectDescription && touched.projectDescription && (
+              <p className="error">{errors.projectDescription}</p>
+            )}
           </section>
           {/* <section>
             <input type="text" name="" id="" />
@@ -143,15 +129,23 @@ export const BargainModal: React.FC<Props> = ({ isOpen, onClose, recieverId }) =
               name="proposedPrice"
               value={values.proposedPrice}
               placeholder="Input a value (in ₦)"
-              className={errors.proposedPrice && touched.proposedPrice ? "input-error" : ""}
+              className={
+                errors.proposedPrice && touched.proposedPrice
+                  ? "input-error"
+                  : ""
+              }
             />
-            {errors.proposedPrice && touched.proposedPrice && <p className="error">{errors.proposedPrice}</p>}
+            {errors.proposedPrice && touched.proposedPrice && (
+              <p className="error">{errors.proposedPrice}</p>
+            )}
           </section>
           {/* <button className='upload'>
                         <img src={upload} alt="" />
                         <span>Upload MP3(Optional)</span>
                     </button> */}
-          <button disabled={isSubmitting} type="submit">{isSubmitting ? 'Bargaining...' : 'Bargain'}</button>
+          <button disabled={isSubmitting} type="submit">
+            {isSubmitting ? "Bargaining..." : "Bargain"}
+          </button>
         </form>
       </div>
     </div>

@@ -4,8 +4,8 @@ import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
-import { useUpdateUser } from "./UpdateUserApi";
 import { updateBioSchema } from "../../components/schemas";
+import { useUpdateUser } from "../../apis/UpdateUserApi";
 
 interface Props {
   isOpen: boolean;
