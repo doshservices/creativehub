@@ -32,6 +32,7 @@ export default function RejectBargain() {
         console.log(response);
         responseMessage("Bargain rejected");
         getAllNotifications();
+        window.location.reload();
         setIsRejecting(false);
       } catch (error) {
         console.log(error);

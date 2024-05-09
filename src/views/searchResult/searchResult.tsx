@@ -1,70 +1,42 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import "./index.scss";
 import { FC, useEffect, useState } from "react";
 import arrowup from "./assets/arrow up.svg";
 import arrowright from "./assets/arrow right.svg";
 // import { result } from "./components/result";
 import { Search } from "../home/components/search";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 // import { responseMessage } from "../../utils/toast";
 import like from "./assets/like.svg";
 import star from "./assets/star.svg";
 import ballet from "./assets/ballet.png";
+import SearchResults from "../../apis/SearchResults";
 
-interface SearchResultItem {
-  _id: string;
-  img?: string;
-  firstName?: string;
-  lastName?: string;
-  skills?: string[];
-  status?: string;
-  bio?: string;
-  gender?: string;
-  country?: string;
-  hourlyRate?: string;
-}
+ interface SearchDetailsState {
+  _id: number | null
+  img: string | null
+  bio: string | null
+  firstName: string | null
+  lastName: string | null
+  status: string | null
+  skills: string | null
+ }
 
 const SearchResult: FC = () => {
-  const [searchDetails, setSearchDetails] = useState<SearchResultItem[]>([]);
-  const [searchOriginalDetails, setSearchOriginalDetails] = useState<
-    SearchResultItem[]
-  >([]);
-  const [loading, setLoading] = useState(false);
   const [countryValue, setCountryValue] = useState("");
   const [hourlyValue, setHourlyValue] = useState("");
 
   const { searchId } = useParams();
   const navigate = useNavigate();
-  const token = useSelector((state: any) => state?.auth?.authToken);
 
-  const onSearch = async (searchId: any) => {
-    const url = `https://creativehub-endpoints-production.up.railway.app/api/creatives/search?skill=${searchId}&location=&country=&gender=`;
-    setLoading(true);
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(response.data.data.creatives);
-      setSearchDetails(response.data.data.creatives);
-      setSearchOriginalDetails(response.data.data.creatives);
-      setLoading(false);
-    } catch (error: any) {
-      console.log(error);
-      setLoading(false);
-      // errorMessage(error.response.data.message)
-    }
-  };
+  const { searchDetails, searchOriginalDetails, searchResult, setSearchDetails, loading} = SearchResults();
+
+  
   useEffect(() => {
-    onSearch(searchId);
+    searchResult(searchId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const seeMoreUser = (userId: any) => {
+  const seeMoreUser = (userId: number) => {
     navigate(`/talentinfo/${userId}`);
   };
 
@@ -148,7 +120,7 @@ const filterBetween51kAnd100k = () => {
             </h4>
             {/* <form action=""> */}
             <input
-              type="number"
+              type="text"
               value={countryValue}
               onChange={(e) => setCountryValue(e.target.value)}
               placeholder="eg, Spain"
@@ -157,7 +129,7 @@ const filterBetween51kAnd100k = () => {
               Filter by Location
             </button>
             {/* </form> */}
-            <label htmlFor="any" onClick={() => onSearch(searchId)}>
+            <label htmlFor="any" onClick={() => searchResult(searchId)}>
               <input type="radio" id="any" name="location" />
               Any Location
             </label>
@@ -200,7 +172,7 @@ const filterBetween51kAnd100k = () => {
               <input type="radio" id="Female" name="gender" value="Female" />
               Female
             </label>
-            <label htmlFor="Mixed" onClick={() => onSearch(searchId)}>
+            <label htmlFor="Mixed" onClick={() => searchResult(searchId)}>
               <input type="radio" id="Mixed" name="gender" value="Mixed" />
               Mixed
             </label>
@@ -219,7 +191,7 @@ const filterBetween51kAnd100k = () => {
             <button onClick={() => filterByHourlyRate(hourlyValue)}>
               Filter by Rate
             </button>
-            <label htmlFor="Any-hour" onClick={() => onSearch(searchId)}>
+            <label htmlFor="Any-hour" onClick={() => searchResult(searchId)}>
               <input type="radio" id="Any-hour" name="hour" />
               Any hourly rate
             </label>
@@ -244,7 +216,7 @@ const filterBetween51kAnd100k = () => {
         <div className="search__results">
           <Search
             placeholder="eg. Singer"
-            onSearch={onSearch}
+            onSearch={searchResult}
             className="result__bar"
           />
           <div className="items">
@@ -253,7 +225,8 @@ const filterBetween51kAnd100k = () => {
                 <p>Loading....</p>
               </div>
             ) : searchDetails && searchDetails.length > 0 ? (
-              searchDetails.map((results: object | any, index: number) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              searchDetails.map((results: SearchDetailsState | any, index: number) => {
                 return (
                   <div
                     className="results cursor"

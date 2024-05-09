@@ -32,6 +32,7 @@ export default function AcceptBargain() {
           console.log(response);
           responseMessage("Bargain accepted Succesful");
           getAllNotifications();
+          window.location.reload();
           setIsAccepting(false);
         } catch (error) {
           console.log(error);

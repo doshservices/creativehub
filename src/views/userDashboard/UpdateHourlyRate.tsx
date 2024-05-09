@@ -27,18 +27,7 @@ export const UpdateHourlyRate: React.FC<Props> = ({ isOpen, onClose }) => {
   const onSubmit = async (values: any, actions: any) => {
     const updatedValues = {
       ...values,
-      // "state": "Lagos",
-      // "profilePicture": "{{$randomAbstractImage}}",
-      // "certificates": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "urls": [
-      //     "https://jozzdev.vercel.app/",
-      // ],
-      // "hourlyRate": "15",
-      // "country": "Nigeria"
     };
-
     if (!navigator.onLine) {
       // Check if there is no internet connection
       errorMessage(

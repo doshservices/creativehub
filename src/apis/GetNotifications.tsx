@@ -13,10 +13,12 @@ interface AuthState {
 export default function GetNotifications() {
     const [notifications, setNotifications] = useState([]);
     const token = useSelector((state: AuthState) => state?.auth?.authToken);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<boolean>(false);
 
     const getAllNotifications = async () => {
         console.log("api: ", api);
-    
+        setLoading(true);
         try {
           const response = await axios.get(
             `https://creativehub-endpoints-production.up.railway.app/api/notifications`,
@@ -26,9 +28,12 @@ export default function GetNotifications() {
           );
           console.log(response.data.data.notifications);
           setNotifications(response.data.data.notifications);
+          setLoading(false);
         } catch (error) {
           console.log(error);
+          setLoading(false);
+          setError(true);
         }
       };
-return { getAllNotifications, notifications }
+return { getAllNotifications, notifications, loading,error }
 }

@@ -12,11 +12,43 @@ import { UpdateCert } from "./UpdateCert";
 import { UpdateUrls } from "./UpdateUrls";
 import { UpdateHourlyRate } from "./UpdateHourlyRate";
 import { useUpdateUser } from "../../apis/UpdateUserApi";
+import { number } from "yup";
 // import { responseMessage } from "../../utils/toast";
 // import { useEffect } from "react";
 
+interface Language {
+  language: string | null;
+  proficiency: string | null;
+}
+
+interface Skill {
+  skill: string | null;
+  experience_level: string | null;
+}
+interface AuthState {
+  auth: {
+    user: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      _id: any
+      firstName: string
+      email: string
+      lastName: string
+      country: string
+      state: string
+      hourlyRate: number
+      status: string
+      skills: Skill[]
+      languages: Language[]
+      certificates: string[];
+      urls: string[];
+      bio: string
+      createdAt: string
+    } | null;
+  };
+}
+
 const UserDashboard = () => {
-  const user = useSelector((state: any) => state?.auth?.user);
+  const user = useSelector((state: AuthState) => state?.auth?.user);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false);
   const [isBioModalOpen, setIsBioModalOpen] = useState(false);
@@ -71,14 +103,13 @@ const UserDashboard = () => {
   const closeSkillsModal = () => {
     setIsSkillsModalOpen(false);
   };
-  
 
   // Timestamp from the API
   console.log("user: ", user);
-  const apiTimestamp = user.createdAt;
+  const apiTimestamp = user?.createdAt;
 
   // Convert the timestamp string to a Date object
-  const dateObj = new Date(apiTimestamp);
+  const dateObj = new Date(apiTimestamp || 0);
 
   // Format the Date object as desired
   const formattedDate = dateObj.toLocaleDateString("en-US", {
@@ -99,22 +130,22 @@ const UserDashboard = () => {
     // Add the remaining digits
     parts.unshift(strNumber);
     // Join the parts with commas
-    return parts.join(',');
+    return parts.join(",");
   }
   const { newUpdateUser } = useUpdateUser();
   useEffect(() => {
     // updateUser();
-    newUpdateUser(user._id);
+    newUpdateUser(user?._id || 0);
   }, []);
 
   return (
     <section id="users__dashboard">
       <section id="users__dashboard__profile">
         <img className="dp" src={dp} alt="profile" />
-        {user.firstName && user.lastName ? (
+        {user?.firstName && user?.lastName ? (
           <h3>
             <span>
-              {user.firstName} {user.lastName}
+              {user?.firstName} {user?.lastName}
             </span>
             {/* <img src={pencil} alt="edit profile" /> */}
           </h3>
@@ -122,21 +153,21 @@ const UserDashboard = () => {
           ""
         )}
 
-        {user.email ? <a className="email">{user.email}</a> : ""}
+        {user?.email ? <a className="email">{user?.email}</a> : ""}
 
-        {user.country && user.state ? (
+        {user?.country && user?.state ? (
           <address>
-            {user.state}, {user.country}
+            {user?.state}, {user?.country}
           </address>
-        ) : user.country ? (
-          <address>{user.country}</address>
+        ) : user?.country ? (
+          <address>{user?.country}</address>
         ) : (
           <address>No address yet</address>
         )}
-        {user.status ? <p className="status">{user.status}</p> : ""}
+        {user?.status ? <p className="status">{user?.status}</p> : ""}
 
         <button>Preview Profile</button>
-        {user.createdAt && (
+        {user?.createdAt && (
           <p className="member">
             Member since <span>{formattedDate}</span>
           </p>
@@ -145,15 +176,15 @@ const UserDashboard = () => {
       <div id="users__dashboard__about">
         <section className="description">
           <h4>Description</h4>
-          {user.bio && user.bio !== "" ? <p>{user.bio}</p> : <p>No bio yet</p>}
+          {user?.bio && user?.bio !== "" ? <p>{user?.bio}</p> : <p>No bio yet</p>}
           <button onClick={openBioModal}>Edit Description</button>
           <UpdateBio isOpen={isBioModalOpen} onClose={closeBioModal} />
         </section>
         <section className="pricing">
           <h4>Hourly Rate</h4>
-          {user.hourlyRate && user.hourlyRate !== "" ? (
+          {user?.hourlyRate && user?.hourlyRate ? (
             <p>
-            Hourly Rate - <span>₦{addCommasToNumber(user.hourlyRate)}/hr</span>
+            Hourly Rate - <span>₦{addCommasToNumber(user?.hourlyRate)}/hr</span>
             {/* <img src={pencil} alt="" /> */}
           </p>
           ) : (
@@ -166,9 +197,9 @@ const UserDashboard = () => {
         </section>
         <section className="languages">
           <h4>Languages</h4>
-          {user.languages.length !== 0 ? (
+          {user?.languages.length !== 0 ? (
             <div>
-              {user.languages.map((language: any) => (
+              {user?.languages.map((language) => (
                 <div>
                   {language.language && (
                     <p>
@@ -191,9 +222,9 @@ const UserDashboard = () => {
         </section>
         <section className="skills">
           <h4>Skills</h4>
-          {user.skills.length !== 0 ? (
+          {user?.skills.length !== 0 ? (
             <div>
-              {user.skills.map((skill: any) => (
+              {user?.skills.map((skill) => (
                 <div>
                   {skill.skill && (
                     <p>
@@ -213,9 +244,9 @@ const UserDashboard = () => {
         </section>
         <section className="awards">
           <h4>Certification and Awards</h4>
-          {user.certificates.length !== 0 ? (
+          {user?.certificates.length !== 0 ? (
             <div>
-              {user.certificates.map((cert: any) => (
+              {user?.certificates.map((cert) => (
                 <Link to={cert} target="_blank">
                 <p>
                  {cert} 
@@ -248,9 +279,9 @@ const UserDashboard = () => {
         </section> */}
         <section className="urls">
           <h4>URLs</h4>
-          {user.urls.length !== 0 ? (
+          {user?.urls.length !== 0 ? (
             <div>
-              {user.urls.map((url: any) => (
+              {user?.urls.map((url) => (
                <Link to={url} target="_blank">
                  <p>
                   {url} 
