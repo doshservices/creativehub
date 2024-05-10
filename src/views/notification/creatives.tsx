@@ -20,7 +20,7 @@ export const CreativesNotification = () => {
     setFullView(fullView === index ? null : index);
   };
 
-  const { getAllNotifications, notifications, loading, error } =
+  const { getAllNotifications, notificationRedux, loading, error } =
     GetNotifications();
   const { acceptBargain, isAccepting } = AcceptBargain();
   const { rejectBargain, isRejecting } = RejectBargain();
@@ -30,11 +30,10 @@ export const CreativesNotification = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const pendingNotifications = notifications.filter(
+  const pendingNotifications = notificationRedux.filter(
     (notification: NotificationState) =>
       notification?.docId?.status === "PENDING"
   );
-  console.log(notifications[0]);
 
   return (
     <section id="notification">
@@ -78,15 +77,16 @@ export const CreativesNotification = () => {
                     <div>
                       <button
                         onClick={() =>
-                          acceptBargain(notification?.docId?._id || 0)
+                          acceptBargain(notification?.docId?._id || 0, toggleExpandedView)
                         }
                         className="accept"
                       >
                         {isAccepting ? "Accepting" : "Accept"}
                       </button>
                       <button
-                        onClick={() =>
-                          rejectBargain(notification?.docId?._id || 0)
+                        onClick={() => 
+                          rejectBargain(notification?.docId?._id || 0, toggleExpandedView)
+                        
                         }
                         className="reject"
                       >

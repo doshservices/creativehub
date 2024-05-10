@@ -15,7 +15,7 @@ export default function RejectBargain() {
     const [isRejecting, setIsRejecting] = useState(false);
     const { getAllNotifications } = GetNotifications();
 
-    const rejectBargain = async (id: number) => {
+    const rejectBargain = async (id: number, toggleExpandedView: (index: number) => void) => {
       setIsRejecting(true);
       const url = `https://creativehub-endpoints-production.up.railway.app/api/creatives/bargain?id=${id}&response=DECLINED`;
       try {
@@ -32,8 +32,8 @@ export default function RejectBargain() {
         console.log(response);
         responseMessage("Bargain rejected");
         getAllNotifications();
-        window.location.reload();
         setIsRejecting(false);
+        toggleExpandedView(id);
       } catch (error) {
         console.log(error);
         setIsRejecting(false);
