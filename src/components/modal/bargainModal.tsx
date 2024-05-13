@@ -12,12 +12,14 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   recieverId?: string;
+  creativeName?: string;
 }
 
 export const BargainModal: React.FC<Props> = ({
   isOpen,
   onClose,
   recieverId,
+  creativeName
 }) => {
   const user = useSelector((state: any) => state?.auth?.user);
   console.log("user: ", user._id);
@@ -81,7 +83,7 @@ export const BargainModal: React.FC<Props> = ({
             <FaTimes size={20} color="#2d2d2d" />
           </div>
           <h3>
-            Describe your project and Shazam Fred will reply to your message
+            Describe your project and {creativeName} will reply to your message
           </h3>
         </section>
         <form onSubmit={handleSubmit}>
