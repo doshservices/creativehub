@@ -20,7 +20,7 @@ export const CreativesNotification = () => {
     setFullView(fullView === index ? null : index);
   };
 
-  const { getAllNotifications, notificationRedux, loading, error } =
+  const { getAllNotifications, notificationRedux,  loading, error } =
     GetNotifications();
   const { acceptBargain, isAccepting } = AcceptBargain();
   const { rejectBargain, isRejecting } = RejectBargain();
@@ -42,7 +42,9 @@ export const CreativesNotification = () => {
         <div>Loading...</div>
       ) : error ? (
         <div>Error in fetching notifications</div>
-      ) : pendingNotifications && pendingNotifications.length !== 0 ? (
+      ) : pendingNotifications === null ? (
+        <div>No Notifications found.</div>
+      ) : pendingNotifications  && pendingNotifications?.length !== 0 ? (
         pendingNotifications.map(
           (notification: NotificationState, index: number) => (
             <div key={index} className={fullView === index ? "" : "purple"}>

@@ -15,6 +15,8 @@ export default function GetNotifications() {
   const token = useSelector((state: AuthState) => state?.auth?.authToken);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [notifications, setNotifications] = useState([]);
+  
 
   const dispatch = useDispatch();
   const notificationRedux = useSelector(
@@ -33,6 +35,7 @@ export default function GetNotifications() {
         }
       );
       console.log(response.data.data.notifications);
+      setNotifications(response.data.data.notifications);
       dispatch(saveNotification(response.data.data.notifications));
       setLoading(false);
     } catch (error) {
@@ -41,5 +44,5 @@ export default function GetNotifications() {
       setError(true);
     }
   };
-  return { getAllNotifications, notificationRedux, loading, error };
+  return { getAllNotifications, notifications, notificationRedux, loading, error };
 }

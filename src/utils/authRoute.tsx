@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -5,6 +6,7 @@ import { Navigate } from 'react-router-dom';
 
 interface RootState {
     auth: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         user: any;
     };
 }
