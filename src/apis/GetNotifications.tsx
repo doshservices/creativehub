@@ -16,7 +16,7 @@ export default function GetNotifications() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [notifications, setNotifications] = useState([]);
-  
+
 
   const dispatch = useDispatch();
   const notificationRedux = useSelector(
@@ -34,12 +34,12 @@ export default function GetNotifications() {
           headers: authHeader(`${token}`),
         }
       );
-      console.log(response.data.data.notifications);
+      // console.log(response.data.data.notifications);
       setNotifications(response.data.data.notifications);
       dispatch(saveNotification(response.data.data.notifications));
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setLoading(false);
       setError(true);
     }
