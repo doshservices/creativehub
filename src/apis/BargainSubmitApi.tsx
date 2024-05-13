@@ -44,7 +44,7 @@ export default function BargainSubmitApi() {
         },
       });
       console.log(response);
-      responseMessage("Bargain sent Succesful");
+      responseMessage("Bargain sent succesfully");
       actions.resetForm();
       // window.location.reload();
       onClose();

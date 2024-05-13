@@ -15,7 +15,7 @@ export default function AcceptBargain() {
     const [isAccepting, setIsAccepting] = useState(false);
     const { getAllNotifications } = GetNotifications();
 
-    const acceptBargain = async (id: number) => {
+    const acceptBargain = async (id: number, toggleExpandedView: (index: number) => void) => {
         setIsAccepting(true);
         const url = `https://creativehub-endpoints-production.up.railway.app/api/creatives/bargain?id=${id}&response=ACCEPTED`;
         try {
@@ -32,7 +32,8 @@ export default function AcceptBargain() {
           console.log(response);
           responseMessage("Bargain accepted Succesful");
           getAllNotifications();
-          window.location.reload();
+          // window.location.reload();
+          toggleExpandedView(id);
           setIsAccepting(false);
         } catch (error) {
           console.log(error);

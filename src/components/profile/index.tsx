@@ -28,7 +28,7 @@ export const Toggler = (props: Props) => {
                 </div>
 
             </Link>
-            <BargainModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} recieverId={props.recieverId} />
+            <BargainModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} recieverId={props.recieverId} creativeName={props.name} />
         </header>
     )
 

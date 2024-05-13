@@ -20,7 +20,7 @@ export const CreativesNotification = () => {
     setFullView(fullView === index ? null : index);
   };
 
-  const { getAllNotifications, notifications, loading, error } =
+  const { getAllNotifications, notificationRedux,  loading, error } =
     GetNotifications();
   const { acceptBargain, isAccepting } = AcceptBargain();
   const { rejectBargain, isRejecting } = RejectBargain();
@@ -30,11 +30,10 @@ export const CreativesNotification = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const pendingNotifications = notifications.filter(
+  const pendingNotifications = notificationRedux.filter(
     (notification: NotificationState) =>
       notification?.docId?.status === "PENDING"
   );
-  console.log(notifications[0]);
 
   return (
     <section id="notification">
@@ -43,7 +42,9 @@ export const CreativesNotification = () => {
         <div>Loading...</div>
       ) : error ? (
         <div>Error in fetching notifications</div>
-      ) : pendingNotifications && pendingNotifications.length !== 0 ? (
+      ) : pendingNotifications === null ? (
+        <div>No Notifications found.</div>
+      ) : pendingNotifications  && pendingNotifications?.length !== 0 ? (
         pendingNotifications.map(
           (notification: NotificationState, index: number) => (
             <div key={index} className={fullView === index ? "" : "purple"}>
@@ -78,15 +79,16 @@ export const CreativesNotification = () => {
                     <div>
                       <button
                         onClick={() =>
-                          acceptBargain(notification?.docId?._id || 0)
+                          acceptBargain(notification?.docId?._id || 0, toggleExpandedView)
                         }
                         className="accept"
                       >
                         {isAccepting ? "Accepting" : "Accept"}
                       </button>
                       <button
-                        onClick={() =>
-                          rejectBargain(notification?.docId?._id || 0)
+                        onClick={() => 
+                          rejectBargain(notification?.docId?._id || 0, toggleExpandedView)
+                        
                         }
                         className="reject"
                       >
