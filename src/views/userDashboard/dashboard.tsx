@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./dashboard.scss";
-import dp from "./assets/dp.svg";
-// import pencil from "./assets/pencil.svg";
+// import dp from "./assets/dp.svg";
+import male from "./assets/male.webp";
+import pencil from "./assets/pencil.svg";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { UpdateLanguage } from "./UpdateLanguage";
 import { UpdateSkills } from "./UpdateSkills";
 import { Link } from "react-router-dom";
@@ -12,6 +13,12 @@ import { UpdateCert } from "./UpdateCert";
 import { UpdateUrls } from "./UpdateUrls";
 import { UpdateHourlyRate } from "./UpdateHourlyRate";
 import { useUpdateUser } from "../../apis/UpdateUserApi";
+import { IoCameraOutline } from "react-icons/io5";
+import { errorMessage, responseMessage } from "../../utils/toast";
+import axios from "axios";
+import { useFormik } from "formik";
+import { UpdateName } from "./UpdateName";
+import { UpdatePicture } from "./UpdatePicture";
 
 interface Language {
   language: string | null;
@@ -24,22 +31,24 @@ interface Skill {
 }
 interface AuthState {
   auth: {
+    authToken: string | null;
     user: {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      _id: any
-      firstName: string
-      email: string
-      lastName: string
-      country: string
-      state: string
-      hourlyRate: number
-      status: string
-      skills: Skill[]
-      languages: Language[]
+      _id: any;
+      firstName: string;
+      email: string;
+      lastName: string;
+      profilePicture: string;
+      country: string;
+      state: string;
+      hourlyRate: number;
+      status: string;
+      skills: Skill[];
+      languages: Language[];
       certificates: string[];
       urls: string[];
-      bio: string
-      createdAt: string
+      bio: string;
+      createdAt: string;
     } | null;
   };
 }
@@ -52,6 +61,8 @@ const UserDashboard = () => {
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
   const [isUrlsModalOpen, setIsUrlsModalOpen] = useState(false);
   const [isHourlyRateModalOpen, setIsHourlyRateModalOpen] = useState(false);
+  const [isNameModalOpen, setIsNameModalOpen] = useState(false);
+  const [isPictureModalOpen, setIsPictureModalOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -61,6 +72,20 @@ const UserDashboard = () => {
     setIsModalOpen(false);
   };
 
+  const openPictureModal = () => {
+    setIsPictureModalOpen(true);
+  };
+
+  const closePictureModal = () => {
+    setIsPictureModalOpen(false);
+  };
+  const openNameModal = () => {
+    setIsNameModalOpen(true);
+  };
+
+  const closeNameModal = () => {
+    setIsNameModalOpen(false);
+  };
   const openHourlyRateModal = () => {
     setIsHourlyRateModalOpen(true);
   };
@@ -135,17 +160,41 @@ const UserDashboard = () => {
     newUpdateUser(user?._id || 0);
   }, []);
 
+
   return (
     <section id="users__dashboard">
       <section id="users__dashboard__profile">
-        <img className="dp" src={dp} alt="profile" />
+        <div className=" dp-sec ">
+          {user?.profilePicture && user?.profilePicture !== "" ? (
+            <img className="dp" src={user.profilePicture} alt="profile" />
+          ) : (
+            <img className="dp" src={male} alt="profile" />
+          )}
+          <div className=" text-sec ">
+            <IoCameraOutline className=" text " onClick={openPictureModal} />
+            <UpdatePicture
+            isOpen={isPictureModalOpen}
+            onClose={closePictureModal}
+          />
+          </div>
+
+        </div>
         {user?.firstName && user?.lastName ? (
-          <h3>
+         <div className="flex">
+           <h3>
             <span>
               {user?.firstName} {user?.lastName}
             </span>
-            {/* <img src={pencil} alt="edit profile" /> */}
+           
           </h3>
+          <section >
+           <img src={pencil} onClick={openNameModal} alt="edit profile" />
+            <UpdateName
+            isOpen={isNameModalOpen}
+            onClose={closeNameModal}
+          />
+           </section>
+         </div>
         ) : (
           ""
         )}
@@ -163,7 +212,7 @@ const UserDashboard = () => {
         )}
         {user?.status ? <p className="status">{user?.status}</p> : ""}
 
-        <button>Preview Profile</button>
+        <button className="button">Preview Profile</button>
         {user?.createdAt && (
           <p className="member">
             Member since <span>{formattedDate}</span>
@@ -173,7 +222,11 @@ const UserDashboard = () => {
       <div id="users__dashboard__about">
         <section className="description">
           <h4>Description</h4>
-          {user?.bio && user?.bio !== "" ? <p>{user?.bio}</p> : <p>No bio yet</p>}
+          {user?.bio && user?.bio !== "" ? (
+            <p>{user?.bio}</p>
+          ) : (
+            <p>No bio yet</p>
+          )}
           <button onClick={openBioModal}>Edit Description</button>
           <UpdateBio isOpen={isBioModalOpen} onClose={closeBioModal} />
         </section>
@@ -181,16 +234,18 @@ const UserDashboard = () => {
           <h4>Hourly Rate</h4>
           {user?.hourlyRate && user?.hourlyRate ? (
             <p>
-            Hourly Rate - <span>₦{addCommasToNumber(user?.hourlyRate)}/hr</span>
-            {/* <img src={pencil} alt="" /> */}
-          </p>
+              Hourly Rate -{" "}
+              <span>₦{addCommasToNumber(user?.hourlyRate)}/hr</span>
+              {/* <img src={pencil} alt="" /> */}
+            </p>
           ) : (
-            <p>
-            No Hourly Rate available
-          </p>
+            <p>No Hourly Rate available</p>
           )}
-           <button onClick={openHourlyRateModal}>Edit HourlyRate</button>
-          <UpdateHourlyRate isOpen={isHourlyRateModalOpen} onClose={closeHourlyRateModal} />
+          <button onClick={openHourlyRateModal}>Edit HourlyRate</button>
+          <UpdateHourlyRate
+            isOpen={isHourlyRateModalOpen}
+            onClose={closeHourlyRateModal}
+          />
         </section>
         <section className="languages">
           <h4>Languages</h4>
@@ -245,17 +300,17 @@ const UserDashboard = () => {
             <div>
               {user?.certificates.map((cert) => (
                 <Link to={cert} target="_blank">
-                <p>
-                 {cert} 
-                 {/* <img src={pencil} alt="" /> */}
-               </p>
-              </Link>
+                  <p>
+                    {cert}
+                    {/* <img src={pencil} alt="" /> */}
+                  </p>
+                </Link>
               ))}
             </div>
           ) : (
             <p>No certificates are available.</p>
           )}
-           <button onClick={openCertModal}>Add New Certificate</button>
+          <button onClick={openCertModal}>Add New Certificate</button>
           <UpdateCert isOpen={isCertModalOpen} onClose={closeCertModal} />
         </section>
         {/* <section className="media">
@@ -279,18 +334,18 @@ const UserDashboard = () => {
           {user?.urls.length !== 0 ? (
             <div>
               {user?.urls.map((url) => (
-               <Link to={url} target="_blank">
-                 <p>
-                  {url} 
-                  {/* <img src={pencil} alt="" /> */}
-                </p>
-               </Link>
+                <Link to={url} target="_blank">
+                  <p>
+                    {url}
+                    {/* <img src={pencil} alt="" /> */}
+                  </p>
+                </Link>
               ))}
             </div>
           ) : (
             <p>No urls are available.</p>
           )}
-            <button onClick={openUrlsModal}>Add New Urls</button>
+          <button onClick={openUrlsModal}>Add New Urls</button>
           <UpdateUrls isOpen={isUrlsModalOpen} onClose={closeUrlsModal} />
         </section>
       </div>

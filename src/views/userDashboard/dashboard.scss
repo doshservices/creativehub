@@ -30,8 +30,51 @@
             position: static;
         }
 
+        .dp-sec {
+            position: relative;
+            width: 60%;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
         .dp {
             margin: 0 auto 1rem auto;
+            width: 100%;
+            border-radius: 50%;
+        }
+        .text-sec {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+            background: burlywood;
+            border-radius: 50%;
+            padding: 0.4rem;
+            cursor: pointer;
+        }
+        .text {
+            font-size: 1.5rem;
+            line-height: 0;
+
+        }
+        .hidden {
+            display: none;
+        }
+        .flex{
+            display: flex;
+            // gap: 0.2rem;
+            align-items: center;
+        }
+        .flex2{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            button {
+                display: block;
+                margin-left: auto;
+                border: none;
+                background-color: transparent;
+                color: $primary;
+            }
         }
 
         h3 {
@@ -70,7 +113,7 @@
             display: block;
         }
 
-        button {
+        .button {
             font-size: $meduim;
             font-weight: map-get($font-weights, semibold);
             background-color: transparent;
