@@ -5,7 +5,6 @@ import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { errorMessage, responseMessage } from "../../utils/toast";
-import { updateBioSchema } from "../../components/schemas";
 import { useUpdateUser } from "../../apis/UpdateUserApi";
 
 interface Props {
@@ -20,36 +19,75 @@ interface AuthState {
     user: {
       _id: any;
       bio: string
-      profilePicture: string
+      profileImg: string
     } | null;
   };
 }
 
+
+const cloudinaryUrl = 'https://api.cloudinary.com/v1_1/dd3vdayww/image/upload';
+const uploadPreset = 'uploadProfileImg';
+
 export const UpdatePicture: React.FC<Props> = ({ isOpen, onClose }) => {
   const token = useSelector((state: AuthState) => state?.auth?.authToken);
   const user = useSelector((state: AuthState) => state?.auth?.user);
-
+  // const [selectedFile, setSelectedFile] = useState<null>();
 
   const { newUpdateUser } = useUpdateUser();
 
   const url =
     "https://creativehub-endpoints-production.up.railway.app/api/users/update-details";
 
-  const onSubmit = async (values: any, actions: any) => {
-    const updatedValues = {
-      ...values,
+    // const convertFileToBase64 = (file: File): Promise<string> => {
+    //   return new Promise((resolve, reject) => {
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onload = () => resolve(reader.result as string);
+    //     reader.onerror = (error) => reject(error);
+    //   });
+    // };
+
+    const uploadImageToCloudinary = (file: File): Promise<string> => {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', uploadPreset);
+      return axios.post(cloudinaryUrl, formData)
+        .then(response => response.data.secure_url)
+        .catch(error => {
+          console.error('Error uploading to Cloudinary:', error);
+          throw error;
+        });
     };
 
+  const onSubmit = async (values: any, actions: any) => {
     if (!navigator.onLine) {
       // Check if there is no internet connection
       errorMessage(
         "No internet connection. Please check your network settings."
       );
     }
+    const formData = new FormData();
+    formData.append("profileImg", values.profileImg);
+    // formData.append("bio", user?.bio || "");
+    // console.log("formdata: ", formData);
+    // console.log("updatedvalues: ", updatedValues);
+    
+    
     try {
+      const updatedValues = {
+        ...values,
+        profileImg: user?.profileImg
+      };
+      // console.log("initial form with values:", updatedValues);
+
+      if (values.profileImg) {
+        updatedValues.profileImg = await uploadImageToCloudinary(values.profileImg);
+        // console.log("Submitting form with values:", updatedValues?.profileImg);
+      }
       const response = await axios.post(url, updatedValues, {
         headers: {
           "Content-Type": "application/json",
+          // "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       });
@@ -67,28 +105,22 @@ export const UpdatePicture: React.FC<Props> = ({ isOpen, onClose }) => {
   };
 
   const {
-    values,
+    // values,
     errors,
-    setValues,
+    // setValues,
+    setFieldValue,
     touched,
     isSubmitting,
     handleBlur,
-    handleChange,
+    // handleChange,
     handleSubmit,
   } = useFormik({
     initialValues: {
-      bio: user?.bio,
-      profilePicture: user?.profilePicture,
+      profileImg: "",
     },
     onSubmit,
-    validationSchema: updateBioSchema
+    // validationSchema: updateBioSchema
   });
-  useEffect(() => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      profilePicture: user?.profilePicture,
-    }));
-  }, [user?.profilePicture, setValues]);
 
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -110,33 +142,44 @@ export const UpdatePicture: React.FC<Props> = ({ isOpen, onClose }) => {
   };
   useOnClickOutside(modalRef, () => onClose());
 
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      const file = event.currentTarget.files[0];
+      // const base64 = await convertFileToBase64(file);
+      setFieldValue("profileImg", file);
+      // console.log("File converted to file:", file);
+    }
+  };
+
+  // console.log("selected: ", selectedFile)
+
   return (
     <div className={`language-modal ${isOpen ? "open" : ""}`}>
       <div ref={modalRef} className="modal-content">
         <span className="close-button" onClick={onClose}>
           &times;
         </span>
-        {/* Add form fields and update skill experience_level */}
         <h2>Update Picture</h2>
-        {/* Add form fields here */}
         <form className="update-form" onSubmit={handleSubmit}>
-          <section className={errors.bio && touched.bio ? "input-error" : ""}>
+          <section className={errors.profileImg && touched.profileImg ? "input-error" : ""}>
             <input
               type="file"
-              onChange={handleChange}
+              onChange={handleFileChange}
+              // value={selectedFile}
+              // onChange={(e) => setSelectedFile(e.target.value)}
               onBlur={handleBlur}
-              value={values.profilePicture}
-              name="profilePicture"
+              // value={values.profileImg}
+              name="profileImg"
               // placeholder="Edit Description"
             />
-            {errors.profilePicture && touched.profilePicture && typeof errors.profilePicture === "string" && (
-              <p className="error">{errors.profilePicture}</p>
+            {errors.profileImg && touched.profileImg && typeof errors.profileImg === "string" && (
+              <p className="error">{errors.profileImg}</p>
             )}
           </section>
 
           <section className="submit-sec">
             <p onClick={onClose}>Cancel</p>
-            <button disabled={isSubmitting} type="submit">
+            <button disabled={isSubmitting} className="picButton" type="submit">
               {isSubmitting ? "Updating..." : "Update"}
             </button>
           </section>

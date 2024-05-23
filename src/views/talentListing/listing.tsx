@@ -67,7 +67,7 @@ const Listing = () => {
               >
                 <div className="col">
                   <div>
-                    {results.img ? (
+                    {results?.profileImg ? (
                       <img src={ballet} alt="talent" />
                     ) : (
                       <img src={ballet} alt="talent" />

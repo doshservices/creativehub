@@ -77,11 +77,21 @@
     .submit-sec {
       display: flex;
       justify-content: end;
-      gap: 0rem;
+      align-items: center;
+      gap: 1rem;
       color: red;
 
       p{
         cursor: pointer;
+      }
+      .picButton {
+        display: block;
+        border: none;
+        background-color: transparent;
+        background-color: $primary; 
+        color: white;     
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
       }
     }
     // button {

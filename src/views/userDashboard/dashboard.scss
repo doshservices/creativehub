@@ -38,20 +38,22 @@
         }
         .dp {
             margin: 0 auto 1rem auto;
-            width: 100%;
+            width: 9rem;
+            height: 9rem;
             border-radius: 50%;
         }
         .text-sec {
             position: absolute;
-            bottom: 10%;
-            right: 5%;
-            background: burlywood;
+            bottom: 12%;
+            right: 10%;
+            background: rgba(0, 0, 0, 0.961);
             border-radius: 50%;
             padding: 0.4rem;
             cursor: pointer;
         }
         .text {
             font-size: 1.5rem;
+            color: white;
             line-height: 0;
 
         }

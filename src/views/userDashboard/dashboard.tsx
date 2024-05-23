@@ -4,7 +4,7 @@ import "./dashboard.scss";
 import male from "./assets/male.webp";
 import pencil from "./assets/pencil.svg";
 import { useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { UpdateLanguage } from "./UpdateLanguage";
 import { UpdateSkills } from "./UpdateSkills";
 import { Link } from "react-router-dom";
@@ -14,20 +14,19 @@ import { UpdateUrls } from "./UpdateUrls";
 import { UpdateHourlyRate } from "./UpdateHourlyRate";
 import { useUpdateUser } from "../../apis/UpdateUserApi";
 import { IoCameraOutline } from "react-icons/io5";
-import { errorMessage, responseMessage } from "../../utils/toast";
-import axios from "axios";
-import { useFormik } from "formik";
 import { UpdateName } from "./UpdateName";
 import { UpdatePicture } from "./UpdatePicture";
 
 interface Language {
   language: string | null;
   proficiency: string | null;
+  _id: string | null;
 }
 
 interface Skill {
   skill: string | null;
   experience_level: string | null;
+  _id: string | null;
 }
 interface AuthState {
   auth: {
@@ -38,7 +37,7 @@ interface AuthState {
       firstName: string;
       email: string;
       lastName: string;
-      profilePicture: string;
+      profileImg: string;
       country: string;
       state: string;
       hourlyRate: number;
@@ -127,7 +126,7 @@ const UserDashboard = () => {
   };
 
   // Timestamp from the API
-  console.log("user: ", user);
+  // console.log("user: ", user);
   const apiTimestamp = user?.createdAt;
 
   // Convert the timestamp string to a Date object
@@ -160,41 +159,37 @@ const UserDashboard = () => {
     newUpdateUser(user?._id || 0);
   }, []);
 
+  // console.log("pic:", user?.profileImg);
 
   return (
     <section id="users__dashboard">
       <section id="users__dashboard__profile">
         <div className=" dp-sec ">
-          {user?.profilePicture && user?.profilePicture !== "" ? (
-            <img className="dp" src={user.profilePicture} alt="profile" />
+          {user?.profileImg && user?.profileImg !== "" ? (
+            <img className="dp" src={user.profileImg} alt="profile" />
           ) : (
             <img className="dp" src={male} alt="profile" />
           )}
           <div className=" text-sec ">
             <IoCameraOutline className=" text " onClick={openPictureModal} />
             <UpdatePicture
-            isOpen={isPictureModalOpen}
-            onClose={closePictureModal}
-          />
+              isOpen={isPictureModalOpen}
+              onClose={closePictureModal}
+            />
           </div>
-
         </div>
         {user?.firstName && user?.lastName ? (
-         <div className="flex">
-           <h3>
-            <span>
-              {user?.firstName} {user?.lastName}
-            </span>
-           
-          </h3>
-          <section >
-           <img src={pencil} onClick={openNameModal} alt="edit profile" />
-            <UpdateName
-            isOpen={isNameModalOpen}
-            onClose={closeNameModal}
-          />
-           </section>
-         </div>
+          <div className="flex">
+            <h3>
+              <span>
+                {user?.firstName} {user?.lastName}
+              </span>
+            </h3>
+            <section>
+              <img src={pencil} onClick={openNameModal} alt="edit profile" />
+              <UpdateName isOpen={isNameModalOpen} onClose={closeNameModal} />
+            </section>
+          </div>
         ) : (
           ""
         )}
@@ -252,7 +247,7 @@ const UserDashboard = () => {
           {user?.languages.length !== 0 ? (
             <div>
               {user?.languages.map((language) => (
-                <div>
+                <div key={language._id}>
                   {language.language && (
                     <p>
                       {language.language} - <span>{language.proficiency}</span>
@@ -277,7 +272,7 @@ const UserDashboard = () => {
           {user?.skills.length !== 0 ? (
             <div>
               {user?.skills.map((skill) => (
-                <div>
+                <div key={skill._id}>
                   {skill.skill && (
                     <p>
                       {skill.skill} - <span>{skill.experience_level}</span>

@@ -37,7 +37,7 @@ const HeaderNav: FC = () => {
     const anthenticated = useSelector((state: any) => state?.auth?.user)
     const [backgroundColor, setBackgroundColor] = useState<boolean>(false)
     const closeMenu = () => setShowNav(!showNav)
-    console.log(isModalOpen);
+    // console.log(isModalOpen);
 
     const changeColor = () => {
         if (window.scrollY >= 70) {
