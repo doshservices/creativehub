@@ -46,6 +46,7 @@ export const updateBioSchema = yup.object().shape({
 
 export const updatePriceSchema = yup.object().shape({
   hourlyRate: yup.number().positive().integer().required("Required"),
+  
 });
 
 export const updateCertificatesSchema = yup.object().shape({

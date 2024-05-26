@@ -13,7 +13,7 @@ import SearchResults from "../../apis/SearchResults";
 
  interface SearchDetailsState {
   _id: number | null
-  img: string | null
+  profileImg: string | null
   bio: string | null
   firstName: string | null
   lastName: string | null
@@ -233,11 +233,11 @@ const filterBetween51kAnd100k = () => {
                     onClick={() => seeMoreUser(results._id)}
                     key={index}
                   >
-                    {results.img ? <img src={ballet} /> : <img src={ballet} />}
+                    {results?.profileImg ? <img src={results.profileImg} /> : <img src={ballet} />}
                     <div>
-                      {results.skills && <h5>{searchId}</h5>}
+                      {results?.skills && <h5>{searchId}</h5>}
                       <div className="name">
-                        {results.firstName && (
+                        {results?.firstName && (
                           <p>
                             {results.firstName} {results.lastName}
                             {/* <span>{results.country}</span> */}
@@ -256,13 +256,13 @@ const filterBetween51kAnd100k = () => {
                         </div>
                         <p
                           className={
-                            results.status === "ACTIVE" ? "online" : "offline"
+                            results?.status === "ACTIVE" ? "online" : "offline"
                           }
                         >
-                          {results.status}
+                          {results?.status}
                         </p>
                       </div>
-                      {results.bio && <p>{results.bio}</p>}
+                      {results?.bio && <p>{results.bio}</p>}
                     </div>
                   </div>
                 );

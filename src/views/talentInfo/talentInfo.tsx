@@ -107,7 +107,11 @@ const TalentInfo = () => {
                         </div>
                         <div className="short__bookings">
                             <h5>SHORT BOOKINGS</h5>
-                            <p>$20 per Hour</p>
+                            {userDetails?.hourlyRate && userDetails?.hourlyRate !== "" ? (
+                                <p>N{userDetails?.hourlyRate} per Hour</p>
+                            ) : (
+                                <p>None</p>
+                            )}
                             <p className="line"></p>
                             <h5>CONCERTS</h5>
                             <p>Contact for pricing</p>

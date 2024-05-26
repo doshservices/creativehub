@@ -9,6 +9,7 @@ interface UserDetails {
   country: string;
   state: string;
   bio: string;
+  hourlyRate: string
   skills: string[];
 }
 
